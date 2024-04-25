@@ -1,0 +1,16 @@
+{
+  "name": "cutecorehealth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "npx prettier . --write",
+    "lint": "npx eslint ."
+  },
+  "workspaces":[
+    "packages/*"
+  ],
+  "author": "",
+  "license": "ISC"
+}
