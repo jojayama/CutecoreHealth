@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Table from "./Table";
 import Form from "./Form";
+import LoginPage from "./login";
 
 function MyApp() {
   function updateList(person) { 
@@ -65,9 +66,12 @@ function MyApp() {
 
 
   return (
-    <div className="container">
-      <Table characterData={characters} removeCharacter={removeOneCharacter} />
+    <div>
+      <div className="container" style={{backgroundColor: '#FFF3FE'}}>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Slab&display=swap"></link>
+      {/* <Table characterData={characters} removeCharacter={removeOneCharacter} /> */}
       <Form handleSubmit={updateList}/>
+    </div>
     </div>
   );
 }
