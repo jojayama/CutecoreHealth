@@ -1,6 +1,6 @@
-// src/Form.jsx
 import React, { useState } from "react";
-
+import styles from "./style/form.module.css"; 
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 
 function Form(props) {
   const [person, setPerson] = useState({
@@ -15,30 +15,50 @@ function Form(props) {
 
   function handleChange(event) {
     const { name, value } = event.target;
-    if (name === "job")
-      setPerson({ name: person["name"], job: value });
-    else setPerson({ name: value, job: person["job"] });
-    }
-    return (
-        <form>
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            value={person.name}
-            onChange={handleChange}
-          />
-          <label htmlFor="job">Job</label>
-          <input
-            type="text"
-            name="job"
-            id="job"
-            value={person.job}
-            onChange={handleChange}
-          />
-          <input type="button" value="Submit" onClick={submitForm} />
-        </form>
-      );
+    setPerson((prevPerson) => ({
+      ...prevPerson,
+      [name]: value
+    }));
+  }
+
+  return (
+    <div className={styles.background}>
+      <h1 className={styles.heading}>Cutec<FavoriteOutlinedIcon fontSize="large"/>re Health</h1>
+      <form className={styles.form}>
+      {/* <label htmlFor="name">Username</label> */}
+      <input
+        type="text"
+        name="name"
+        id="name"
+        value={person.name}
+        onChange={handleChange}
+        className={styles.input}
+        placeholder=" Email..."
+      />
+      {/* <label htmlFor="job">Password</label> */}
+      <input
+        type="password"
+        name="job"
+        id="job"
+        value={person.job}
+        onChange={handleChange}
+        className={styles.input}
+        placeholder=" Password"
+      />
+      <input
+        type="button"
+        value="Login"
+        onClick={submitForm}
+        className={styles.buttonContainer}
+      />
+    </form>
+    <p className={styles.newUser}>
+      New User? <br/>
+    <a href="/signup">Sign up</a>
+    </p>
+    </div>
+    
+  );
 }
+
 export default Form;
