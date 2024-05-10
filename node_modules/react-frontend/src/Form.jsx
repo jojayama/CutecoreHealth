@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./style/form.module.css"; 
+import Navbar from "./navbar";
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 
 function Form(props) {
@@ -23,6 +24,7 @@ function Form(props) {
 
   return (
     <div className={styles.background}>
+      <Navbar/>
       <h1 className={styles.heading}>Cutec<FavoriteOutlinedIcon fontSize="large"/>re Health</h1>
       <form className={styles.form}>
       {/* <label htmlFor="name">Username</label> */}
