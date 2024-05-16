@@ -1,5 +1,7 @@
 import express from "express";
 import cors from "cors";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
 import userServices from "./user-services.js";
 
 const app = express();
@@ -8,6 +10,7 @@ const port = 8000;
 app.use(cors());
 app.use(express.json());
 
+// connect to app
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
@@ -31,10 +34,9 @@ app.get("/users/:id", (req, res) => {
 })
 
 app.post("/users", (req, res) => {
-  //const addedUser = req.body;
   userServices.addUser(req.body)
-    .then(users => res.staus(201).send({users_list:users}))
-    .catch(err => res.status(404).send("Unable to create account."))
+    .then(users => res.status(201).send({users_list:users}))
+    .catch(err => res.status(500).send("Unable to create account."))
 });
 
 // will want to change this to delete by email
