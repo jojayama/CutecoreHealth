@@ -7,14 +7,18 @@ const UserSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    job: {
+    email: {
       type: String,
       required: true,
+      unique: true,
       trim: true,
-      validate(value) {
-        if (value.length < 2)
-          throw new Error("Invalid job, must be at least 2 characters.");
-      },
+      lowercase: true,
+      match: [/^\S+@\S+\.\S+$/, 'Please enter a valid email address']
+    },
+    password: {
+      type: String,
+      required: true,
+      minlength: 6,
     },
   },
   { collection: "users_list" }

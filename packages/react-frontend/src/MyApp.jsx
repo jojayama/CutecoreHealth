@@ -1,57 +1,60 @@
 // src/MyApp.jsx
 import React, { useState, useEffect } from "react";
+//import Table from "./Table";
+import Form from "./routes/Login";
 import Table from "./Table";
 import Form from "./Form";
 import LoginPage from "./login";
 import CuteCalendar from "./calendar.jsx"
 
 function MyApp() {
-  function updateList(person) { 
+  function updateList(person) {
     postUser(person)
       .then(() => setCharacters([...characters, person]))
       .catch((error) => {
         console.log(error);
-      })
+      });
   }
 
-    const [characters, setCharacters] = useState([
-    ]);
+  const [characters, setCharacters] = useState([]);
 
-    function fetchUsers() {
-      const promise = fetch("http://localhost:8000/users");
-      return promise;
-    }
-  
-    useEffect(() => {
-      fetchUsers()
-        .then((res) => res.json())
-        .then((json) => setCharacters(json["users_list"]))
-        .catch((error) => { console.log(error); });
-    }, [characters] );
+  function fetchUsers() {
+    const promise = fetch("http://localhost:8000/users");
+    return promise;
+  }
 
-  
-    function deleteUser(id){
-      const promise = fetch(`http://localhost:8000/users/${id}`, {
-        method: "DELETE"
+  useEffect(() => {
+    fetchUsers()
+      .then((res) => res.json())
+      .then((json) => setCharacters(json["users_list"]))
+      .catch((error) => {
+        console.log(error);
       });
-      return promise;
-    }
+  }, [characters]);
+
+  function deleteUser(id) {
+    const promise = fetch(`http://localhost:8000/users/${id}`, {
+      method: "DELETE",
+    });
+    return promise;
+  }
 
   function removeOneCharacter(id) {
     // deleteUser(id)
     fetch(`http://localhost:8000/users/${id}`, {
-      method: "DELETE"
+      method: "DELETE",
     })
-    //.then & .catch
-    .then((res) => {
-      if (res.status === 204){
-        setCharacters(characters.filter((user) => user._id !== id))
-      }else{
-        console.log("Error: Could not delete user.")
-      }})
-    .catch((error) => {
-      console.log(error)
-    })
+      //.then & .catch
+      .then((res) => {
+        if (res.status === 204) {
+          setCharacters(characters.filter((user) => user._id !== id));
+        } else {
+          console.log("Error: Could not delete user.");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   function postUser(person) {
@@ -65,14 +68,16 @@ function MyApp() {
     return promise;
   }
 
-
   return (
     <div>
-      <div className="container" style={{backgroundColor: '#FFF3FE'}}>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Slab&display=swap"></link>
-      {/* <Table characterData={characters} removeCharacter={removeOneCharacter} /> */}
-      <Form handleSubmit={updateList}/>
-    </div>
+      <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Josefin+Slab&display=swap"
+        ></link>
+      <div className="container" style={{ backgroundColor: "#FFF3FE" }}>
+        {/* <Table characterData={characters} removeCharacter={removeOneCharacter} /> */}
+        <Form handleSubmit={updateList} />
+      </div>
     </div>
   );
 }

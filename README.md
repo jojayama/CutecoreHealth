@@ -1,4 +1,4 @@
-This the the Cute Health Diary from he Cutecore Co.
+This the the Cute Health Diary from the Cutecore Co.
 
 Here is the calendar documentation we will use: https://fullcalendar.io/docs
 
