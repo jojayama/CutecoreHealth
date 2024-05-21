@@ -10,7 +10,9 @@ import "./style/form.module.css";
 import "./style/navbar.module.css";
 import ErrorPage from "./error-page";
 import Login from "./routes/Login";
-import CreateAccount from "./routes/CreateAccount"
+import CreateAccount from "./routes/CreateAccount";
+import { Calendar } from "@fullcalendar/core";
+import CuteCalendar from "./routes/calendar";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/createAccount",
     element: <CreateAccount />
+  },
+  {
+    path: "/calendar",
+    element: <CuteCalendar />
   }
 ]);
 

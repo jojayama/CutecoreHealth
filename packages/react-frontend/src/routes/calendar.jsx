@@ -1,5 +1,5 @@
 import FullCalendar from '@fullcalendar/react'
-import Calendar from '@fullcalendar/core'
+// import Calendar from '@fullcalendar/core'
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
@@ -15,7 +15,6 @@ export default function CuteCalendar() {
       }}
       initialView="dayGridMonth"
       selectable={true}
-      weekends={weekendsVisible}
     />
   )
 }
