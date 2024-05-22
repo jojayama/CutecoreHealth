@@ -5,13 +5,15 @@ import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 
 function Form(props) {
   const [person, setPerson] = useState({
-    name: "",
-    job: ""
+    goalTitle: "",
+    desc: "",
+    time: "",
+    date: ""
   });
 
   function submitForm() {
     props.handleSubmit(person);
-    setPerson({ name: "", job: "" });
+    setPerson({ goalTitle: "", desc: "", time: "", date: "" });
   }
 
   function handleChange(event) {
@@ -35,19 +37,17 @@ function Form(props) {
 
       <input
         type="text"
-        name="name"
-        id="name"
-        value={person.name}
+        name="goal"
+        value={person.goalTitle}
         onChange={handleChange}
         className={styles.input}
         placeholder="Goal title*"
       />
       {/* <label htmlFor="job">Password</label> */}
       <input
-        type="email"
-        name="email"
-        id="email"
-        value={person.job}
+        type="text"
+        name="desc"
+        value={person.desc}
         onChange={handleChange}
         className={styles.input}
         placeholder="Description (optional)"
@@ -57,18 +57,16 @@ function Form(props) {
       <div className={styles.inputContainer}>
         <input
           type="text"
-          name="name"
-          id="name"
-          value={person.name}
+          name="time"
+          value={person.time}
           onChange={handleChange}
           className={styles.smallInput}
           placeholder="12:00AM"
         />
         <input
           type="text"
-          name="name"
-          id="name"
-          value={person.name}
+          name="date"
+          value={person.date}
           onChange={handleChange}
           className={styles.smallInput}
           placeholder="12/12/24"
@@ -93,4 +91,4 @@ function Form(props) {
   );
 }
 
-export default CreateNewGoak;
+export default CreateNewGoal;
