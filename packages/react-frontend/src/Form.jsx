@@ -27,37 +27,35 @@ function Form(props) {
       <Navbar/>
       <h1 className={styles.heading}>Cutec<FavoriteOutlinedIcon fontSize="large"/>re Health</h1>
       <form className={styles.form}>
-      {/* <label htmlFor="name">Username</label> */}
-      <input
-        type="text"
-        name="name"
-        id="name"
-        value={person.name}
-        onChange={handleChange}
-        className={styles.input}
-        placeholder=" Email... "
-      />
-      {/* <label htmlFor="job">Password</label> */}
-      <input
-        type="password"
-        name="job"
-        id="job"
-        value={person.job}
-        onChange={handleChange}
-        className={styles.input}
-        placeholder=" Password"
-      />
-      <input
-        type="button"
-        value="Login"
-        onClick={submitForm}
-        className={styles.buttonContainer}
-      />
-    </form>
-    <p className={styles.newUser}>
-      New User? <br/>
-    <a href="/signup">Sign up</a>
-    </p>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          value={person.name}
+          onChange={handleChange}
+          className={styles.input}
+          placeholder=" Email... "
+        />
+        <input
+          type="password"
+          name="job"
+          id="job"
+          value={person.job}
+          onChange={handleChange}
+          className={styles.input}
+          placeholder=" Password"
+        />
+        <input
+          type="button"
+          value="Login"
+          onClick={submitForm}
+          className={styles.buttonContainer}
+        />
+      </form>
+      <p className={styles.newUser}>
+          New User? <br/>
+        <a href="/signup">Sign up</a>
+      </p>
     </div>
     
   );
