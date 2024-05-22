@@ -1,0 +1,16 @@
+@import url('https://fonts.google.com/specimen/Josefin+Slab');
+@font-face {
+    font-family: 'Josefin Slab';
+    src: url(https://fonts.google.com/specimen/Josefin+Slab);
+  }
+  
+:root {
+    /* --fc-page-bg-color: #FFF3FE; */
+    --fc-button-text-color: #fff;
+    --fc-button-bg-color: #8E5281;
+    --fc-button-border-color: #8E5281;
+    --fc-button-hover-bg-color: #be77af;
+    --fc-button-hover-border-color: #8E5281;
+    --fc-button-active-bg-color: #be77af;
+    --fc-button-active-border-color: #be77af;
+  }

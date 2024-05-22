@@ -8,6 +8,7 @@ import "./style/form.module.css";
 // import Root from "./routes/root";
 import "./style/form.module.css";
 import "./style/navbar.module.css";
+import "./style/calendar.css";
 import ErrorPage from "./error-page";
 import Login from "./routes/Login";
 import CreateAccount from "./routes/CreateAccount";
