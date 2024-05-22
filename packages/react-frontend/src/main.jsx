@@ -12,8 +12,9 @@ import ErrorPage from "./error-page";
 import Login from "./routes/Login";
 import CreateAccount from "./routes/CreateAccount"
 import Welcome from "./routes/Welcome"
-import Profile from "./routes/Profile"
-import Layout from "./routes/layout"
+import Layout from "./routes/layout";
+import Profile from "./routes/profile";
+import EditProfile from "./routes/editProfile";
 
 const router = createBrowserRouter([
   {
@@ -30,12 +31,16 @@ const router = createBrowserRouter([
     element: <Welcome />
   },
   {
+    path: "/layout",
+    element: <Layout />
+  },
+  {
     path: "/profile",
     element: <Profile />
   },
   {
-    path: "/layout",
-    element: <Layout />
+    path: "/editProfile",
+    element: <EditProfile/>
   }
 ]);
 
