@@ -11,12 +11,12 @@ export default function Layout(){
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Josefin+Slab&display=swap"
         ></link>
-        <div className={styles.topBut}>
-            <Link to={"/profile"} className={styles.topBut}><AccountBoxRoundedIcon className={styles.profile} fontSize='large'/></Link>
+            <Link to={"/profile"} className={styles.profile}>
+            <AccountBoxRoundedIcon className={styles.profile} fontSize='large'></AccountBoxRoundedIcon>
+            </Link>
             <button className={styles.logoutContainer}>
                 <Link to={"/"} className={styles.logout}>Logout</Link>
             </button>
-        </div>
         </div>
     )
 }
