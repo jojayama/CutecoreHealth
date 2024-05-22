@@ -17,15 +17,16 @@ body {
     text-align: center;
     color:#8E5281;
     font-family: 'Josefin Slab', sans-serif;
-    font-size: 70px;
+    font-size: 60px;
 }
 .plaintext{
     margin-top: 30px;
     margin-bottom: 20px;
+    margin-right: 10px;
     text-align: center;
     color:#8E5281;
     font-family: 'Josefin Slab', sans-serif;
-    font-size: 40px;
+    font-size: 34px;
 }
 .form {
     width: 450px;
@@ -39,7 +40,7 @@ body {
     background-color:#FFF3FE;
     color: white;
     margin: 0 auto;
-    margin-top: 20px;
+    margin-top: 10px;
     border:#8E5281;
     text-align: center;
     display:flex;
@@ -80,7 +81,7 @@ body {
 .smallInput {
     text-align: center;
     margin-bottom: 10px;
-    margin-top: 40px;
+    margin-top: 10px;
     margin-right: 20px;
     width: 130px;
     height: 50px;
@@ -107,23 +108,23 @@ body {
     background-color:#8E5281;
     color: white;
     margin: 0 auto;
-    margin-top: 40px;
     border:#8E5281;
     text-align: center;
     display:flex;
-    justify-content: center;
+    justify-content:center;
     align-items:center;
-    cursor:pointer;
     font-family: 'Josefin Slab', sans-serif;
     font-size: 30px;
     height: 50px;
-    width: 100px;
+    width: 0px;
 }
 .button {
     cursor: pointer;
     height: 50px;
-    width: 150px;
-    margin-right: 50px;
+    width: 130px;
+    margin-top: 40px;
+    margin-right: 10px;
+    margin-bottom:20px;
     background-color: #8E5281;
     color: white;
     border:#8E5281;
@@ -134,10 +135,12 @@ body {
     background-color: #be77af;
 }
 .buttonClicked {
-    cursor: pointer;
+    cursor: not-allowed;
     height: 50px;
     width: 150px;
+    margin-top: 40px;
     margin-right: 10px;
+    margin-bottom:20px;
     background-color: #be77af;
     color: white;
     border:#8E5281;
@@ -145,8 +148,9 @@ body {
     font-size: 30px;
 }
 .selection{
-    margin-top: 20px;
+    margin-top: 0px;
     margin-bottom: auto;
+    margin-right:10px;
     color:#8E5281;
     font-family: 'Josefin Slab', sans-serif;
     font-size: 30px;

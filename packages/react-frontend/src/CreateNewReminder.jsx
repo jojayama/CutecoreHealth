@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "./style/createnew.module.css"; 
 import Navbar from "./navbar";
-import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 
 function Form(props) {
   const [person, setPerson] = useState({
@@ -27,12 +26,12 @@ function Form(props) {
   return (
     <div className={styles.background}>
       <Navbar/>
-      <h1 className={styles.heading}>New G<FavoriteOutlinedIcon fontSize="large"/>al!</h1>
+      <h1 className={styles.heading}>New Reminder</h1>
       <form className={styles.form}>
       {/* <label htmlFor="name">Username</label> */}      
       <div className={styles.buttonContainer}>
-            <button className={styles.buttonClicked}>Goal</button>
-            <button className={styles.button}>Reminder</button>
+            <button className={styles.button}>Goal</button>
+            <button className={styles.buttonClicked}>Reminder</button>
         </div>
 
       <input
@@ -41,7 +40,7 @@ function Form(props) {
         value={person.goalTitle}
         onChange={handleChange}
         className={styles.input}
-        placeholder="Goal title*"
+        placeholder="Reminder title*"
       />
       {/* <label htmlFor="job">Password</label> */}
       <input
@@ -71,12 +70,24 @@ function Form(props) {
           className={styles.smallInput}
           placeholder="12/12/24"
         />
-        <p className={styles.selection}>
-          <a href="/No end time">No end time</a>
-        </p>
-            
+         <h1 className={styles.plaintext}>Recurs: </h1>
+         <div>
+         <p className={styles.selection}>
+          <a href="/Never">Never</a>
+          </p>
+          <p className={styles.selection}>
+          <a href="/Daily">Daily</a>
+          </p>
+          <p className={styles.selection}>
+          <a href="/Weekly">Weekly</a>
+          </p>
+          <p className={styles.selection}>
+          <a href="/Monthly">Monthly</a>
+          </p>
+         </div>
         </div>
-      <button className={styles.button}>Create</button>
+        <button className={styles.button}>Create</button>
+        
     </form>
     <p className={styles.selection}>
     <a href="/Return">Return</a>
@@ -86,4 +97,4 @@ function Form(props) {
   );
 }
 
-export default CreateNewGoal;
+export default CreateNewReminder;
