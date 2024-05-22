@@ -95,7 +95,25 @@ body {
 .newUser a:hover{
     color:#be77af;
 }
-.icon{
-    width: 20px;
-    height: 20px;
+.deleteUserContainer{
+    background-color:#670b33;
+    color: white;
+    margin: 0 auto;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    border:#8E5281;
+    text-align: center;
+    display:block;
+    cursor:pointer;
+    height: 50px;
+    width: 150px;
+}
+.deleteUser{
+    text-align: center;
+    font-size: 25px;
+    margin: 0% auto;
+    font-family: 'Josefin Slab', sans-serif;
+}
+.deleteUserContainer:hover{
+    background-color: #8E5281;
 }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "../style/profile.module.css";
 import Layout from "./layout";
 import Navbar from "../navbar";
+import { Link } from "react-router-dom";
 
 function Profile(props) {
   const [person, setPerson] = useState({
@@ -64,12 +65,17 @@ function Profile(props) {
         />
         <input
           type="button"
-          value="Sign up"
+          value="Save"
           onClick={submitForm}
           className={styles.buttonContainer}
           style={{ width: "130px" }}
         />
       </form>
+      <button className={styles.deleteUserContainer}>
+        <p className={styles.deleteUser}>
+          Delete User
+        </p>
+      </button>
     </div>
   );
 }
