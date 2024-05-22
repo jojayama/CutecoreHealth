@@ -11,6 +11,9 @@ import "./style/navbar.module.css";
 import ErrorPage from "./error-page";
 import Login from "./routes/Login";
 import CreateAccount from "./routes/CreateAccount"
+import Welcome from "./routes/Welcome"
+import Profile from "./routes/Profile"
+import Layout from "./routes/layout"
 
 const router = createBrowserRouter([
   {
@@ -21,6 +24,18 @@ const router = createBrowserRouter([
   {
     path: "/createAccount",
     element: <CreateAccount />
+  },
+  {
+    path: "/welcome",
+    element: <Welcome />
+  },
+  {
+    path: "/profile",
+    element: <Profile />
+  },
+  {
+    path: "/layout",
+    element: <Layout />
   }
 ]);
 
