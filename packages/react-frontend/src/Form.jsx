@@ -35,7 +35,7 @@ function Form(props) {
         value={person.name}
         onChange={handleChange}
         className={styles.input}
-        placeholder=" Email..."
+        placeholder=" Email... "
       />
       {/* <label htmlFor="job">Password</label> */}
       <input
