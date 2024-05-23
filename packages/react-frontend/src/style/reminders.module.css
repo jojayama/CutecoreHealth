@@ -1,0 +1,45 @@
+.background {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+.heading {
+    margin-top: 150px;
+    margin-right: 1100px;
+    margin-bottom: 0px;
+    text-align: center;
+    color: #8E5281;
+    font-family: "Josefin Slab", sans-serif;
+    font-size: 100px;
+  }
+  .reminderBox{
+    text-align: center;
+    margin: 0% auto;
+    background-color: #FDEFFF;
+    border: solid 2px #9E0097;
+    width: 85%;
+    height: 700px;
+  }
+
+  .createNewContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #8E5281;
+    margin-top: 100px !important; 
+    margin: 0% auto;
+    border: none;
+  }
+  .createNew{
+    text-decoration: none;
+    color: white;
+    font-family: 'Josefin Slab', sans-serif;
+    font-size: 35px;
+    margin: 4px;
+  }
+
+  .createNewContainer:hover{
+    background-color: #b78aad;
+  }
