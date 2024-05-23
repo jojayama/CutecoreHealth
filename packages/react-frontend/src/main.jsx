@@ -61,6 +61,10 @@ const router = createBrowserRouter([
   {
     path: "/reminders",
     element: <Reminders/>
+  },
+  {
+    path: "/calendar",
+    element: <CuteCalendar/>
   }
 ]);
 
