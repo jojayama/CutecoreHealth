@@ -24,8 +24,9 @@
     font-weight: bold;
     font-size: 40px;
     font-family: 'Josefin Slab', sans-serif;
-    margin-top: 50px;
+    margin-top: 20px;
   }
+
 
   
   .navbar a:hover {
@@ -36,6 +37,7 @@
   .navbar:hover{
     left: 0;
     width: 270px;
+
     background-color: #FDEFFF
   }
 

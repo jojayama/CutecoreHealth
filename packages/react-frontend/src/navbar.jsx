@@ -17,6 +17,7 @@ const Navbar = () => {
         <Link to="/welcome" className={styles.heading} >Cute Health</Link>
       </a>
       <a>
+
       <Link to="/calendar"  ><CalendarMonth fontSize="large" /> Calendar</Link>
       </a>
       <a >

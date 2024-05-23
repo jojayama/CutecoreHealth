@@ -23,6 +23,7 @@ import Reminders from "./routes/reminders";
 import CreateNewReminder from "./routes/CreateNewReminder";
 import CreateNewGoal from "./routes/CreateNewGoal";
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -48,6 +49,22 @@ const router = createBrowserRouter([
   {
     path: "/editProfile",
     element: <EditProfile/>
+  },
+  {
+    path: "/createGoal",
+    element: <CreateNewGoal/>
+  },
+  {
+    path: "/createReminder",
+    element: <CreateNewReminder/>
+  },
+  {
+    path: "/goals",
+    element: <Goals/>
+  },
+  {
+    path: "/reminders",
+    element: <Reminders/>
   },
   {
     path: "/calendar",
