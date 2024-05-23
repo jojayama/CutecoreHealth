@@ -7,12 +7,13 @@ import { Link } from "react-router-dom"
 function CreateAccount(props) {
   const [person, setPerson] = useState({
     name: "",
-    job: ""
+    email: "",
+    password: ""
   });
 
   function submitForm() {
     props.handleSubmit(person);
-    setPerson({ name: "", job: "" });
+    setPerson({ name: "", email: "", password: "" });
   }
 
   function handleChange(event) {

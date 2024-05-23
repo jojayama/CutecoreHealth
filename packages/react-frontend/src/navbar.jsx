@@ -17,16 +17,17 @@ const Navbar = () => {
         <Link to="/welcome" className={styles.heading} >Cute Health</Link>
       </a>
       <a>
-      <Link to="/calendar"><CalendarMonth fontSize="large" /> Calendar</Link>
+
+      <Link to="/calendar"  ><CalendarMonth fontSize="large" /> Calendar</Link>
+      </a>
+      <a >
+      <Link to="/diary"  ><ImportContactsTwoToneIcon fontSize="large" /> Diary</Link>
       </a>
       <a>
-        <Link to="/diary"><ImportContactsTwoToneIcon fontSize="large" /> Diary</Link>
+      <Link to="/goals"><CheckBoxOutlinedIcon fontSize="large" /> Goals</Link>
       </a>
-      <a>
-      <Link to="/goals" className={styles.goals}><CheckBoxOutlinedIcon fontSize="large" /> Goals</Link>
-      </a>
-      <a>
-      <Link to="/reminders"><NotificationsNoneIcon fontSize="large" /> Reminders</Link>
+      <a >
+      <Link to="/reminders"  ><NotificationsNoneIcon fontSize="large" /> Reminders</Link>
       </a>
     </div>
   );
