@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "../style/createnew.module.css"; 
 import Navbar from "../navbar";
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+import {Link } from "react-router-dom"
 
 function CreateNewGoal(props) {
   const [person, setPerson] = useState({
@@ -31,7 +32,7 @@ function CreateNewGoal(props) {
       <form className={styles.form}>
         <div className={styles.buttonContainer}>
           <button className={styles.buttonClicked}>Goal</button>
-          <button className={styles.button}>Reminder</button>
+          <Link to="/createReminder"><button className={styles.button}>Reminder</button></Link>
         </div>
         <input
           type="text"

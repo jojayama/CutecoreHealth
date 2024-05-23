@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "../style/createnew.module.css"; 
 import Navbar from "../navbar";
+import { Link } from "react-router-dom"
 
 function CreateNewReminder(props) {
   const [person, setPerson] = useState({
@@ -29,7 +30,7 @@ function CreateNewReminder(props) {
       <h1 className={styles.heading}>New Reminder</h1>
       <form className={styles.form}>    
         <div className={styles.buttonContainer}>
-              <button className={styles.button}>Goal</button>
+              <Link to="/createGoal"><button className={styles.button}>Goal</button></Link>
               <button className={styles.buttonClicked}>Reminder</button>
         </div>
         <input
