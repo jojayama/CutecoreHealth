@@ -2,6 +2,10 @@
 import React, { useState, useEffect } from "react";
 //import Table from "./Table";
 import Form from "./routes/Login";
+import Table from "./Table";
+import Form from "./Form";
+import LoginPage from "./login";
+import CuteCalendar from "./calendar.jsx"
 
 function MyApp() {
   function updateList(person) {

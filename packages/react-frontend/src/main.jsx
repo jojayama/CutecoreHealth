@@ -8,9 +8,12 @@ import "./style/form.module.css";
 // import Root from "./routes/root";
 import "./style/form.module.css";
 import "./style/navbar.module.css";
+import "./style/calendar.css";
 import ErrorPage from "./error-page";
 import Login from "./routes/Login";
-import CreateAccount from "./routes/CreateAccount"
+import CreateAccount from "./routes/CreateAccount";
+import { Calendar } from "@fullcalendar/core";
+import CuteCalendar from "./routes/calendar";
 import Welcome from "./routes/Welcome"
 import Layout from "./routes/layout";
 import Profile from "./routes/Profile";
