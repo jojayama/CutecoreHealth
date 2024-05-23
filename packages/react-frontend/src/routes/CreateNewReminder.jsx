@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import styles from "./style/createnew.module.css"; 
-import Navbar from "./navbar";
+import styles from "../style/createnew.module.css"; 
+import Navbar from "../navbar";
 
 function CreateNewReminder(props) {
   const [person, setPerson] = useState({

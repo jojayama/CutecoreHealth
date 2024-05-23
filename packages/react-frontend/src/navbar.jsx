@@ -23,10 +23,10 @@ const Navbar = () => {
         <ImportContactsTwoToneIcon fontSize="large" /> Diary
       </a>
       <a href="#goals">
-        <CheckBoxOutlinedIcon fontSize="large" /> Goals
+      <Link to="/goals"><CheckBoxOutlinedIcon fontSize="large" /> Goals</Link>
       </a>
       <a href="#reminders">
-        <NotificationsNoneIcon fontSize="large" /> Reminders
+      <Link to="/reminders"><NotificationsNoneIcon fontSize="large" /> Reminders</Link>
       </a>
     </div>
   );

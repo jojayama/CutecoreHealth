@@ -13,8 +13,12 @@ import Login from "./routes/Login";
 import CreateAccount from "./routes/CreateAccount"
 import Welcome from "./routes/Welcome"
 import Layout from "./routes/layout";
-import Profile from "./routes/profile";
+import Profile from "./routes/Profile";
 import EditProfile from "./routes/editProfile";
+import CreateNewGoal from "./routes/CreateNewGoal";
+import CreateNewReminder from "./routes/CreateNewReminder";
+import Goals from "./routes/goals";
+import Reminders from "./routes/reminders";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +45,22 @@ const router = createBrowserRouter([
   {
     path: "/editProfile",
     element: <EditProfile/>
+  },
+  {
+    path: "/createGoal",
+    element: <CreateNewGoal/>
+  },
+  {
+    path: "/createReminder",
+    element: <CreateNewReminder/>
+  },
+  {
+    path: "/goals",
+    element: <Goals/>
+  },
+  {
+    path: "/reminders",
+    element: <Reminders/>
   }
 ]);
 
