@@ -8,12 +8,20 @@ import "./style/form.module.css";
 // import Root from "./routes/root";
 import "./style/form.module.css";
 import "./style/navbar.module.css";
+import "./style/calendar.css";
 import ErrorPage from "./error-page";
 import Login from "./routes/Login";
-import CreateAccount from "./routes/CreateAccount"
+import CreateAccount from "./routes/CreateAccount";
+import { Calendar } from "@fullcalendar/core";
+import CuteCalendar from "./routes/calendar";
 import Welcome from "./routes/Welcome"
-import Profile from "./routes/Profile"
-import Layout from "./routes/layout"
+import Layout from "./routes/layout";
+import Profile from "./routes/Profile";
+import EditProfile from "./routes/editProfile";
+import Goals from "./routes/goals";
+import Reminders from "./routes/reminders";
+import CreateNewReminder from "./routes/CreateNewReminder";
+import CreateNewGoal from "./routes/CreateNewGoal";
 
 const router = createBrowserRouter([
   {
@@ -30,15 +38,38 @@ const router = createBrowserRouter([
     element: <Welcome />
   },
   {
+    path: "/layout",
+    element: <Layout />
+  },
+  {
     path: "/profile",
     element: <Profile />
   },
   {
-    path: "/layout",
-    element: <Layout />
+    path: "/editProfile",
+    element: <EditProfile/>
+  },
+  {
+    path: "/calendar",
+    element: <CuteCalendar />
+  },
+  {
+    path: "/goals",
+    element: <Goals/>
+  },
+  {
+    path: "/reminders",
+    element: <Reminders/>
+  },
+  {
+    path: "/createReminder",
+    element: <CreateNewReminder/>
+  },
+  {
+    path: "/createGoal",
+    element: <CreateNewGoal/>
   }
 ]);
-
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <RouterProvider router={router} />

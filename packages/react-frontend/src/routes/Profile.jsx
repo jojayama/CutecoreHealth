@@ -1,77 +1,36 @@
-import React, { useState } from "react";
-import styles from "../style/profile.module.css";
+import React from "react";
 import Layout from "./layout";
 import Navbar from "../navbar";
+import styles from "../style/profile.module.css";
+import { Link } from "react-router-dom"
 
-function Profile(props) {
-  const [person, setPerson] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+export default function Profile(props) {
+  const { name, email, password } = props;
 
-  function submitForm() {
-    props.handleSubmit(person);
-    setPerson({ name: "", email: "", password: "" });
-  }
+  // Function to mask the password with asterisks
+  //const maskPassword = (password) => '*'.repeat(password.length);
 
-  function handleChange(event) {
-    const { name, value } = event.target;
-    setPerson((prevPerson) => ({
-      ...prevPerson,
-      [name]: value,
-    }));
-  }
   return (
     <div className={styles.background}>
-      <Layout />
-      <Navbar />
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Josefin+Slab&display=swap"
       ></link>
-      <h1 className={styles.heading}>Profile</h1>
-      <form className={styles.form}>
-        {/* <label htmlFor="name">Username</label> */}
-        <input
-          type="text"
-          name="name"
-          id="name"
-          value={props.name}
-          onChange={handleChange}
-          className={styles.input}
-          placeholder="Enter your name*"
-        />
-        {/* <label htmlFor="job">Password</label> */}
-        <input
-          type="email"
-          name="email"
-          id="email"
-          value={person.job}
-          onChange={handleChange}
-          className={styles.input}
-          placeholder="Enter your email*"
-        />
-        {/* <label htmlFor="job">Password</label> */}
-        <input
-          type="password"
-          name="password"
-          id="password"
-          value={person.job}
-          onChange={handleChange}
-          className={styles.input}
-          placeholder="Enter your password*"
-        />
-        <input
-          type="button"
-          value="Sign up"
-          onClick={submitForm}
-          className={styles.buttonContainer}
-          style={{ width: "130px" }}
-        />
-      </form>
+      <Layout />
+      <Navbar />
+      <div className={styles.profileInfo}>
+        <h1 className={styles.heading}>Profile</h1>
+        <div className={styles.info}>
+          <p><strong>Name:</strong> {name}</p>
+          <p><strong>Email:</strong> {email}</p>
+          <p><strong>Password:</strong> {password}</p>
+        </div>
+        <button className={styles.editContainer}>
+          <p className={styles.edit}>
+            <Link to={"/editProfile"} className={styles.edit}>Edit Info</Link>
+            </p>
+        </button>
+      </div>
     </div>
   );
 }
-
-export default Profile;
