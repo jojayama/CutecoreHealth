@@ -3,6 +3,9 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import multiMonthPlugin from '@fullcalendar/multimonth'
+import styles from '../style/CuteCalendar.module.css'
+import Navbar from '../navbar';
+import Layout from './layout';
 
 export default function CuteCalendar() {
   return (
@@ -11,6 +14,9 @@ export default function CuteCalendar() {
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Josefin+Slab&display=swap"
       ></link>
+      <Layout/>
+      <Navbar/>
+      <div className={styles.CuteCalendar}>
       <FullCalendar
         plugins = {[ dayGridPlugin, timeGridPlugin, listPlugin, multiMonthPlugin ]}
         headerToolbar={{
@@ -21,6 +27,7 @@ export default function CuteCalendar() {
         initialView="dayGridMonth"
         selectable={true}
       />
+      </div>
     </div>
   )
 }
