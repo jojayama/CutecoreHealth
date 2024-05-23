@@ -1,0 +1,45 @@
+.container {
+  position: relative;
+}
+
+.topBut {
+  position: absolute;
+  top: 0px;
+  right: 40px;
+  color: #8e5281;
+  font-size: large;
+}
+
+.profile {
+  position: absolute;
+  display: flex;
+  top: -18px;
+  right: 30px;
+  margin-right: 50px;
+  margin-top: 25px;
+  cursor: pointer;
+  color: #8e5281;
+}
+
+.logout {
+  display: inline-block; /* Ensure the text doesn't break to a new line */
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+  font-family: "Josefin Slab", sans-serif;
+  text-align: center;
+  text-decoration: none;
+}
+
+.logoutContainer {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background-color: #8e5281;
+  font-family: "Josefin Slab", sans-serif;
+  border: none;
+  padding: 10px 10px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}

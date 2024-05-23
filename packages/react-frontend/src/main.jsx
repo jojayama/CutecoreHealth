@@ -14,6 +14,10 @@ import Login from "./routes/Login";
 import CreateAccount from "./routes/CreateAccount";
 import { Calendar } from "@fullcalendar/core";
 import CuteCalendar from "./routes/calendar";
+import Welcome from "./routes/Welcome"
+import Layout from "./routes/layout";
+import Profile from "./routes/Profile";
+import EditProfile from "./routes/editProfile";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +28,22 @@ const router = createBrowserRouter([
   {
     path: "/createAccount",
     element: <CreateAccount />
+  },
+  {
+    path: "/welcome",
+    element: <Welcome />
+  },
+  {
+    path: "/layout",
+    element: <Layout />
+  },
+  {
+    path: "/profile",
+    element: <Profile />
+  },
+  {
+    path: "/editProfile",
+    element: <EditProfile/>
   },
   {
     path: "/calendar",

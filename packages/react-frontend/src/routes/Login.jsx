@@ -29,7 +29,6 @@ function Form(props) {
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Josefin+Slab&display=swap"
         ></link>
-      <Navbar />
       <h1 className={styles.heading}>
         Cutec
         <FavoriteOutlinedIcon fontSize="large" />
