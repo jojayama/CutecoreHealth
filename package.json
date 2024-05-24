@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npx jest",
     "start": "cd packages/react-frontend && npm run dev",
     "build": "npx react-scripts build",
     "eject": "npx react-scripts eject"
@@ -15,15 +15,18 @@
     "packages/*"
   ],
   "devDependencies": {
-    "nodemon": "^3.1.0"
+    "eslint": "^9.3.0",
+    "nodemon": "^3.1.0",
+    "prettier": "^3.2.5"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@mui/icons-material": "^5.15.17",
     "@mui/material": "^5.15.17",
-    "fullcalendar-scheduler": "^6.1.11",
     "dotenv": "^16.4.5",
+    "fullcalendar-scheduler": "^6.1.11",
+    "lint": "^0.8.19",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
     "mongoose": "^8.3.2",
