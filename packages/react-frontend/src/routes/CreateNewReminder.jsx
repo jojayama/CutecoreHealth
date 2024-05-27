@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import styles from "../style/createnew.module.css"; 
+import styles from "../style/createnew.module.css";
 import Navbar from "../navbar";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 function CreateNewReminder(props) {
   const [person, setPerson] = useState({
     title: "",
     desc: "",
     time: "",
-    date: ""
+    date: "",
   });
 
   function submitForm() {
@@ -20,18 +20,20 @@ function CreateNewReminder(props) {
     const { name, value } = event.target;
     setPerson((prevPerson) => ({
       ...prevPerson,
-      [name]: value
+      [name]: value,
     }));
   }
 
   return (
     <div className={styles.background}>
-      <Navbar/>
+      <Navbar />
       <h1 className={styles.heading}>New Reminder</h1>
-      <form className={styles.form}>    
+      <form className={styles.form}>
         <div className={styles.buttonContainer}>
-              <Link to="/createGoal"><button className={styles.button}>Goal</button></Link>
-              <button className={styles.buttonClicked}>Reminder</button>
+          <Link to="/createGoal">
+            <button className={styles.button}>Goal</button>
+          </Link>
+          <button className={styles.buttonClicked}>Reminder</button>
         </div>
         <input
           type="text"
@@ -89,13 +91,11 @@ function CreateNewReminder(props) {
           onClick={submitForm}
           className={styles.button}
         />
-          
-    </form>
+      </form>
       <p className={styles.selection}>
         <a href="/Return">Return</a>
       </p>
     </div>
-    
   );
 }
 

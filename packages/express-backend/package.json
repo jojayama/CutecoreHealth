@@ -6,7 +6,7 @@
   "main": "backend.js",
   "scripts": {
     "lint": "npx eslint . && npx prettier --check .",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npx jest",
     "dev": "npx nodemon backend.js",
     "start": "node backend.js"
   },
@@ -14,6 +14,8 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "lint": "^1.1.2",
+    "prettier": "^3.2.5"
   }
 }

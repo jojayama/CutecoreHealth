@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "../style/form.module.css";
 import Navbar from "../navbar";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 
 function Form(props) {
   const [person, setPerson] = useState({
@@ -26,9 +26,9 @@ function Form(props) {
   return (
     <div className={styles.background}>
       <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Josefin+Slab&display=swap"
-        ></link>
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Josefin+Slab&display=swap"
+      ></link>
       <h1 className={styles.heading}>
         Cutec
         <FavoriteOutlinedIcon fontSize="large" />
@@ -64,7 +64,9 @@ function Form(props) {
       </form>
       <p className={styles.newUser}>
         New User? <br />
-        <a><Link to={`createAccount`}>Sign up</Link></a>
+        <a>
+          <Link to={`createAccount`}>Sign up</Link>
+        </a>
       </p>
     </div>
   );

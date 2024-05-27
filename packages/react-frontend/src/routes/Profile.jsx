@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "./layout";
 import Navbar from "../navbar";
 import styles from "../style/profile.module.css";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 export default function Profile(props) {
   const { name, email, password } = props;
@@ -21,14 +21,22 @@ export default function Profile(props) {
       <div className={styles.profileInfo}>
         <h1 className={styles.heading}>Profile</h1>
         <div className={styles.info}>
-          <p><strong>Name:</strong> {name}</p>
-          <p><strong>Email:</strong> {email}</p>
-          <p><strong>Password:</strong> {password}</p>
+          <p>
+            <strong>Name:</strong> {name}
+          </p>
+          <p>
+            <strong>Email:</strong> {email}
+          </p>
+          <p>
+            <strong>Password:</strong> {password}
+          </p>
         </div>
         <button className={styles.editContainer}>
           <p className={styles.edit}>
-            <Link to={"/editProfile"} className={styles.edit}>Edit Info</Link>
-            </p>
+            <Link to={"/editProfile"} className={styles.edit}>
+              Edit Info
+            </Link>
+          </p>
         </button>
       </div>
     </div>

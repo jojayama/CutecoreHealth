@@ -14,7 +14,7 @@ import Login from "./routes/Login";
 import CreateAccount from "./routes/CreateAccount";
 import { Calendar } from "@fullcalendar/core";
 import CuteCalendar from "./routes/calendar";
-import Welcome from "./routes/Welcome"
+import Welcome from "./routes/Welcome";
 import Layout from "./routes/layout";
 import Profile from "./routes/Profile";
 import EditProfile from "./routes/editProfile";
@@ -22,7 +22,6 @@ import Goals from "./routes/goals";
 import Reminders from "./routes/reminders";
 import CreateNewReminder from "./routes/CreateNewReminder";
 import CreateNewGoal from "./routes/CreateNewGoal";
-
 
 const router = createBrowserRouter([
   {
@@ -32,65 +31,65 @@ const router = createBrowserRouter([
   },
   {
     path: "/createAccount",
-    element: <CreateAccount />
+    element: <CreateAccount />,
   },
   {
     path: "/welcome",
-    element: <Welcome />
+    element: <Welcome />,
   },
   {
     path: "/layout",
-    element: <Layout />
+    element: <Layout />,
   },
   {
     path: "/profile",
-    element: <Profile />
+    element: <Profile />,
   },
   {
     path: "/editProfile",
-    element: <EditProfile/>
+    element: <EditProfile />,
   },
   {
     path: "/createGoal",
-    element: <CreateNewGoal/>
+    element: <CreateNewGoal />,
   },
   {
     path: "/createReminder",
-    element: <CreateNewReminder/>
+    element: <CreateNewReminder />,
   },
   {
     path: "/goals",
-    element: <Goals/>
+    element: <Goals />,
   },
   {
     path: "/reminders",
-    element: <Reminders/>
+    element: <Reminders />,
   },
   {
     path: "/calendar",
-    element: <CuteCalendar />
+    element: <CuteCalendar />,
   },
   {
     path: "/goals",
-    element: <Goals/>
+    element: <Goals />,
   },
   {
     path: "/reminders",
-    element: <Reminders/>
+    element: <Reminders />,
   },
   {
     path: "/createReminder",
-    element: <CreateNewReminder/>
+    element: <CreateNewReminder />,
   },
   {
     path: "/createGoal",
-    element: <CreateNewGoal/>
-  }
+    element: <CreateNewGoal />,
+  },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 
 // const container = document.getElementById("root");
