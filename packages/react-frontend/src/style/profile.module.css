@@ -1,61 +1,61 @@
 .background {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 .heading {
-    margin-top: 30px;
-    margin-bottom: 20px;
-    text-align: left;
-    color: #8E5281;
-    font-family: "Josefin Slab", sans-serif;
-    font-size: 100px;
-  }
-  
-  .profileInfo {
-    text-align: left;
-    background-color: #FFF3FE;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    width: 60%;
-    max-width: 600px;
-    margin-top: 20px;
-  }
-  
-  .info p {
-    font-size: 30px;
-    color: #8E5281;
-    margin-top: 50px;
-    margin-bottom: 100px;
-    font-family: "Josefin Slab", sans-serif;
-  }
-  
-.editContainer{
-    background-color:rgba(170, 98, 165, 0.634);
-    color: rgb(255, 255, 255);
-    margin: 0 auto;
-    margin-top: 40px;
-    margin-bottom: 20px;
-    border:#8E5281;
-    text-align: center;
-    display:block;
-    cursor:pointer;
-    height: 50px;
-    width: 150px;
-    text-decoration: none;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  text-align: left;
+  color: #8e5281;
+  font-family: "Josefin Slab", sans-serif;
+  font-size: 100px;
 }
-.edit{
-    text-align: center;
-    font-size: 25px;
-    margin: 0% auto;
-    font-family: 'Josefin Slab', sans-serif;
-    font-weight: bold;
-    text-decoration: none;
-    color: white;
+
+.profileInfo {
+  text-align: left;
+  background-color: #fff3fe;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  width: 60%;
+  max-width: 600px;
+  margin-top: 20px;
 }
-.editContainer:hover{
-    background-color: #8E5281;
+
+.info p {
+  font-size: 30px;
+  color: #8e5281;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  font-family: "Josefin Slab", sans-serif;
+}
+
+.editContainer {
+  background-color: rgba(170, 98, 165, 0.634);
+  color: rgb(255, 255, 255);
+  margin: 0 auto;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  border: #8e5281;
+  text-align: center;
+  display: block;
+  cursor: pointer;
+  height: 50px;
+  width: 150px;
+  text-decoration: none;
+}
+.edit {
+  text-align: center;
+  font-size: 25px;
+  margin: 0% auto;
+  font-family: "Josefin Slab", sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+}
+.editContainer:hover {
+  background-color: #8e5281;
 }

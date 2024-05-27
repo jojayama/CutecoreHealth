@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import styles from "../style/createnew.module.css"; 
+import styles from "../style/createnew.module.css";
 import Navbar from "../navbar";
-import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
-import {Link } from "react-router-dom"
+import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
+import { Link } from "react-router-dom";
 
 function CreateNewGoal(props) {
   const [person, setPerson] = useState({
     title: "",
     desc: "",
     time: "",
-    date: ""
+    date: "",
   });
 
   function submitForm() {
@@ -21,18 +21,23 @@ function CreateNewGoal(props) {
     const { name, value } = event.target;
     setPerson((prevPerson) => ({
       ...prevPerson,
-      [name]: value
+      [name]: value,
     }));
   }
 
   return (
     <div className={styles.background}>
-      <Navbar/>
-      <h1 className={styles.heading}>New G<FavoriteOutlinedIcon fontSize="large"/>al!</h1>
+      <Navbar />
+      <h1 className={styles.heading}>
+        New G<FavoriteOutlinedIcon fontSize="large" />
+        al!
+      </h1>
       <form className={styles.form}>
         <div className={styles.buttonContainer}>
           <button className={styles.buttonClicked}>Goal</button>
-          <Link to="/createReminder"><button className={styles.button}>Reminder</button></Link>
+          <Link to="/createReminder">
+            <button className={styles.button}>Reminder</button>
+          </Link>
         </div>
         <input
           type="text"
@@ -41,7 +46,7 @@ function CreateNewGoal(props) {
           onChange={handleChange}
           className={styles.input}
           placeholder="Goal title*"
-        />        
+        />
         <input
           type="text"
           name="desc"
@@ -49,7 +54,7 @@ function CreateNewGoal(props) {
           onChange={handleChange}
           className={styles.input}
           placeholder="Description (optional)"
-        />        
+        />
         <h1 className={styles.plaintext}>Set date and time</h1>
         <div className={styles.inputContainer}>
           <input
@@ -70,13 +75,13 @@ function CreateNewGoal(props) {
           />
           <p className={styles.selection}>
             <a href="/No end time">No end time</a>
-          </p>              
+          </p>
         </div>
-          <input
-            type="button"
-            value="Create"
-            onClick={submitForm}
-            className={styles.button}
+        <input
+          type="button"
+          value="Create"
+          onClick={submitForm}
+          className={styles.button}
         />
       </form>
       <p className={styles.selection}>

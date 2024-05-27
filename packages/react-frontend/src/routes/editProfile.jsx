@@ -72,11 +72,8 @@ export default function EditProfile(props) {
         />
       </form>
       <button className={styles.deleteUserContainer}>
-        <p className={styles.deleteUser}>
-          Delete User
-        </p>
+        <p className={styles.deleteUser}>Delete User</p>
       </button>
     </div>
   );
 }
-

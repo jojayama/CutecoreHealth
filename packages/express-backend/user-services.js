@@ -15,12 +15,11 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log('Connected to MongoDB');
+    console.log("Connected to MongoDB");
   })
   .catch((error) => {
-    console.error('Error connecting to MongoDB:', error);
-});
-
+    console.error("Error connecting to MongoDB:", error);
+  });
 
 function getUsers(name, email) {
   let promise;
@@ -30,8 +29,8 @@ function getUsers(name, email) {
     promise = findUserByName(name);
   } else if (email && !name) {
     promise = findUserByEmail(email);
-  } else if (name && email){
-    promise = findUserByNameAndEmail(name, email)
+  } else if (name && email) {
+    promise = findUserByNameAndEmail(name, email);
   }
   return promise;
 }
@@ -53,11 +52,11 @@ function findUserByEmail(email) {
   return userModel.find({ email: email });
 }
 
-function findUserByNameAndEmail(name, email){
-  return userModel.find({ name : name, email : email});
+function findUserByNameAndEmail(name, email) {
+  return userModel.find({ name: name, email: email });
 }
 
-function deleteUserById(id){
+function deleteUserById(id) {
   return userModel.findByIdAndDelete(id);
 }
 
