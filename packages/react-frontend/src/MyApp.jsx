@@ -21,7 +21,7 @@ function MyApp() {
   const [characters, setCharacters] = useState([]);
 
   function fetchUsers() {
-    const promise = fetch("http://localhost:8000/users");
+    const promise = fetch("https://cutecore-health.azurewebsites.net//users");
     return promise;
   }
 
@@ -35,7 +35,7 @@ function MyApp() {
   }, [characters]);
 
   //  function deleteUser(id) {
-  //    const promise = fetch(`http://localhost:8000/users/${id}`, {
+  //    const promise = fetch(`https://cutecore-health.azurewebsites.net//users/${id}`, {
   //      method: "DELETE",
   //    });
   //    return promise;
@@ -43,7 +43,7 @@ function MyApp() {
 
   //  function removeOneCharacter(id) {
   //    // deleteUser(id)
-  //    fetch(`http://localhost:8000/users/${id}`, {
+  //    fetch(`https://cutecore-health.azurewebsites.net//users/${id}`, {
   //      method: "DELETE",
   //    })
   //      //.then & .catch
@@ -60,7 +60,7 @@ function MyApp() {
   //  }
 
   function postUser(person) {
-    const promise = fetch("Http://localhost:8000/users", {
+    const promise = fetch("https://cutecore-health.azurewebsites.net//users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
