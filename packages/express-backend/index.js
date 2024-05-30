@@ -12,9 +12,7 @@ app.use(express.json());
 
 // connect to app
 app.listen(process.env.PORT || port, () => {
-  console.log(
-   "Rest API is listening.",
-  );
+  console.log("Rest API is listening.");
 });
 
 app.get("/", (req, res) => {
