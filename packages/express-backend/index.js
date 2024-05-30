@@ -13,7 +13,7 @@ app.use(express.json());
 // connect to app
 app.listen(process.env.PORT || port, () => {
   console.log(
-   "Rest API is listening.",
+   "Rest API is listening."
   );
 });
 
