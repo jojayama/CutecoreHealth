@@ -24,7 +24,7 @@ export default function CuteCalendar() {
 
   const handleSelect = (info) => {
     const { start, end } = info;
-    const eventNamePrompt = prompt("Enter event name");
+    const eventNamePrompt = prompt("Enter emotion:");
     if (eventNamePrompt) {
       setEvents([
         ...events,
@@ -36,14 +36,6 @@ export default function CuteCalendar() {
         }
       ]);
     }
-  };
-
-  const selectEvent = (info) => {
-
-  };
-
-  const feelingsTracker = (info) => {
-
   };
 
   return (
@@ -70,13 +62,6 @@ export default function CuteCalendar() {
           }}
           events={events}
           select={handleSelect}
-          // eventClick={}
-          customButtons={{
-            feelingsTracker: {
-              text: 'feeling',
-              click: feelingsTracker()
-            }
-          }}
           eventContent={(info) => <EventItem info={info}/>}
           initialView="dayGridMonth"
           nowIndicator={true}
