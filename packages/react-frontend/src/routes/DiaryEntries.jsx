@@ -16,7 +16,7 @@ export default function DiaryEntries() {
       <h1 className={styles.heading}>Diary</h1>
       <div className={styles.diaryBox}></div>
       <button className={styles.createNewContainer}>
-        <Link to={"/createReminder"} className={styles.createNew}>
+        <Link to={"/newDiary"} className={styles.createNew}>
           + New Diary Entry
         </Link>
       </button>
