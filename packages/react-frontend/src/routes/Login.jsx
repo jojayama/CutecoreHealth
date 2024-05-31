@@ -1,22 +1,17 @@
 // import React, { useState } from "react";
 // import styles from "../style/form.module.css";
+// import Navbar from "../navbar";
 // import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 // import { Link, useNavigate } from "react-router-dom";
-// import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-// import { auth } from '../../firebase';
+// import { signInWithEmailAndPassword } from "firebase/auth";
+// import { auth } from "../../firebase";
 
 // function Form(props) {
 //   const [person, setPerson] = useState({
 //     email: "",
 //     password: "",
 //   });
-
 //   const navigate = useNavigate();
-
-//   // function submitForm() {
-//   //   props.handleSubmit(person);
-//   //   setPerson({ name: "", job: "" });
-//   // }
 
 //   function submitForm() {
 //     signInWithEmailAndPassword(auth, person.email, person.password)
@@ -32,6 +27,8 @@
 //         const errorMessage = error.message;
 //         console.error("Error logging in:", errorCode, errorMessage);
 //       });
+
+//     setPerson({ email: "", password: "" });
 //   }
 
 //   function handleChange(event) {
@@ -54,17 +51,15 @@
 //         re Health
 //       </h1>
 //       <form className={styles.form}>
-//         {/* <label htmlFor="name">Username</label> */}
 //         <input
-//           type="email"
+//           type="text"
 //           name="email"
 //           id="email"
 //           value={person.email}
 //           onChange={handleChange}
 //           className={styles.input}
-//           placeholder=" Email..."
+//           placeholder="Email..."
 //         />
-//         {/* <label htmlFor="job">Password</label> */}
 //         <input
 //           type="password"
 //           name="password"
@@ -72,7 +67,7 @@
 //           value={person.password}
 //           onChange={handleChange}
 //           className={styles.input}
-//           placeholder=" Password"
+//           placeholder="Password"
 //         />
 //         <input
 //           type="button"
@@ -83,9 +78,7 @@
 //       </form>
 //       <p className={styles.newUser}>
 //         New User? <br />
-//         <a>
-//           <Link to={`createAccount`}>Sign up</Link>
-//         </a>
+//         <Link to={`createAccount`}>Sign up</Link>
 //       </p>
 //     </div>
 //   );
@@ -106,6 +99,7 @@ function Form(props) {
     email: "",
     password: "",
   });
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
 
   function submitForm() {
@@ -116,11 +110,13 @@ function Form(props) {
         console.log("User logged in:", user);
         // Optionally, navigate to another page or show a success message
         navigate("/welcome");
+        setError(false); // Reset error state on successful login
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.error("Error logging in:", errorCode, errorMessage);
+        setError(true); // Set error state to true on login failure
       });
 
     setPerson({ email: "", password: "" });
@@ -145,6 +141,11 @@ function Form(props) {
         <FavoriteOutlinedIcon fontSize="large" />
         re Health
       </h1>
+      {error && (
+        <div className={styles.errorMessage}>
+          Error: Wrong email or password!
+        </div>
+      )}
       <form className={styles.form}>
         <input
           type="text"
@@ -152,7 +153,7 @@ function Form(props) {
           id="email"
           value={person.email}
           onChange={handleChange}
-          className={styles.input}
+          className={`${styles.input} ${error ? styles["error-input"] : ""}`}
           placeholder="Email..."
         />
         <input
@@ -161,7 +162,7 @@ function Form(props) {
           id="password"
           value={person.password}
           onChange={handleChange}
-          className={styles.input}
+          className={`${styles.input} ${error ? styles["error-input"] : ""}`}
           placeholder="Password"
         />
         <input

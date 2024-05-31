@@ -1,9 +1,26 @@
+import React from "react";
 import AccountBoxRoundedIcon from "@mui/icons-material/AccountBoxRounded";
-import React, { useState } from "react";
 import styles from "../style/layout.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
 
 export default function Layout() {
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        console.log("User signed out.");
+        navigate("/"); // Navigate to the home page or any other page after logout
+      })
+      .catch((error) => {
+        // An error happened.
+        console.error("Error signing out:", error);
+      });
+  }
+
   return (
     <div>
       <link
@@ -16,10 +33,8 @@ export default function Layout() {
           fontSize="large"
         ></AccountBoxRoundedIcon>
       </Link>
-      <button className={styles.logoutContainer}>
-        <Link to={"/"} className={styles.logout}>
-          Logout
-        </Link>
+      <button className={styles.logoutContainer} onClick={handleLogout}>
+        <span className={styles.logout}>Logout</span>
       </button>
     </div>
   );
