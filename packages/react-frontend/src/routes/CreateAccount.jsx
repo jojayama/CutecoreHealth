@@ -137,10 +137,10 @@ function CreateAccount(props) {
   }
 
   function handleChange(event) {
-    const { email, value } = event.target;
+    const { name, value } = event.target;
     setPerson((prevPerson) => ({
       ...prevPerson,
-      [email]: value,
+      [name]: value,
     }));
   }
 
