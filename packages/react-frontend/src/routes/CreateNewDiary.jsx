@@ -39,22 +39,25 @@ export default function DiaryEntries() {
                 name="title"
                 value={diary.title}
                 onChange={handleChange}
-                className={styles.input}
+                className={styles.titleInput}
                 placeholder="Title..."
             />
-            <input
+            <textarea 
                 type="text"
-                name="title"
-                value={diary.title}
+                name="entry"
+                value={diary.entry}
                 onChange={handleChange}
-                className={styles.input}
+                className={styles.entryInput}
                 placeholder="..."
             />
         </div>
         <button className={styles.createNewContainer}>
-            <Link to={"/diaryEntries"} className={styles.createNew}>
-            + Save
-            </Link>
+            <input
+                type="button"
+                value="Save"
+                onClick={submitForm}
+                className={styles.button}
+            />
         </button>
         </div>
     );
