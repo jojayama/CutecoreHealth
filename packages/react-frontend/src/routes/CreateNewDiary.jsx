@@ -4,7 +4,7 @@ import Navbar from "../navbar";
 import styles from "../style/diaryentry.module.css";
 import { Link } from "react-router-dom";
 
-export default function DiaryEntries() {
+export default function DiaryEntries(props) {
   const [diary, setDiary] = useState({
     title: "",
     entry: "",
