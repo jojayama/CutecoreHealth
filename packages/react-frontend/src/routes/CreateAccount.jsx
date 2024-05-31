@@ -133,7 +133,7 @@ function CreateAccount(props) {
         const errorMessage = error.message;
         console.error("Error creating user:", errorCode, errorMessage);
       });
-    setPerson({ email: "", password: ""});
+    setPerson({ email: "", password: "" });
   }
 
   function handleChange(event) {
