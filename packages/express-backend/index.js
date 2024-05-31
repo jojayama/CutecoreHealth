@@ -12,9 +12,7 @@ app.use(express.json());
 
 // connect to app
 app.listen(process.env.PORT || port, () => {
-  console.log(
-    `Example app listening at https://cutecore-health.azurewebsites.net/`,
-  );
+  console.log("Rest API is listening.");
 });
 
 app.get("/", (req, res) => {
