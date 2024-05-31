@@ -3,12 +3,12 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
 import multiMonthPlugin from "@fullcalendar/multimonth";
-import interactionPlugin from '@fullcalendar/interaction';
+import interactionPlugin from "@fullcalendar/interaction";
 import styles from "../style/CuteCalendar.module.css";
 import Navbar from "../navbar";
 import Layout from "./layout";
 import { useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 const EventItem = ({ info }) => {
   const { event } = info;
@@ -32,8 +32,8 @@ export default function CuteCalendar() {
           start,
           end,
           title: eventNamePrompt,
-          id: uuidv4()
-        }
+          id: uuidv4(),
+        },
       ]);
     }
   };
@@ -53,7 +53,7 @@ export default function CuteCalendar() {
             timeGridPlugin,
             listPlugin,
             multiMonthPlugin,
-            interactionPlugin
+            interactionPlugin,
           ]}
           headerToolbar={{
             left: "prev,next today",
@@ -62,7 +62,7 @@ export default function CuteCalendar() {
           }}
           events={events}
           select={handleSelect}
-          eventContent={(info) => <EventItem info={info}/>}
+          eventContent={(info) => <EventItem info={info} />}
           initialView="dayGridMonth"
           nowIndicator={true}
           selectable={true}
