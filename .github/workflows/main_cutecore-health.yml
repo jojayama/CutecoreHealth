@@ -52,7 +52,7 @@
 #         uses: actions/download-artifact@v3
 #         with:
 #           name: node-app
-      
+
 #       - name: Login to Azure
 #         uses: azure/login@v1
 #         with:
@@ -67,7 +67,7 @@
 #           app-name: 'cuteCore-health'
 #           slot-name: 'Production'
 #           package: .
-          
+
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
