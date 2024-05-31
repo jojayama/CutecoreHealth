@@ -18,6 +18,8 @@ import Goals from "./routes/goals";
 import Reminders from "./routes/reminders";
 import CreateNewReminder from "./routes/CreateNewReminder";
 import CreateNewGoal from "./routes/CreateNewGoal";
+import DiaryEntries from "./routes/DiaryEntries";
+import CreateNewDiary from "./routes/CreateNewDiary";
 
 const router = createBrowserRouter([
   {
@@ -80,6 +82,14 @@ const router = createBrowserRouter([
   {
     path: "/createGoal",
     element: <CreateNewGoal />,
+  },
+  {
+    path: "/diaryEntries",
+    element: <DiaryEntries />,
+  },
+  {
+    path: "/newDiary",
+    element: <CreateNewDiary />,
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(

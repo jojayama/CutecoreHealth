@@ -1,0 +1,73 @@
+.background {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  .heading {
+    margin-top: 150px;
+    margin-right: 1100px;
+    margin-left: 100px;
+    margin-bottom: 0px;
+    text-align: center;
+    color: #8e5281;
+    font-family: "Josefin Slab", sans-serif;
+    font-size: 100px;
+  }
+  .diaryBox {
+    text-align: center;
+    margin: 0% auto;
+    background-color: #fdefff;
+    border: solid 2px #9e0097;
+    width: 85%;
+    height: 700px;
+  }
+  
+  .input {
+    margin-bottom: 10px;
+    margin-right: 100px;
+    margin-left: 10px;
+    width: 90%;
+    height: 50px;
+    display: flex;
+    background-color: #fdefff;
+    font-family: "Josefin Slab", sans-serif;
+    font-size: 30px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: none;
+  }
+  
+  .input::placeholder {
+    color: #8e5281;
+    font-family: "Josefin Slab", sans-serif;
+  }
+  /*
+  .input:focus {
+    border-color: 1px solid #8e5281;
+    outline: 1px solid #8e5281;
+  }
+  */
+  .createNewContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #8e5281;
+    margin-top: 100px !important;
+    margin: 0% auto;
+    border: none;
+  }
+  .createNew {
+    text-decoration: none;
+    color: white;
+    font-family: "Josefin Slab", sans-serif;
+    font-size: 35px;
+    margin: 4px;
+  }
+  
+  .createNewContainer:hover {
+    background-color: #b78aad;
+  }
+  
