@@ -113,7 +113,6 @@ import { auth } from "../../firebase";
 
 function CreateAccount(props) {
   const [person, setPerson] = useState({
-    name: "",
     email: "",
     password: "",
   });
@@ -134,15 +133,14 @@ function CreateAccount(props) {
         const errorMessage = error.message;
         console.error("Error creating user:", errorCode, errorMessage);
       });
-
-    setPerson({ name: "", email: "", password: "" });
+    setPerson({ email: "", password: ""});
   }
 
   function handleChange(event) {
-    const { name, value } = event.target;
+    const { email, value } = event.target;
     setPerson((prevPerson) => ({
       ...prevPerson,
-      [name]: value,
+      [email]: value,
     }));
   }
 
@@ -154,15 +152,6 @@ function CreateAccount(props) {
       ></link>
       <h1 className={styles.heading}>Create Account</h1>
       <form className={styles.form}>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          value={person.name}
-          onChange={handleChange}
-          className={styles.input}
-          placeholder="Enter your name*"
-        />
         <input
           type="email"
           name="email"
