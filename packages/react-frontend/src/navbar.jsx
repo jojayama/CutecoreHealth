@@ -24,7 +24,7 @@ const Navbar = () => {
         </Link>
       </a>
       <a>
-        <Link to="/diary">
+        <Link to="/diaryEntries">
           <ImportContactsTwoToneIcon fontSize="large" /> Diary
         </Link>
       </a>
