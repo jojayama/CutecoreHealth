@@ -1,112 +1,111 @@
 .background {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-  }
-  .heading {
-    margin-top: 80px;
-    margin-right: 1100px;
-    margin-left: 100px;
-    margin-bottom: 10px;
-    text-align: center;
-    color: #8e5281;
-    font-family: "Josefin Slab", sans-serif;
-    font-size: 100px;
-  }
-  .diaryBox {
-    text-align: center;
-    margin: 0% auto;
-    background-color: #fdefff;
-    border: solid 2px #9e0097;
-    width: 85%;
-    height: 500px;
-  }
-  
-  .titleInput {
-    margin-bottom: 10px;
-    margin-right: 10px;
-    margin-left: 30px;
-    margin-top: 10px;
-    width: 95%;
-    height: 50px;
-    display: flex;
-    background-color: #fdefff;
-    font-family: "Josefin Slab", sans-serif;
-    font-size: 40px;
-    font-weight: bold;
-    color: #8e5281;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    border: none;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.heading {
+  margin-top: 80px;
+  margin-right: 1100px;
+  margin-left: 100px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #8e5281;
+  font-family: "Josefin Slab", sans-serif;
+  font-size: 100px;
+}
+.diaryBox {
+  text-align: center;
+  margin: 0% auto;
+  background-color: #fdefff;
+  border: solid 2px #9e0097;
+  width: 85%;
+  height: 500px;
+}
 
-  .entryInput {
-    margin-bottom: 10px;
-    margin-right: 10px;
-    margin-left: 10px;
-    width: 95%;
-    height: 80%;
-    background-color: #fdefff;
-    font-family: "Josefin Slab", sans-serif;
-    font-size: 30px;
-    color: #8e5281;
-    border: none;
-    overflow-y: auto;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    box-sizing: border-box;
-    padding: 10px;
-    /*
+.titleInput {
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-left: 30px;
+  margin-top: 10px;
+  width: 95%;
+  height: 50px;
+  display: flex;
+  background-color: #fdefff;
+  font-family: "Josefin Slab", sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  color: #8e5281;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: none;
+}
+
+.entryInput {
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+  width: 95%;
+  height: 80%;
+  background-color: #fdefff;
+  font-family: "Josefin Slab", sans-serif;
+  font-size: 30px;
+  color: #8e5281;
+  border: none;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  box-sizing: border-box;
+  padding: 10px;
+  /*
     align-items: center;
     flex-direction: column;
     justify-content: center;
     */
-  }
-  
-  .input::placeholder {
-    color: #8e5281;
-    font-family: "Josefin Slab", sans-serif;
-  }
-  .input:focus {
-    border: none;
-  }
-  .createNewContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #8e5281;
-    margin-top: 30px !important;
-    margin: 0% auto;
-    border: none;
-  }
-  .createNew {
-    text-decoration: none;
-    color: white;
-    font-family: "Josefin Slab", sans-serif;
-    font-size: 35px;
-    margin: 1px;
-  }
-  
-  .createNewContainer:hover {
-    background-color: #b78aad;
-  }
-  .button {
-    cursor: pointer;
-    height: 30px;
-    width: 65px;
-    margin-top: 10px;
-    margin-right: 5px;
-    margin-bottom: 10px;
-    background-color: #8e5281;
-    color: white;
-    border: #8e5281;
-    font-family: "Josefin Slab", sans-serif;
-    font-size: 30px;
-  }
-  .button:hover {
-    background-color: #be77af;
-  }
-  
+}
+
+.input::placeholder {
+  color: #8e5281;
+  font-family: "Josefin Slab", sans-serif;
+}
+.input:focus {
+  border: none;
+}
+.createNewContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #8e5281;
+  margin-top: 30px !important;
+  margin: 0% auto;
+  border: none;
+}
+.createNew {
+  text-decoration: none;
+  color: white;
+  font-family: "Josefin Slab", sans-serif;
+  font-size: 35px;
+  margin: 1px;
+}
+
+.createNewContainer:hover {
+  background-color: #b78aad;
+}
+.button {
+  cursor: pointer;
+  height: 30px;
+  width: 65px;
+  margin-top: 10px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+  background-color: #8e5281;
+  color: white;
+  border: #8e5281;
+  font-family: "Josefin Slab", sans-serif;
+  font-size: 30px;
+}
+.button:hover {
+  background-color: #be77af;
+}
