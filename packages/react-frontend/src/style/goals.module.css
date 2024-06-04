@@ -6,10 +6,9 @@
   min-height: 100vh;
 }
 .heading {
-  margin-top: 50px;
-  margin-right: 1100px;
+  margin-top: 150px;
+  margin-right: 1300px;
   margin-bottom: 0px;
-  margin-left: 100px;
   text-align: center;
   color: #8e5281;
   font-family: "Josefin Slab", sans-serif;
@@ -21,7 +20,7 @@
   background-color: #fdefff;
   border: solid 2px #9e0097;
   width: 85%;
-  height: 500px;
+  height: 700px;
 }
 
 .createNewContainer {
@@ -29,7 +28,7 @@
   justify-content: center;
   align-items: center;
   background-color: #8e5281;
-  margin-top: 50px !important;
+  margin-top: 100px !important;
   margin: 0% auto;
   border: none;
 }
