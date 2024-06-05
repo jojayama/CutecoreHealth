@@ -13,6 +13,8 @@ function CreateAccount(props) {
 
   const navigate = useNavigate();
 
+  //trying to commit
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("email: " + email + "\npassword: " + password);
