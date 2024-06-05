@@ -13,9 +13,17 @@
   "jest": {
     "transform": {}
   },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ]
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/preset-env": "^7.24.6",
+    "@babel/preset-react": "^7.24.6",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "express": "^4.19.2",
