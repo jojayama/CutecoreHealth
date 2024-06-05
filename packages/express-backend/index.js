@@ -3,11 +3,28 @@ import cors from "cors";
 //import mongoose from "mongoose";
 //import dotenv from "dotenv";
 import userServices from "./user-services.js";
+import diaryRoutes from "./diary-routes.js";
 
 const app = express();
 const port = 8000;
 
-app.use(cors());
+const corsOptions = {
+  origin: "http://localhost:5173", 
+  methods: "GET,POST,DELETE,PUT",
+  allowedHeaders: "Content-Type,Authorization",
+};
+ 
+app.use(cors(corsOptions));
+
+function setCorsHeaders(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+}
+
+app.use(setCorsHeaders);
+
 app.use(express.json());
 
 // connect to app
@@ -15,6 +32,7 @@ app.listen(process.env.PORT || port, () => {
   console.log("Rest API is listening.");
 });
 
+// users
 app.get("/", (req, res) => {
   res.send("Hello Cutecore World! Go to your users page.");
 });
@@ -63,3 +81,5 @@ app.delete("/users/:id", (req, res) => {
       res.status(404).send("Account not found.");
     });
 });
+
+app.use("/diaryEntries", diaryRoutes);
