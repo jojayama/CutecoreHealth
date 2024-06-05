@@ -16,6 +16,11 @@ const reminderSchema = new mongoose.Schema(
     time: {
       type: String,
     },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
   { collection: "reminders" },
 );
