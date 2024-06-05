@@ -76,11 +76,11 @@ const router = createBrowserRouter([
     element: <Reminders />,
   },
   {
-    path: "/createReminder",
+    path: "/createReminder/:id",
     element: <CreateNewReminder />,
   },
   {
-    path: "/createGoal",
+    path: "/createGoal/:id",
     element: <CreateNewGoal />,
   },
   {
@@ -97,11 +97,3 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <RouterProvider router={router} />
   </React.StrictMode>,
 );
-
-// const container = document.getElementById("root");
-
-// // Create a root
-// const root = ReactDOMClient.createRoot(container);
-
-// Initial render:
-// root.render(<MyApp />);

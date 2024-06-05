@@ -1,14 +1,79 @@
-import React from "react";
+// import React from "react";
+// import Layout from "./layout";
+// import Navbar from "../navbar";
+// import styles from "../style/profile.module.css";
+// import { Link } from "react-router-dom";
+
+// export default function Profile(props) {
+//   const { name, email, password } = props;
+
+//   // Function to mask the password with asterisks
+//   //const maskPassword = (password) => '*'.repeat(password.length);
+
+//   return (
+//     <div className={styles.background}>
+//       <link
+//         rel="stylesheet"
+//         href="https://fonts.googleapis.com/css2?family=Josefin+Slab&display=swap"
+//       ></link>
+//       <Layout />
+//       <Navbar />
+//       <div className={styles.profileInfo}>
+//         <h1 className={styles.heading}>Profile</h1>
+//         <div className={styles.info}>
+//           <p>
+//             <strong>Name:</strong> {name}
+//           </p>
+//           <p>
+//             <strong>Email:</strong> {email}
+//           </p>
+//           <p>
+//             <strong>Password:</strong> {password}
+//           </p>
+//         </div>
+//         <button className={styles.editContainer}>
+//           <p className={styles.edit}>
+//             <Link to={"/editProfile"} className={styles.edit}>
+//               Edit Info
+//             </Link>
+//           </p>
+//         </button>
+//       </div>
+//     </div>
+//   );
+// }
+import React, { useState, useEffect } from "react";
 import Layout from "./layout";
 import Navbar from "../navbar";
 import styles from "../style/profile.module.css";
 import { Link } from "react-router-dom";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-export default function Profile(props) {
-  const { name, email, password } = props;
+export default function Profile() {
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
 
-  // Function to mask the password with asterisks
-  //const maskPassword = (password) => '*'.repeat(password.length);
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        setUser({
+          email: currentUser.email,
+          password: "********", // Mask the password
+        });
+      } else {
+        setUser({
+          email: "",
+          password: "",
+        });
+      }
+    });
+
+    // Cleanup subscription on unmount
+    return () => unsubscribe();
+  }, []);
 
   return (
     <div className={styles.background}>
@@ -22,13 +87,10 @@ export default function Profile(props) {
         <h1 className={styles.heading}>Profile</h1>
         <div className={styles.info}>
           <p>
-            <strong>Name:</strong> {name}
+            <strong>Email:</strong> {user.email}
           </p>
           <p>
-            <strong>Email:</strong> {email}
-          </p>
-          <p>
-            <strong>Password:</strong> {password}
+            <strong>Password:</strong> {user.password}
           </p>
         </div>
         <button className={styles.editContainer}>

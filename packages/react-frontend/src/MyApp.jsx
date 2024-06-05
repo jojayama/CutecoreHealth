@@ -21,7 +21,7 @@ function MyApp() {
   const [characters, setCharacters] = useState([]);
 
   function fetchUsers() {
-    const promise = fetch("https://cutecore-health.azurewebsites.net//users");
+    const promise = fetch("http://localhost:5173/users");
     return promise;
   }
 
@@ -60,7 +60,7 @@ function MyApp() {
   //  }
 
   function postUser(person) {
-    const promise = fetch("https://cutecore-health.azurewebsites.net//users", {
+    const promise = fetch("http://localhost:5173/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

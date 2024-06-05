@@ -16,6 +16,11 @@ const goalSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    userId:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    }
   },
   { collection: "goals" },
 );
