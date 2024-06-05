@@ -21,14 +21,14 @@ function MyApp() {
   const [characters, setCharacters] = useState([]);
 
   function fetchUsers() {
-    const promise = fetch("http://localhost:5173/users");
+    const promise = fetch("https://cutecore-health.azurewebsites.net/users");
     return promise;
   }
 
   useEffect(() => {
     fetchUsers()
       .then((res) => res.json())
-      .then((json) => setCharacters(json["users_list"]))
+      .then((json) => setCharacters(json["users"]))
       .catch((error) => {
         console.log(error);
       });
@@ -60,7 +60,7 @@ function MyApp() {
   //  }
 
   function postUser(person) {
-    const promise = fetch("http://localhost:5173/users", {
+    const promise = fetch("https://cutecore-health.azurewebsites.net/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

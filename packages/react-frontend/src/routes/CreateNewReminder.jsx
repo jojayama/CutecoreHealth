@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 function CreateNewReminder(props) {
   const navigate = useNavigate;
-  
+
   const [person, setPerson] = useState({
     title: "",
     desc: "",
@@ -21,17 +21,17 @@ function CreateNewReminder(props) {
       `https://cutecore-health.azurewebsites.net/reminder/${id}`,
       {
         method: "POST",
-        headers:{
+        headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           title: person.title,
           note: person.desc,
           time: person.time,
           date: person.date,
-        })
-      }
+        }),
+      },
     );
     if (response.ok) {
       const data = await response.json();

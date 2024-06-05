@@ -19,7 +19,7 @@ function generateAccessToken(username) {
         } else {
           resolve(token);
         }
-      }
+      },
     );
   });
 }
@@ -34,20 +34,16 @@ export function authenticateUser(req, res, next) {
     console.log("No token received");
     res.status(401).end();
   } else {
-    jwt.verify(
-      token,
-      process.env.TOKEN_SECRET,
-      (error, decoded) => {
-        if (decoded) {
-          // allowed to continue to the route
-          req.user = decoded;
-          next();
-        } else {
-          console.log("JWT error:", error);
-          res.status(401).end();
-        }
+    jwt.verify(token, process.env.TOKEN_SECRET, (error, decoded) => {
+      if (decoded) {
+        // allowed to continue to the route
+        req.user = decoded;
+        next();
+      } else {
+        console.log("JWT error:", error);
+        res.status(401).end();
       }
-    );
+    });
   }
 }
 
@@ -70,7 +66,7 @@ export async function loginUser(req, res) {
             res.status(200).send({
               token: token,
               username: username,
-              profilePic: retrievedUser.profilePic
+              profilePic: retrievedUser.profilePic,
             });
           });
         } else {

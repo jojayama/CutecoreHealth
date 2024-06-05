@@ -13,22 +13,22 @@ function CreateAccount(props) {
 
   const navigate = useNavigate();
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("email: " + email + "\npassword: " + password);
-    const url = 'http://localhost:5173/users'
+    const url = "https://cutecore-health.azurewebsites.net/users";
     console.log("URL: ", url);
     const response = await fetch(
-      'http://localhost:5173/users',
+      "https://cutecore-health.azurewebsites.net/users",
       {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({email, password})
-      }
+        body: JSON.stringify({ email, password }),
+      },
     );
-    const user = await response.json()
+    const user = await response.json();
     if (user) {
       console.log("Created user successfully");
     } else {
@@ -47,7 +47,7 @@ function CreateAccount(props) {
         const errorMessage = error.message;
         console.error("Error creating user:", errorCode, errorMessage);
       });
-  }
+  };
 
   // function handleChange(event) {
   //   const { name, value } = event.target;

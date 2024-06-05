@@ -114,7 +114,7 @@ export default function EditProfile(props) {
         .catch((error) => {
           console.error("Error updating email:", error);
         });
-        navigate("/profile");
+      navigate("/profile");
     }
 
     setPerson({ email: "", password: "" });

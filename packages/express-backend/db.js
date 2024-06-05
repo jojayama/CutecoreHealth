@@ -14,16 +14,14 @@ console.log(process.env.MONGO_URI);
  */
 const connectDB = async () => {
   if (!connection) {
-    try{
-        connection = await mongoose.connect(url, {
-            dbName: ""
-        });
-    }
-    catch(error){
-        console.error("Could not connect to MongoDB. Error: ", error);
+    try {
+      connection = await mongoose.connect(url, {
+        dbName: "",
+      });
+    } catch (error) {
+      console.error("Could not connect to MongoDB. Error: ", error);
     }
     return connection;
-    
   }
 };
 

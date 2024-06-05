@@ -66,7 +66,7 @@ async function addUser(email, password) {
 
   const newUser = new User({
     email,
-    password: hashedPassword
+    password: hashedPassword,
   });
   await newUser.save();
   console.log(newUser);
