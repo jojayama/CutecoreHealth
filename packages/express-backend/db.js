@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
 
-const url = process.env.MONGO_URI;
+const url = process.env.MONGODB_URI;
 let connection;
 
-console.log(process.env.MONGO_URI);
+console.log(process.env.MONGODB_URI);
 
 /**
  * Makes a connection to a MongoDB database. If a connection already exists, does nothing

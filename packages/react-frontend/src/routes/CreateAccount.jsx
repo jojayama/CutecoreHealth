@@ -16,8 +16,8 @@ function CreateAccount(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("email: " + email + "\npassword: " + password);
-    const url = "https://cutecore-health.azurewebsites.net/users";
-    console.log("URL: ", url);
+    // const url = "https://cutecore-health.azurewebsites.net/users";
+    // console.log("URL: ", url);
     const response = await fetch(
       "https://cutecore-health.azurewebsites.net/users",
       {

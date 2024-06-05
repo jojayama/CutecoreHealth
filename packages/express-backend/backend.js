@@ -11,7 +11,7 @@ const app = express();
 const port = 8000;
 
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: "https://lemon-wave-0f251421e.5.azurestaticapps.net/",
   methods: "GET,POST,DELETE,PUT",
   allowedHeaders: "Content-Type,Authorization",
 };
@@ -69,14 +69,16 @@ app.post("/users", async (req, res) => {
   console.log(req.body);
   try {
     const user = await userServices.addUser(email, password);
+    console.log("success!");
     res.status(201).send(user);
   } catch (error) {
+    console.log(error);
     if (error.message === "Email already taken") {
       res.status(400).send({ message: "Email already used" });
     } else if (error.message === "All fields are required") {
       res.status(400).send({ message: "All fields are required" });
     } else {
-      res.status(500).send({ message: "Internal Server Error" });
+      res.status(500).send({ message: "Internal Server Error: " + error });
     }
   }
 });
