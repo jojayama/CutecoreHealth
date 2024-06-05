@@ -29,16 +29,22 @@
   justify-content: center;
   align-items: center;
   background-color: #8e5281;
-  margin-top: 50px !important;
+  margin-top: 100px !important;
   margin: 0% auto;
   border: none;
 }
 .createNew {
-  text-decoration: none;
+  cursor: pointer;
+  height: 30px;
+  width: 65px;
+  margin-top: 10px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+  background-color: #8e5281;
   color: white;
+  border: #8e5281;
   font-family: "Josefin Slab", sans-serif;
-  font-size: 35px;
-  margin: 4px;
+  font-size: 30px;
 }
 
 .createNewContainer:hover {

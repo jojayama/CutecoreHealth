@@ -14,11 +14,27 @@ body {
 .welcome {
   color: #8e5281;
   font-family: "Josefin Slab", sans-serif;
-  top: 100px;
+  top: 10px;
   left: 350px;
   position: absolute;
   font-size: 75px;
   text-align: end;
+}
+.reminder {
+  color: #8e5281;
+  font-family: "Josefin Slab", sans-serif;
+  top: 140px;
+  left: 350px;
+  text-align: left;
+  padding-top: 10px;
+  padding-left: 10px;
+  position: absolute;
+  font-size: 40px;
+  margin: 0% auto;
+  background-color: #fdefff;
+  border: solid 2px #9e0097;
+  width: 35%;
+  height: 80px;
 }
 
 .navbar {
@@ -51,12 +67,6 @@ body {
   font-family: "Josefin Slab", sans-serif;
 }
 
-/* .navbar:hover{
-    left: 0;
-    width: 300px;
-    background-color: #FDEFFF
-  } */
-
 .heading {
   font-size: 70px !important;
   text-align: center;
@@ -65,7 +75,8 @@ body {
 
 .calendar {
   margin-top: 250px;
-  margin-left: 100px;
+  margin-left: 275px;
+  margin-bottom: 20px;
   width: 70%;
   height: 30%;
   color: #8e5281;
