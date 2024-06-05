@@ -13,7 +13,7 @@ const corsOptions = {
   methods: "GET,POST,DELETE,PUT",
   allowedHeaders: "Content-Type,Authorization",
 };
-
+ 
 app.use(cors(corsOptions));
 
 function setCorsHeaders(req, res, next) {
