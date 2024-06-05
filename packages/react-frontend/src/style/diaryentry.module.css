@@ -86,7 +86,7 @@
 }
 
 .createNewContainer:hover {
-  background-color: #b78aad;
+  background-color: #be77af;
 }
 .button {
   cursor: pointer;
@@ -104,3 +104,4 @@
 .button:hover {
   background-color: #be77af;
 }
+

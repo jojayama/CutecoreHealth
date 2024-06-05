@@ -58,6 +58,9 @@ function Welcome() {
         <FavoriteOutlinedIcon fontSize="large" />
         me
       </h1>
+      <div className={styles.reminder}>
+        No reminders to show
+      </div>
       <div className={styles.calendar}>
         <FullCalendar
           plugins={[
