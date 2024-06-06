@@ -6,7 +6,7 @@
   "main": "user-services.js",
   "scripts": {
     "lint": "npx eslint . && npx prettier --check .",
-    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage",
     "dev": "npx nodemon backend.js",
     "start": "node backend.js"
   },
