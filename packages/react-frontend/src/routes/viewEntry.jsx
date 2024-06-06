@@ -44,7 +44,7 @@ export default function ViewEntry() {
       ></link>
       <Layout />
       <Navbar />
-      <div className={styles.diaryBox}>
+      <div className={styles.entryBox}>
         {diary ? (
           <div className={styles.diaryDetail}>
             <h1 className={styles.diaryTitle}>{diary.title}</h1>
