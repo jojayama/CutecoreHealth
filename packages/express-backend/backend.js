@@ -109,6 +109,17 @@ app.post("/reminders/:id", async (req, res) => {
   }
 });
 
+app.get("/reminders/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const reminders = await Reminder.find({ userId: id });
+    res.status(200).json(reminders);
+  } catch (error) {
+    console.error("Could not get reminders. Error: ", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
 //creating a goal
 app.post("/goal/:id", async (req, res) => {
   try {
