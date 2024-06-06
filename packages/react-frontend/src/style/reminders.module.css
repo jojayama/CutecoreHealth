@@ -22,7 +22,7 @@
   border: solid 2px #9e0097;
   width: 85%;
   min-height: 400px;
-  max-height: 1000px;
+  height: 70vh;
   overflow-y: auto;
 }
 

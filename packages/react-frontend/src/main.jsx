@@ -19,6 +19,7 @@ import CreateNewReminder from "./routes/CreateNewReminder";
 import CreateNewGoal from "./routes/CreateNewGoal";
 import DiaryEntries from "./routes/DiaryEntries";
 import CreateNewDiary from "./routes/CreateNewDiary";
+import ViewEntry from "./routes/viewEntry";
 
 const router = createBrowserRouter([
   {
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
   {
     path: "/newDiary",
     element: <CreateNewDiary />,
+  },
+  {
+    path: "/viewEntry/:id",
+    element: <ViewEntry />,
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(

@@ -49,7 +49,14 @@ export default function DiaryEntries() {
         {diaries.length > 0 ? (
           diaries.map((diaries) => (
             <div key={diaries._id} className={styles.diaryItem}>
-              <h2 className={styles.diaryTitle}>{diaries.title}</h2>
+              <h2 className={styles.diaryTitle}>
+                <Link
+                  to={`/viewEntry/${diaries._id}`}
+                  className={styles.diaryLink}
+                >
+                  {diaries.title}
+                </Link>
+              </h2>
               <p className={styles.diaryEntry}>{diaries.entry}</p>
               {/* <button
                 onClick={() => handleDelete(goal._id)}
@@ -60,7 +67,7 @@ export default function DiaryEntries() {
             </div>
           ))
         ) : (
-          <p>No goals found.</p>
+          <p>No diaries found.</p>
         )}
       </div>
       <button className={styles.createNewContainer}>

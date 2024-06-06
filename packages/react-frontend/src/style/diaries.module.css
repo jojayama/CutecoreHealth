@@ -21,7 +21,8 @@
   background-color: #fdefff;
   border: solid 2px #9e0097;
   width: 85%;
-  height: 500px;
+  height: 70vh;
+  overflow-y: auto;
 }
 
 .createNewContainer {
