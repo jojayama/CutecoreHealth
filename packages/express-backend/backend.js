@@ -119,7 +119,6 @@ app.get("/reminders/:id", async (req, res) => {
   }
 });
 
-
 //creating a goal
 app.post("/goal/:id", async (req, res) => {
   try {

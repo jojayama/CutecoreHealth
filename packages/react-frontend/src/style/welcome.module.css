@@ -73,34 +73,34 @@ body {
   font-size: 25.5vw;
   height: 50px;
   width: 390px;
-  padding:0px;
-  margin:0px;
+  padding: 0px;
+  margin: 0px;
 }
 
 .titleText {
   display: inline-block;
-  top:40px;
-  left:10px;
+  top: 40px;
+  left: 10px;
   color: #8e5281;
   font-family: "Josefin Slab", sans-serif;
   position: absolute;
   font-size: 26px;
   text-align: end;
-  flex:1;
+  flex: 1;
   font-weight: bolder;
   margin-right: 10px;
 }
 
 .noteText {
   display: inline-block;
-  top:62px;
-  left:10px;
+  top: 62px;
+  left: 10px;
   color: #8e5281;
   font-family: "Josefin Slab", sans-serif;
   position: absolute;
   font-size: 23px;
   text-align: end;
-  flex:1;
+  flex: 1;
 }
 
 .navbar {

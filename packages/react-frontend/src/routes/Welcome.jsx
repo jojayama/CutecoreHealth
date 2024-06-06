@@ -21,10 +21,9 @@ export default function Welcome() {
   const userId = localStorage.getItem("userId");
   const [remReceived, setRemReceived] = useState(false);
 
-
   useEffect(() => {
     const getReminders = async () => {
-      if(!remReceived){
+      if (!remReceived) {
         try {
           const response = await fetch(
             `http://localhost:8000/reminders/${userId}`,
@@ -45,9 +44,8 @@ export default function Welcome() {
           console.error("Error fetching reminders: ", error);
         }
       }
-      
     };
-    
+
     getReminders();
   }, [userId]);
 
@@ -96,21 +94,19 @@ export default function Welcome() {
       </h1>
       <div className={styles.reminder}>
         {reminders.length > 0 ? (
-            reminders.map((reminder) => (
-              <div key={reminder._id} className={styles.reminderItem}>
-                <div className={styles.timeText}>
-                {reminder.time}
-                </div>
-                <div className={styles.reminderContainer}>
-                  <div className={styles.titleText}>{reminder.title}</div>              
-                  <div className={styles.noteText}>{reminder.note}</div>
-                </div>                
+          reminders.map((reminder) => (
+            <div key={reminder._id} className={styles.reminderItem}>
+              <div className={styles.timeText}>{reminder.time}</div>
+              <div className={styles.reminderContainer}>
+                <div className={styles.titleText}>{reminder.title}</div>
+                <div className={styles.noteText}>{reminder.note}</div>
               </div>
-            ))
-          ) : (
-            <p>No reminders to show</p>
-          )}
-        </div>
+            </div>
+          ))
+        ) : (
+          <p>No reminders to show</p>
+        )}
+      </div>
       <div className={styles.calendar}>
         <FullCalendar
           plugins={[
