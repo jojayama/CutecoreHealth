@@ -84,4 +84,4 @@ function CreateNewEntry(props) {
   );
 }
 
-export default CreateNewEntry
+export default CreateNewEntry;

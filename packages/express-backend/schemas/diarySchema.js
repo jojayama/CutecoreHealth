@@ -19,6 +19,6 @@ const diarySchema = new mongoose.Schema(
   { collection: "diaryEntries" },
 );
 
-const Diary = mongoose.model("Diary", diarySchema)
+const Diary = mongoose.model("Diary", diarySchema);
 
 export default Diary;
