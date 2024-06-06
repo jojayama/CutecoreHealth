@@ -20,19 +20,18 @@ function CreateAccount(props) {
     console.log("email: " + email + "\npassword: " + password);
     // const url = "https://cutecore-health.azurewebsites.net/users";
     // console.log("URL: ", url);
-    const response = await fetch(
-      "https://cutecore-health.azurewebsites.net/users",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
+    const response = await fetch("http://localhost:8000/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-    );
+      body: JSON.stringify({ email, password }),
+    });
     const user = await response.json();
     if (user) {
       console.log("Created user successfully");
+      localStorage.setItem("token", user.token);
+      localStorage.setItem("userId", user._id);
     } else {
       alert("Could not create user: " + user.message);
     }

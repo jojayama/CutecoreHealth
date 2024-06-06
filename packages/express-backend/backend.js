@@ -3,7 +3,7 @@ import cors from "cors";
 //import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userServices from "./user-services.js";
-import reminderSchema from "./schemas/reminderSchema.js";
+import Reminder from "./schemas/reminderSchema.js";
 import goalSchema from "./schemas/goalSchema.js";
 
 dotenv.config();
@@ -11,7 +11,7 @@ const app = express();
 const port = 8000;
 
 const corsOptions = {
-  origin: "https://lemon-wave-0f251421e.5.azurestaticapps.net/",
+  origin: "http://localhost:5173",
   methods: "GET,POST,DELETE,PUT",
   allowedHeaders: "Content-Type,Authorization",
 };
@@ -84,12 +84,14 @@ app.post("/users", async (req, res) => {
 });
 
 //creating a reminder
-app.post("/reminder/:id", async (req, res) => {
+app.post("/reminders/:id", async (req, res) => {
   try {
     const getReminder = req.body;
     console.log(getReminder);
-    const user = await userServices.findUserByEmail(req.params.id);
-    const newReminder = new reminderSchema({
+
+    const user = await userServices.findUserById(req.params.id);
+    console.log(user);
+    const newReminder = new Reminder({
       title: getReminder.title,
       note: getReminder.note,
       date: getReminder.date,
@@ -97,6 +99,7 @@ app.post("/reminder/:id", async (req, res) => {
       userId: user._id,
     });
     await newReminder.save();
+    console.log("Success! Reminder: " + newReminder);
     res.status(201);
     res.send(newReminder);
   } catch (error) {

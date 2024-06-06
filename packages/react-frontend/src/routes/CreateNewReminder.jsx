@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "../style/createnew.module.css";
 import Navbar from "../navbar";
+import Layout from "../routes/layout";
 import { Link, useNavigate } from "react-router-dom";
 
 function CreateNewReminder(props) {
@@ -17,22 +18,20 @@ function CreateNewReminder(props) {
     e.preventDefault();
     const token = localStorage.getItem("token");
     const id = localStorage.getItem("userId");
-    const response = await fetch(
-      `https://cutecore-health.azurewebsites.net/reminder/${id}`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title: person.title,
-          note: person.desc,
-          time: person.time,
-          date: person.date,
-        }),
+    console.log("UserId: " + id);
+    const response = await fetch(`http://localhost:8000/reminders/${id}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
       },
-    );
+      body: JSON.stringify({
+        title: person.title,
+        note: person.desc,
+        time: person.time,
+        date: person.date,
+      }),
+    });
     if (response.ok) {
       const data = await response.json();
       console.log("Reminder created:", data);
@@ -53,7 +52,8 @@ function CreateNewReminder(props) {
   return (
     <div className={styles.background}>
       <Navbar />
-      <h1 className={styles.heading}>New Reminder!</h1>
+      <Layout />
+      <h1 className={styles.heading}>New Reminder</h1>
       <form className={styles.form}>
         <div className={styles.buttonContainer}>
           <Link to="/createGoal">
@@ -95,8 +95,8 @@ function CreateNewReminder(props) {
             className={styles.smallInput}
             placeholder="12/12/24"
           />
-          <h1 className={styles.plaintext}>Recurs: </h1>
-          <div>
+          {/* <h1 className={styles.plaintext}>Recurs: </h1> */}
+          {/* <div>
             <p className={styles.selection}>
               <a href="/Never">Never</a>
             </p>
@@ -109,7 +109,7 @@ function CreateNewReminder(props) {
             <p className={styles.selection}>
               <a href="/Monthly">Monthly</a>
             </p>
-          </div>
+          </div> */}
         </div>
         <input
           type="button"
