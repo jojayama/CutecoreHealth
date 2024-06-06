@@ -1,6 +1,5 @@
 // src/main.jsx
 import React from "react";
-//import ReactDOMClient from "react-dom/client";
 import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./style/form.module.css";
@@ -66,22 +65,6 @@ const router = createBrowserRouter([
   {
     path: "/calendar",
     element: <CuteCalendar />,
-  },
-  {
-    path: "/goals",
-    element: <Goals />,
-  },
-  {
-    path: "/reminders",
-    element: <Reminders />,
-  },
-  {
-    path: "/createReminder/:id",
-    element: <CreateNewReminder />,
-  },
-  {
-    path: "/createGoal/:id",
-    element: <CreateNewGoal />,
   },
   {
     path: "/diaryEntries",

@@ -79,14 +79,7 @@ function CreateNewGoal(props) {
         />
         <h1 className={styles.plaintext}>Set Date</h1>
         <div className={styles.inputContainer}>
-          {/* <input
-            type="text"
-            name="time"
-            value={person.time}
-            onChange={handleChange}
-            className={styles.smallInput}
-            placeholder="12:00AM"
-          /> */}
+          {}
           <input
             type="text"
             name="deadline"

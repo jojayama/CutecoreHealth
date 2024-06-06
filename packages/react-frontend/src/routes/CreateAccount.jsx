@@ -50,14 +50,6 @@ function CreateAccount(props) {
       });
   };
 
-  // function handleChange(event) {
-  //   const { name, value } = event.target;
-  //   setPerson((prevPerson) => ({
-  //     ...prevPerson,
-  //     [name]: value,
-  //   }));
-  // }
-
   return (
     <div className={styles.background}>
       <link

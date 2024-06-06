@@ -46,12 +46,6 @@ function findUserById(id) {
   return userModel.findById(id);
 }
 
-// async function addUser(user) {
-//   const userToAdd = new userModel(user);
-//   const promise = userToAdd.save();
-//   return promise;
-// }
-
 async function addUser(email, password) {
   if (!email || !password) {
     throw new Error("All fields are required");
