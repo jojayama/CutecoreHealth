@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 
 export default function Goals() {
   const [goals, setGoals] = useState([]);
+  const [date, setDate] = useState([]);
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
 
@@ -20,6 +21,7 @@ export default function Goals() {
         });
         if (response.ok) {
           const data = await response.json();
+          console.log(data);
           setGoals(data);
         } else {
           console.error("Failed to fetch goals: ", response.statusText);
@@ -48,7 +50,7 @@ export default function Goals() {
   };
 
   const formatDate = (dateString) => {
-    const options = { year: "numeric", month: "character", day: "numeric" };
+    const options = { year: "numeric", month: "numeric", day: "numeric" };
     const date = new Date(dateString);
     return date.toLocaleDateString(undefined, options);
   };
@@ -72,7 +74,7 @@ export default function Goals() {
                 className={styles.checkbox}
               />
               <label htmlFor={`checkbox-${goal._id}`}></label>
-              <p className={styles.goalDate}>{formatDate(goal.date)}</p>
+              <p className={styles.goalDate}>{formatDate(goal.deadline)}</p>
               <h2 className={styles.goalTitle}>{goal.title}</h2>
               <p className={styles.goalNote}>{goal.description}</p>
               <button
