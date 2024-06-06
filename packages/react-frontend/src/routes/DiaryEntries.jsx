@@ -3,8 +3,39 @@ import Layout from "./layout";
 import Navbar from "../navbar";
 import styles from "../style/diaries.module.css";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 export default function DiaryEntries() {
+  const [diaries, setDiaries] = useState([]);
+  const token = localStorage.getItem("token");
+  const userId = localStorage.getItem("userId");
+
+  useEffect(() => {
+    const getDiaries = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:8000/diaryEntries/${userId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          },
+        );
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+          setDiaries(data);
+        } else {
+          console.error("Failed to fetch diary entries: ", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error fetching diary entries: ", error);
+      }
+    };
+
+    getDiaries();
+  }, [userId, token]);
+
   return (
     <div>
       <link
@@ -14,7 +45,24 @@ export default function DiaryEntries() {
       <Layout />
       <Navbar />
       <h1 className={styles.heading}>Diary</h1>
-      <div className={styles.diaryBox}></div>
+      <div className={styles.diaryBox}>
+        {diaries.length > 0 ? (
+          diaries.map((diaries) => (
+            <div key={diaries._id} className={styles.diaryItem}>
+              <h2 className={styles.diaryTitle}>{diaries.title}</h2>
+              <p className={styles.diaryEntry}>{diaries.entry}</p>
+              {/* <button
+                onClick={() => handleDelete(goal._id)}
+                className={styles.deleteButton}
+              >
+                Delete
+              </button> */}
+            </div>
+          ))
+        ) : (
+          <p>No goals found.</p>
+        )}
+      </div>
       <button className={styles.createNewContainer}>
         <Link to={"/newDiary"} className={styles.createNew}>
           + New Diary Entry
