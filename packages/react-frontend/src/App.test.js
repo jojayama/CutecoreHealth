@@ -1,5 +1,5 @@
 //App.test.js
-import { render, screen } from "react";
+import { render, screen } from "@testing-library/react";
 import mut from "main.jsx";
 import Login from "./routes/Login";
 
