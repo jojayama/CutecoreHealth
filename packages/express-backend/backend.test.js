@@ -1,44 +1,45 @@
 //backend.test.js
 import mongoose from "mongoose";
 import mut from "./user-services";
+import userModel from "./user.js"
 
-test("Testing findUserByName() -- success", () => {
+test("Testing findUserByName()", () => {
+  const expected = mut.getUsers();
+  const got = userModel.find();
+  expect(got).toBe(expected);
+});
+
+test("Testing findUserById()", () => {
   const expected = "";
   const got = "";
   expect(got).toBe(expected);
 });
 
-test("Testing findUserById() -- success", () => {
+test("Testing addUser()", () => {
   const expected = "";
   const got = "";
   expect(got).toBe(expected);
 });
 
-test("Testing addUser() -- success", () => {
+test("Testing findUserByEmail()", () => {
   const expected = "";
   const got = "";
   expect(got).toBe(expected);
 });
 
-test("Testing findUserByEmail() -- success", () => {
+test("Testing findUserByNameAndEmail()", () => {
   const expected = "";
   const got = "";
   expect(got).toBe(expected);
 });
 
-test("Testing findUserByNameAndEmail() -- success", () => {
+test("Testing getUsers()", () => {
   const expected = "";
   const got = "";
   expect(got).toBe(expected);
 });
 
-test("Testing getUsers() -- success", () => {
-  const expected = "";
-  const got = "";
-  expect(got).toBe(expected);
-});
-
-test("Testing deleteUserById() -- success", () => {
+test("Testing deleteUserById()", () => {
   const expected = "";
   const got = "";
   expect(got).toBe(expected);
