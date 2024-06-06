@@ -4,7 +4,9 @@ import cors from "cors";
 import dotenv from "dotenv";
 import userServices from "./user-services.js";
 import Reminder from "./schemas/reminderSchema.js";
+
 import Goal from "./schemas/goalSchema.js";
+import Diary from "./schemas/diarySchema.js";
 
 dotenv.config();
 const app = express();
@@ -133,6 +135,7 @@ app.post("/reminders/:id", async (req, res) => {
 app.get("/reminders/:id", async (req, res) => {
   const { id } = req.params;
 
+
   try {
     const reminders = await Reminder.find({ userId: id });
     res.status(200).json(reminders);
@@ -141,6 +144,7 @@ app.get("/reminders/:id", async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
+
 
 //delete reminder
 app.delete("/reminders/:id", async (req, res) => {
@@ -200,6 +204,28 @@ app.delete("/goals/:id", async (req, res) => {
   } catch (error) {
     console.error("Could not delete goal. Error: ", error);
     res.status(500).json({ message: "Internal Server Error" });
+
+// creating a diary entry
+app.post("/diaryEntries/:id", async (req, res) => {
+  try {
+    const getEntry = req.body;
+    console.log(getEntry);
+
+    const user = await userServices.findUserById(req.params.id);
+    console.log(user);
+    const newEntry = new Diary({
+      title: getEntry.title,
+      entry: getEntry.entry,
+      userId: user._id,
+    });
+    await newEntry.save();
+    console.log("Success! Entry: " + newEntry);
+    res.status(201);
+    res.send(newEntry);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+
   }
 });
 

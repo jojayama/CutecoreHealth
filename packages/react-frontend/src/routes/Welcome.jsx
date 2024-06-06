@@ -11,10 +11,44 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
 import multiMonthPlugin from "@fullcalendar/multimonth";
+import { useState, useEffect } from "react";
+import { TrySharp } from "@mui/icons-material";
 
 import { Link } from "react-router-dom";
 
-function Welcome() {
+export default function Welcome() {
+  const [reminders, setReminders] = useState([]);
+  const userId = localStorage.getItem("userId");
+  const [remReceived, setRemReceived] = useState(false);
+
+  useEffect(() => {
+    const getReminders = async () => {
+      if (!remReceived) {
+        try {
+          const response = await fetch(
+            `http://localhost:8000/reminders/${userId}`,
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            },
+          );
+          if (response.ok) {
+            const data = await response.json();
+            setReminders(data);
+            setRemReceived(true);
+          } else {
+            console.error("Failed to fetch reminders: ", response.statusText);
+          }
+        } catch (error) {
+          console.error("Error fetching reminders: ", error);
+        }
+      }
+    };
+
+    getReminders();
+  }, [userId]);
+
   return (
     <div className={styles.background}>
       <Layout />
@@ -58,7 +92,21 @@ function Welcome() {
         <FavoriteOutlinedIcon fontSize="large" />
         me
       </h1>
-      <div className={styles.reminder}>No reminders to show</div>
+      <div className={styles.reminder}>
+        {reminders.length > 0 ? (
+          reminders.map((reminder) => (
+            <div key={reminder._id} className={styles.reminderItem}>
+              <div className={styles.timeText}>{reminder.time}</div>
+              <div className={styles.reminderContainer}>
+                <div className={styles.titleText}>{reminder.title}</div>
+                <div className={styles.noteText}>{reminder.note}</div>
+              </div>
+            </div>
+          ))
+        ) : (
+          <div className={styles.titleText}>No reminders!</div>
+        )}
+      </div>
       <div className={styles.calendar}>
         <FullCalendar
           plugins={[
@@ -79,5 +127,3 @@ function Welcome() {
     </div>
   );
 }
-
-export default Welcome;

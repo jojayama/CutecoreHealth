@@ -2,17 +2,39 @@ import React, { useState } from "react";
 import Layout from "./layout";
 import Navbar from "../navbar";
 import styles from "../style/diaryentry.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function DiaryEntries(props) {
+function CreateNewEntry(props) {
+  const navigate = useNavigate;
+
   const [diary, setDiary] = useState({
     title: "",
     entry: "",
   });
 
-  function submitForm() {
-    props.handleSubmit(diary);
-    setDiary({ title: "", entry: "" });
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const token = localStorage.getItem("token");
+    const id = localStorage.getItem("userId");
+    console.log("UserId: " + id);
+    const response = await fetch(`http://localhost:8000/diaryEntries/${id}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: diary.title,
+        entry: diary.entry,
+      }),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      console.log("Entry created:", data);
+      navigate("/diaryEntries");
+    } else {
+      console.error("Error creating entry:", response.statusText);
+    }
   }
 
   function handleChange(event) {
@@ -54,10 +76,12 @@ export default function DiaryEntries(props) {
         <input
           type="button"
           value="Save"
-          onClick={submitForm}
+          onClick={handleSubmit}
           className={styles.button}
         />
       </button>
     </div>
   );
 }
+
+export default CreateNewEntry;
