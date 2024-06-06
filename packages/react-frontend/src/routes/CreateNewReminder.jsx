@@ -63,7 +63,7 @@ function CreateNewReminder(props) {
         </div>
         <input
           type="text"
-          name="goal"
+          name="title"
           value={person.title}
           onChange={handleChange}
           className={styles.input}
