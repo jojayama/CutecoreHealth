@@ -26,15 +26,77 @@ body {
   top: 140px;
   left: 350px;
   text-align: left;
-  padding-top: 10px;
-  padding-left: 10px;
+  padding-top: 2px;
+  padding-left: 2px;
   position: absolute;
   font-size: 40px;
   margin: 0% auto;
   background-color: #fdefff;
   border: solid 2px #9e0097;
-  width: 35%;
+  width: 400px;
   height: 80px;
+}
+.reminderItem {
+  border: 2px solid #8e5281;
+  background-color: 8e5281;
+  width: 393px;
+  height: 73px;
+  text-align: left;
+  font-family: "Josefin Slab", sans-serif;
+  font-size: 20px;
+  color: #8e5281;
+  text-align: left;
+  line-height: 0.1;
+}
+
+.timeText {
+  color: #8e5281;
+  font-family: "Josefin Slab", sans-serif;
+  top: 18px;
+  left: 10px;
+  position: absolute;
+  font-size: 15px;
+  text-align: end;
+  font-weight: bold;
+}
+
+.reminderContainer {
+  background-color: #fdefff;
+  color: white;
+  margin: 0 auto;
+  border: #8e5281;
+  text-align: center;
+  display: inline-block;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Josefin Slab", sans-serif;
+  font-size: 30px;
+  height: 60px;
+  width: 390px;
+  padding:0px;
+}
+
+.titleText {
+  color: #8e5281;
+  font-family: "Josefin Slab", sans-serif;
+  top: 50px;
+  left: 10px;
+  position: absolute;
+  font-size: 30px;
+  text-align: end;
+  flex:1;
+  font-weight: bolder;
+}
+
+.noteText {
+  color: #8e5281;
+  font-family: "Josefin Slab", sans-serif;
+  top: 50px;
+  left: 70px;
+  position: absolute;
+  font-size: 30px;
+  text-align: end;
+  flex:1;
 }
 
 .navbar {
