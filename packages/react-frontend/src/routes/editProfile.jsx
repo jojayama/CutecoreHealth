@@ -91,30 +91,89 @@ export default function EditProfile(props) {
     email: "",
     password: "",
   });
+  const userId = localStorage.getItem("userId");
+  const token = localStorage.getItem("token");
 
   const navigate = useNavigate();
   const auth = getAuth();
 
-  function submitForm() {
-    const user = auth.currentUser;
+  // function submitForm() {
+  //   const user = auth.currentUser;
 
+  //   if (user && user.emailVerified) {
+  //     updateEmail(user, person.email)
+  //       .then(() => {
+  //         sendEmailVerification(user)
+  //           .then(() => {
+  //             console.log("Verification email sent.");
+  //             // Optionally, show a success message or navigate to another page
+  //             navigate("/profile");
+  //           })
+  //           .catch((error) => {
+  //             console.error("Error sending verification email:", error);
+  //           });
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error updating email:", error);
+  //       });
+  //     navigate("/profile");
+  //   }
+
+  //   setPerson({ email: "", password: "" });
+  // }
+
+  async function submitForm() {
+    const user = auth.currentUser;
     if (user) {
-      updateEmail(user, person.email)
-        .then(() => {
-          sendEmailVerification(user)
-            .then(() => {
-              console.log("Verification email sent.");
-              // Optionally, show a success message or navigate to another page
-              navigate("/profile");
-            })
-            .catch((error) => {
-              console.error("Error sending verification email:", error);
-            });
-        })
-        .catch((error) => {
-          console.error("Error updating email:", error);
-        });
-      navigate("/profile");
+      try {
+        await sendEmailVerification(person.email);
+        console.log("Verification email sent.");
+
+        // Optionally, show a message to the user asking them to verify their email
+        // or instruct them to check their email for the verification link
+      } catch (error) {
+        console.error("Error sending verification email:", error);
+        // Optionally, show an error message to the user
+        return;
+      }
+      if (user.emailVerified) {
+        try {
+          // Update email in Firebase Auth
+          await updateEmail(user, person.email);
+          console.log("Email updated successfully in Firebase Auth.");
+
+          // Call API to update email in MongoDB
+          const response = await fetch(
+            `http://localhost:8000/users/${userId}`,
+            {
+              method: "POST",
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+              body: JSON.stringify({
+                userId: user.uid,
+                newEmail: person.email,
+              }),
+            },
+          );
+
+          if (response.ok) {
+            console.log("Email updated successfully in MongoDB.");
+          } else {
+            console.error(
+              "Error updating email in MongoDB:",
+              response.statusText,
+            );
+          }
+
+          navigate("/profile");
+        } catch (error) {
+          console.error("Error updating email in Firebase Auth:", error);
+        }
+      } else {
+        console.log("Email not verified. Cannot update email.");
+        // Optionally, show an error message or take appropriate action
+      }
     }
 
     setPerson({ email: "", password: "" });
@@ -138,17 +197,6 @@ export default function EditProfile(props) {
       ></link>
       <h1 className={styles.heading}>Edit Profile</h1>
       <form className={styles.form}>
-        {/* <label htmlFor="name">Username</label> */}
-        {/* <input
-          type="text"
-          name="name"
-          id="name"
-          value={person.name}
-          onChange={handleChange}
-          className={styles.input}
-          placeholder="Enter your name*"
-        /> */}
-        {/* <label htmlFor="job">Password</label> */}
         <input
           type="email"
           name="email"

@@ -12,10 +12,6 @@ const goalSchema = new mongoose.Schema(
     deadline: {
       type: Date,
     },
-    completed: {
-      type: Boolean,
-      default: false,
-    },
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
@@ -25,4 +21,6 @@ const goalSchema = new mongoose.Schema(
   { collection: "goals" },
 );
 
-export default goalSchema;
+const Goal = mongoose.model("Goal", goalSchema);
+
+export default Goal;

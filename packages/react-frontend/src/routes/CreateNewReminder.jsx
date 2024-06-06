@@ -5,7 +5,7 @@ import Layout from "../routes/layout";
 import { Link, useNavigate } from "react-router-dom";
 
 function CreateNewReminder(props) {
-  const navigate = useNavigate;
+  const navigate = useNavigate();
 
   const [person, setPerson] = useState({
     title: "",
@@ -95,21 +95,6 @@ function CreateNewReminder(props) {
             className={styles.smallInput}
             placeholder="12/12/24"
           />
-          {/* <h1 className={styles.plaintext}>Recurs: </h1> */}
-          {/* <div>
-            <p className={styles.selection}>
-              <a href="/Never">Never</a>
-            </p>
-            <p className={styles.selection}>
-              <a href="/Daily">Daily</a>
-            </p>
-            <p className={styles.selection}>
-              <a href="/Weekly">Weekly</a>
-            </p>
-            <p className={styles.selection}>
-              <a href="/Monthly">Monthly</a>
-            </p>
-          </div> */}
         </div>
         <input
           type="button"
@@ -119,7 +104,7 @@ function CreateNewReminder(props) {
         />
       </form>
       <p className={styles.selection}>
-        <a href="/Return">Return</a>
+        <a href="/reminders">Return</a>
       </p>
     </div>
   );
