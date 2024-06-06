@@ -34,17 +34,11 @@
   border: none;
 }
 .createNew {
-  cursor: pointer;
-  height: 30px;
-  width: 65px;
-  margin-top: 10px;
-  margin-right: 5px;
-  margin-bottom: 10px;
-  background-color: #8e5281;
+  text-decoration: none;
   color: white;
-  border: #8e5281;
   font-family: "Josefin Slab", sans-serif;
-  font-size: 30px;
+  font-size: 35px;
+  margin: 4px;
 }
 
 .createNewContainer:hover {

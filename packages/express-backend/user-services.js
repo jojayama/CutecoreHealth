@@ -1,11 +1,15 @@
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import userModel from "./user.js";
+import userModel from "./schemas/user.js";
+import connectDB from "./db.js";
+import User from "./schemas/user.js";
+import bcrypt from "bcrypt"; // Import to encrypt passwords
 
 mongoose.set("debug", true);
 
 // to connect to database
 dotenv.config();
+await connectDB();
 
 const connectionString = process.env.MONGODB_URI;
 
@@ -42,10 +46,32 @@ function findUserById(id) {
   return userModel.findById(id);
 }
 
-function addUser(user) {
-  const userToAdd = new userModel(user);
-  const promise = userToAdd.save();
-  return promise;
+// async function addUser(user) {
+//   const userToAdd = new userModel(user);
+//   const promise = userToAdd.save();
+//   return promise;
+// }
+
+async function addUser(email, password) {
+  if (!email || !password) {
+    throw new Error("All fields are required");
+  }
+
+  const existingUser = await User.findOne({ email });
+  if (existingUser) {
+    throw new Error("Email already taken");
+  }
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  const newUser = new User({
+    email,
+    password: hashedPassword,
+  });
+  await newUser.save();
+  console.log(newUser);
+
+  return newUser;
 }
 
 function findUserByEmail(email) {
