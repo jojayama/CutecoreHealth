@@ -6,19 +6,19 @@ const diarySchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    description: {
-      type: String,
-    },
-    content: {
+    entry: {
       type: String,
       required: true,
     },
-    date: {
-      type: Date,
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
       required: true,
     },
   },
   { collection: "diaryEntries" },
 );
 
-export default diarySchema;
+const Diary = mongoose.model("Diary", diarySchema)
+
+export default Diary;

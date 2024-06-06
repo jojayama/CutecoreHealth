@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import userServices from "./user-services.js";
 import Reminder from "./schemas/reminderSchema.js";
 import goalSchema from "./schemas/goalSchema.js";
+import Diary from "./schemas/diarySchema.js";
 
 dotenv.config();
 const app = express();
@@ -124,6 +125,29 @@ app.post("/goal/:id", async (req, res) => {
     await newGoal.save();
     res.status(201);
     res.send(newGoal);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+// creating a diary entry
+app.post("/diaryEntries/:id", async (req, res) => {
+  try {
+    const getEntry = req.body;
+    console.log(getEntry);
+
+    const user = await userServices.findUserById(req.params.id);
+    console.log(user);
+    const newEntry = new Diary({
+      title: getEntry.title,
+      entry: getEntry.entry,
+      userId: user._id,
+    });
+    await newEntry.save();
+    console.log("Success! Entry: " + newEntry);
+    res.status(201);
+    res.send(newEntry);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error" });
