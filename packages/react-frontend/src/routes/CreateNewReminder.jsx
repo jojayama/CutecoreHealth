@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import styles from "../style/createnew.module.css";
 import Navbar from "../navbar";
-import { Link } from "react-router-dom";
+import Layout from "../routes/layout";
+import { Link, useNavigate } from "react-router-dom";
 
 function CreateNewReminder(props) {
+  const navigate = useNavigate();
+
   const [person, setPerson] = useState({
     title: "",
     desc: "",
@@ -11,9 +14,31 @@ function CreateNewReminder(props) {
     date: "",
   });
 
-  function submitForm() {
-    props.handleSubmit(person);
-    setPerson({ title: "", desc: "", time: "", date: "" });
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const token = localStorage.getItem("token");
+    const id = localStorage.getItem("userId");
+    console.log("UserId: " + id);
+    const response = await fetch(`http://localhost:8000/reminders/${id}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: person.title,
+        note: person.desc,
+        time: person.time,
+        date: person.date,
+      }),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      console.log("Reminder created:", data);
+      navigate("/reminders");
+    } else {
+      console.error("Error creating reminder:", response.statusText);
+    }
   }
 
   function handleChange(event) {
@@ -27,6 +52,7 @@ function CreateNewReminder(props) {
   return (
     <div className={styles.background}>
       <Navbar />
+      <Layout />
       <h1 className={styles.heading}>New Reminder</h1>
       <form className={styles.form}>
         <div className={styles.buttonContainer}>
@@ -37,7 +63,7 @@ function CreateNewReminder(props) {
         </div>
         <input
           type="text"
-          name="goal"
+          name="title"
           value={person.title}
           onChange={handleChange}
           className={styles.input}
@@ -69,31 +95,16 @@ function CreateNewReminder(props) {
             className={styles.smallInput}
             placeholder="12/12/24"
           />
-          <h1 className={styles.plaintext}>Recurs: </h1>
-          <div>
-            <p className={styles.selection}>
-              <a href="/Never">Never</a>
-            </p>
-            <p className={styles.selection}>
-              <a href="/Daily">Daily</a>
-            </p>
-            <p className={styles.selection}>
-              <a href="/Weekly">Weekly</a>
-            </p>
-            <p className={styles.selection}>
-              <a href="/Monthly">Monthly</a>
-            </p>
-          </div>
         </div>
         <input
           type="button"
           value="Create"
-          onClick={submitForm}
+          onClick={handleSubmit}
           className={styles.button}
         />
       </form>
       <p className={styles.selection}>
-        <a href="/Return">Return</a>
+        <a href="/reminders">Return</a>
       </p>
     </div>
   );

@@ -21,7 +21,9 @@
   background-color: #fdefff;
   border: solid 2px #9e0097;
   width: 85%;
-  height: 500px;
+  min-height: 400px;
+  max-height: 1000px;
+  overflow-y: auto;
 }
 
 .createNewContainer {
@@ -29,7 +31,7 @@
   justify-content: center;
   align-items: center;
   background-color: #8e5281;
-  margin-top: 50px !important;
+  margin-top: 100px !important;
   margin: 0% auto;
   border: none;
 }
@@ -42,5 +44,113 @@
 }
 
 .createNewContainer:hover {
+  background-color: #b78aad;
+}
+
+.reminderItem {
+  border: 2px solid #8e5281;
+  background-color: white;
+  width: 99%;
+  align-items: center;
+  margin: 0% auto;
+  margin-top: 10px;
+}
+
+.reminderTitle {
+  font-family: "Josefin Slab", sans-serif;
+  text-align: left;
+  margin-left: 120px;
+  font-size: 50px;
+  color: #8e5281;
+  margin-bottom: 0px;
+  font-weight: 1000px;
+}
+
+.reminderNote {
+  font-family: "Josefin Slab", sans-serif;
+  text-align: left;
+  margin-left: 120px;
+  color: #8e5281;
+  font-size: 25px;
+  font-weight: bolder;
+}
+
+.reminderDateTime {
+  font-family: "Josefin Slab", sans-serif;
+  text-align: left;
+  margin-left: 120px;
+  color: #8e5281;
+  font-size: 25px;
+  font-weight: bolder;
+  margin-bottom: -20px;
+}
+
+/* .checkbox{
+  float: left;
+  margin-left: 50px;
+  margin-top: 50px;
+  transform: scale(5);
+  color:#8e5281;
+  border-color:#8e5281;
+} */
+
+.checkbox {
+  display: none; /* Hide the default checkbox */
+}
+
+.checkbox + label {
+  position: relative;
+  cursor: pointer;
+  padding-left: 25px; /* space for the custom checkbox */
+  line-height: 20px;
+}
+
+.checkbox + label:before {
+  content: "";
+  position: absolute;
+  left: -975px;
+  top: 95px;
+  width: 40px;
+  height: 40px;
+  border: 2px solid #8e5281;
+  border-radius: 3px;
+  background: white;
+  transform: scale(1.5); /* Increase the size of the custom checkbox */
+}
+
+.checkbox:checked + label:before {
+  background: #8e5281;
+}
+
+.checkbox:checked + label:after {
+  content: "";
+  position: absolute;
+  left: -960px;
+  top: 98px;
+  width: 12px;
+  height: 24px;
+  border: solid white;
+  border-width: 0 10px 10px 0;
+  transform: rotate(45deg);
+  font-weight: bolder;
+}
+
+.deleteButton {
+  background-color: #8e5281;
+  font-family: "Josefin Slab", sans-serif;
+  font-weight: bolder;
+  font-size: 30px;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: 1600px;
+  width: 150px;
+  height: 50px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.deleteButton:hover {
   background-color: #b78aad;
 }

@@ -22,12 +22,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "@babel/preset-env": "^7.24.6",
     "@babel/preset-react": "^7.24.6",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "express": "^4.19.2",
     "firebase": "^10.12.2",
+    "firebase-admin": "^12.1.1",
     "firebaseui": "^6.1.0",
     "lint": "^1.1.2",
     "prettier": "^3.2.5"
