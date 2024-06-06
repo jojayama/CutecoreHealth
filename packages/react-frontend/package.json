@@ -8,21 +8,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "npx eslint . && npx prettier --check .",
-    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage",
     "preview": "vite preview"
   },
-  "jest": {
-    "transform": {}
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react"
-    ]
-  },
   "dependencies": {
-    "@babel/preset-env": "^7.24.7",
-    "@babel/preset-react": "^7.24.7",
     "@fullcalendar/core": "^6.1.11",
     "@fullcalendar/daygrid": "^6.1.11",
     "@fullcalendar/interaction": "^6.1.13",

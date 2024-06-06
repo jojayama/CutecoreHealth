@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1717712803520" clover="3.2.0">
-  <project timestamp="1717712803520" name="All files">
+<coverage generated="1717717232923" clover="3.2.0">
+  <project timestamp="1717717232923" name="All files">
     <metrics statements="24" coveredstatements="7" conditionals="16" coveredconditionals="0" methods="8" coveredmethods="1" elements="48" coveredelements="8" complexity="0" loc="24" ncloc="24" packages="1" files="2" classes="2"/>
     <file name="user-services.js" path="C:\Users\cgmap\Documents\cal poly\CutecoreHealth\packages\express-backend\user-services.js">
       <metrics statements="22" coveredstatements="5" conditionals="16" coveredconditionals="0" methods="8" coveredmethods="1"/>
