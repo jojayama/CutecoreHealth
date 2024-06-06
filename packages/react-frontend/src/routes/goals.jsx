@@ -86,7 +86,9 @@ export default function Goals() {
             </div>
           ))
         ) : (
-          <p>No reminders found.</p>
+          <p style={{ fontFamily: "josefin slab, sans-serif" }}>
+            No goals found.
+          </p>
         )}
       </div>
       <button className={styles.createNewContainer}>

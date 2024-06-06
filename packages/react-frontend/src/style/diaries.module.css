@@ -44,3 +44,31 @@
 .createNewContainer:hover {
   background-color: #b78aad;
 }
+
+.diaryTitle {
+  font-family: "Josefin Slab", sans-serif;
+  text-align: left;
+  margin-left: 120px;
+  font-size: 50px;
+  color: #8e5281;
+  margin-bottom: 0px;
+  font-weight: 1000px;
+}
+
+.diaryItem {
+  border: 2px solid #8e5281;
+  background-color: white;
+  width: 99%;
+  align-items: center;
+  margin: 0% auto;
+  margin-top: 10px;
+}
+
+.diaryEntry {
+  font-family: "Josefin Slab", sans-serif;
+  text-align: left;
+  margin-left: 120px;
+  color: #8e5281;
+  font-size: 25px;
+  font-weight: bolder;
+}

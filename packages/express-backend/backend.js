@@ -4,7 +4,6 @@ import cors from "cors";
 import dotenv from "dotenv";
 import userServices from "./user-services.js";
 import Reminder from "./schemas/reminderSchema.js";
-
 import Goal from "./schemas/goalSchema.js";
 import Diary from "./schemas/diarySchema.js";
 
@@ -134,7 +133,6 @@ app.post("/reminders/:id", async (req, res) => {
 
 app.get("/reminders/:id", async (req, res) => {
   const { id } = req.params;
-
   try {
     const reminders = await Reminder.find({ userId: id });
     res.status(200).json(reminders);
@@ -148,9 +146,14 @@ app.get("/reminders/:id", async (req, res) => {
 app.delete("/reminders/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const reminder = await Reminder.find({ userId: id });
-    console.log("Successfully deleted reminder.");
-    res.status(200).json(reminder);
+    const response = await userServices.deleteReminderbyId(id);
+    if (response === undefined) {
+      res.status(404).send("Could not find reminder");
+    } else {
+      res.status(204).json({
+        message: `Reminder deleted successfuly!`,
+      });
+    }
   } catch (error) {
     console.error("Could not delete reminder. Error: ", error);
     res.status(500).json({ message: "Internal Server Error" });
@@ -197,8 +200,14 @@ app.get("/goals/:id", async (req, res) => {
 app.delete("/goals/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const goal = await Goal.find({ userId: id });
-    res.status(200).json(goal);
+    const response = await userServices.deleteGoalbyId(id);
+    if (response === undefined) {
+      res.status(404).send("Could not find goal");
+    } else {
+      res.status(204).json({
+        message: `Goal deleted successfuly!`,
+      });
+    }
   } catch (error) {
     console.error("Could not delete goal. Error: ", error);
     res.status(500).json({ message: "Internal Server Error" });
@@ -225,6 +234,18 @@ app.post("/diaryEntries/:id", async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error" });
+  }
+});
+
+//get a diary entry
+app.get("/diaryEntries/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const diary = await Diary.find({ userId: id });
+    res.status(200).json(diary);
+  } catch (error) {
+    console.error("Could not get diary. Error: ", error);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 });
 

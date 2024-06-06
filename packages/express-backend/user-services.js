@@ -4,6 +4,8 @@ import userModel from "./schemas/user.js";
 import connectDB from "./db.js";
 import User from "./schemas/user.js";
 import bcrypt from "bcrypt"; // Import to encrypt passwords
+import Goal from "./schemas/goalSchema.js";
+import Reminder from "./schemas/reminderSchema.js";
 
 mongoose.set("debug", true);
 
@@ -86,6 +88,26 @@ function deleteUserById(id) {
   return userModel.findByIdAndDelete(id);
 }
 
+async function deleteGoalbyId(goalId) {
+  try {
+    const result = await Goal.findByIdAndDelete(goalId);
+    return result;
+  } catch (error) {
+    console.error("Could not find goal: ", error);
+    throw error;
+  }
+}
+
+async function deleteReminderbyId(reminderId) {
+  try {
+    const result = await Reminder.findByIdAndDelete(reminderId);
+    return result;
+  } catch (error) {
+    console.error("Could not find reminder: ", error);
+    throw error;
+  }
+}
+
 export default {
   addUser,
   getUsers,
@@ -94,4 +116,6 @@ export default {
   findUserByEmail,
   findUserByNameAndEmail,
   deleteUserById,
+  deleteGoalbyId,
+  deleteReminderbyId,
 };

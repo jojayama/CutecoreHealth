@@ -5,7 +5,7 @@ import styles from "../style/diaryentry.module.css";
 import { Link, useNavigate } from "react-router-dom";
 
 function CreateNewEntry(props) {
-  const navigate = useNavigate;
+  const navigate = useNavigate();
 
   const [diary, setDiary] = useState({
     title: "",
@@ -80,6 +80,9 @@ function CreateNewEntry(props) {
           className={styles.button}
         />
       </button>
+      <p className={styles.selection}>
+        <a href="/diaryEntries">Return</a>
+      </p>
     </div>
   );
 }

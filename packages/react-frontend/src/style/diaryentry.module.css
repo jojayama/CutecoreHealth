@@ -104,3 +104,23 @@
 .button:hover {
   background-color: #be77af;
 }
+.selection {
+  margin-top: 50px;
+  margin-bottom: auto;
+  margin-right: 0px;
+  color: #8e5281;
+  font-family: "Josefin Slab", sans-serif;
+  font-size: 30px;
+  text-align: center;
+}
+.selection a {
+  text-align: center;
+  color: #8e5281;
+  margin: 0 auto;
+  font-family: "Josefin Slab", sans-serif;
+  text-decoration: underline;
+  font-size: 30px;
+}
+.selection a:hover {
+  color: #be77af;
+}
