@@ -5,7 +5,7 @@ import Layout from "../routes/layout";
 import { Link, useNavigate } from "react-router-dom";
 
 function CreateNewReminder(props) {
-  const navigate = useNavigate;
+  const navigate = useNavigate();
 
   const [person, setPerson] = useState({
     title: "",

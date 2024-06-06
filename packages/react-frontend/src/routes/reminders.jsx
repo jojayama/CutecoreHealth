@@ -8,6 +8,7 @@ import { TrySharp } from "@mui/icons-material";
 
 export default function Reminders() {
   const [reminders, setReminders] = useState([]);
+  const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
 
   useEffect(() => {
@@ -33,7 +34,29 @@ export default function Reminders() {
     };
 
     getReminders();
-  }, [userId]);
+  }, [userId, token]);
+
+  const handleDelete = async (id) => {
+    const response = await fetch(`http://localhost:8000/reminders/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.ok) {
+      console.log("deleted reminder");
+      setReminders(reminders.filter((reminder) => reminder._id !== id));
+    } else {
+      console.error("Error deleting reminder: ", response.statusText);
+    }
+  };
+
+  const formatDate = (dateString) => {
+    const options = { year: "numeric", month: "numeric", day: "numeric" };
+    const date = new Date(dateString);
+    return date.toLocaleDateString(undefined, options);
+  };
 
   return (
     <div>
@@ -48,11 +71,23 @@ export default function Reminders() {
         {reminders.length > 0 ? (
           reminders.map((reminder) => (
             <div key={reminder._id} className={styles.reminderItem}>
+              <input
+                type="checkbox"
+                id={`checkbox-${reminder._id}`}
+                className={styles.checkbox}
+              />
+              <label htmlFor={`checkbox-${reminder._id}`}></label>
+              <p className={styles.reminderDateTime}>
+                {formatDate(reminder.date)} at {reminder.time}
+              </p>
               <h2 className={styles.reminderTitle}>{reminder.title}</h2>
               <p className={styles.reminderNote}>{reminder.note}</p>
-              <p className={styles.reminderDateTime}>
-                {reminder.date} at {reminder.time}
-              </p>
+              <button
+                onClick={() => handleDelete(reminder._id)}
+                className={styles.deleteButton}
+              >
+                Delete
+              </button>
             </div>
           ))
         ) : (
