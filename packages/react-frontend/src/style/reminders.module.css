@@ -44,3 +44,12 @@
 .createNewContainer:hover {
   background-color: #b78aad;
 }
+
+.reminderItem {
+  border: 2px solid #8e5281;
+  background-color: white;
+  width: 90%;
+  align-items: center;
+  margin: 0% auto;
+  margin-top: 10px;
+}

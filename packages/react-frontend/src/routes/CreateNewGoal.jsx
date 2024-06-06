@@ -85,7 +85,7 @@ function CreateNewGoal(props) {
         />
       </form>
       <p className={styles.selection}>
-        <a href="/Return">Return</a>
+        <a href="/goals">Return</a>
       </p>
     </div>
   );
