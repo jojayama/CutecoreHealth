@@ -53,7 +53,7 @@ function CreateNewReminder(props) {
   return (
     <div className={styles.background}>
       <Navbar />
-      <h1 className={styles.heading}>New Reminder</h1>
+      <h1 className={styles.heading}>New Reminder!</h1>
       <form className={styles.form}>
         <div className={styles.buttonContainer}>
           <Link to="/createGoal">
