@@ -2,13 +2,14 @@ import React from "react";
 import Layout from "./layout";
 import Navbar from "../navbar";
 import styles from "../style/diaries.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 export default function DiaryEntries() {
   const [diaries, setDiaries] = useState([]);
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getDiaries = async () => {
@@ -36,6 +37,10 @@ export default function DiaryEntries() {
     getDiaries();
   }, [userId, token]);
 
+  const handleTitleClick = (id) => {
+    navigate(`/viewEntry/${id}`);
+  };
+
   return (
     <div>
       <link
@@ -49,7 +54,14 @@ export default function DiaryEntries() {
         {diaries.length > 0 ? (
           diaries.map((diaries) => (
             <div key={diaries._id} className={styles.diaryItem}>
-              <h2 className={styles.diaryTitle}>{diaries.title}</h2>
+              <h2 className={styles.diaryTitle}>
+                <Link
+                  to={`/viewEntry/${diaries._id}`}
+                  className={styles.diaryTitLink}
+                >
+                  {diaries.title}
+                </Link>
+              </h2>
               <p className={styles.diaryEntry}>{diaries.entry}</p>
               {/* <button
                 onClick={() => handleDelete(goal._id)}
@@ -60,7 +72,9 @@ export default function DiaryEntries() {
             </div>
           ))
         ) : (
-          <p>No goals found.</p>
+          <p style={{ fontFamily: "josefin slab, sans-serif" }}>
+            No goals found.
+          </p>
         )}
       </div>
       <button className={styles.createNewContainer}>

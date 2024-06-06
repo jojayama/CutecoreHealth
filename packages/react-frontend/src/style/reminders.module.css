@@ -21,8 +21,8 @@
   background-color: #fdefff;
   border: solid 2px #9e0097;
   width: 85%;
-  min-height: 400px;
-  max-height: 1000px;
+
+  height: 70vh;
   overflow-y: auto;
 }
 
@@ -144,10 +144,10 @@
   padding: 10px;
   cursor: pointer;
   border-radius: 5px;
-  margin-left: 1600px;
   width: 150px;
   height: 50px;
-  justify-content: center;
+  justify-content: right;
+  margin-left: 70%;
   margin-bottom: 20px;
 }
 

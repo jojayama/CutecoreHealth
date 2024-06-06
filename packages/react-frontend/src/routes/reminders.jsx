@@ -91,7 +91,9 @@ export default function Reminders() {
             </div>
           ))
         ) : (
-          <p>No reminders found.</p>
+          <p style={{ fontFamily: "josefin slab, sans-serif" }}>
+            No reminders found.
+          </p>
         )}
       </div>
       <button className={styles.createNewContainer}>
