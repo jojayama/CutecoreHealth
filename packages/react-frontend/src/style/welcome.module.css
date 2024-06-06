@@ -21,7 +21,7 @@ body {
   text-align: end;
 }
 .reminder {
-  color: #8e5281;
+  color: white;
   font-family: "Josefin Slab", sans-serif;
   top: 140px;
   left: 350px;
@@ -66,35 +66,39 @@ body {
   margin: 0 auto;
   border: #8e5281;
   text-align: center;
-  display: inline-block;
+  display: flex;
   justify-content: space-between;
   align-items: center;
   font-family: "Josefin Slab", sans-serif;
-  font-size: 30px;
-  height: 60px;
+  font-size: 25.5vw;
+  height: 50px;
   width: 390px;
   padding:0px;
+  margin:0px;
 }
 
 .titleText {
+  display: inline-block;
+  top:40px;
+  left:10px;
   color: #8e5281;
   font-family: "Josefin Slab", sans-serif;
-  top: 50px;
-  left: 10px;
   position: absolute;
-  font-size: 30px;
+  font-size: 26px;
   text-align: end;
   flex:1;
   font-weight: bolder;
+  margin-right: 10px;
 }
 
 .noteText {
+  display: inline-block;
+  top:62px;
+  left:10px;
   color: #8e5281;
   font-family: "Josefin Slab", sans-serif;
-  top: 50px;
-  left: 70px;
   position: absolute;
-  font-size: 30px;
+  font-size: 23px;
   text-align: end;
   flex:1;
 }

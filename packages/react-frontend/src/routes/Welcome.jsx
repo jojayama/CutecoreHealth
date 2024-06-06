@@ -19,29 +19,35 @@ import { Link } from "react-router-dom";
 export default function Welcome() {
   const [reminders, setReminders] = useState([]);
   const userId = localStorage.getItem("userId");
+  const [remReceived, setRemReceived] = useState(false);
+
 
   useEffect(() => {
     const getReminders = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:8000/reminders/${userId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
+      if(!remReceived){
+        try {
+          const response = await fetch(
+            `http://localhost:8000/reminders/${userId}`,
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
             },
-          },
-        );
-        if (response.ok) {
-          const data = await response.json();
-          setReminders(data);
-        } else {
-          console.error("Failed to fetch reminders: ", response.statusText);
+          );
+          if (response.ok) {
+            const data = await response.json();
+            setReminders(data);
+            setRemReceived(true);
+          } else {
+            console.error("Failed to fetch reminders: ", response.statusText);
+          }
+        } catch (error) {
+          console.error("Error fetching reminders: ", error);
         }
-      } catch (error) {
-        console.error("Error fetching reminders: ", error);
       }
+      
     };
-
+    
     getReminders();
   }, [userId]);
 
@@ -97,7 +103,7 @@ export default function Welcome() {
                 </div>
                 <div className={styles.reminderContainer}>
                   <div className={styles.titleText}>{reminder.title}</div>              
-                  <div className={styles.noteText}>-{reminder.note}</div>
+                  <div className={styles.noteText}>{reminder.note}</div>
                 </div>                
               </div>
             ))
