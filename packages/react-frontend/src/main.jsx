@@ -68,22 +68,6 @@ const router = createBrowserRouter([
     element: <CuteCalendar />,
   },
   {
-    path: "/goals",
-    element: <Goals />,
-  },
-  {
-    path: "/reminders",
-    element: <Reminders />,
-  },
-  {
-    path: "/createReminder/:id",
-    element: <CreateNewReminder />,
-  },
-  {
-    path: "/createGoal/:id",
-    element: <CreateNewGoal />,
-  },
-  {
     path: "/diaryEntries",
     element: <DiaryEntries />,
   },
