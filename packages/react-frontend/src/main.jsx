@@ -1,6 +1,5 @@
 // src/main.jsx
 import React from "react";
-//import ReactDOMClient from "react-dom/client";
 import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./style/form.module.css";
@@ -92,16 +91,10 @@ const router = createBrowserRouter([
     element: <CreateNewDiary />,
   },
 ]);
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <RouterProvider router={router} />
   </React.StrictMode>,
 );
 
-// const container = document.getElementById("root");
-
-// // Create a root
-// const root = ReactDOMClient.createRoot(container);
-
-// Initial render:
-// root.render(<MyApp />);
