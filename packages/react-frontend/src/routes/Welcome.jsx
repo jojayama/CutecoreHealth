@@ -104,7 +104,7 @@ export default function Welcome() {
             </div>
           ))
         ) : (
-          <p>No reminders to show</p>
+          <div className={styles.titleText}>No reminders!</div>
         )}
       </div>
       <div className={styles.calendar}>
