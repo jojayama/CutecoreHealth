@@ -4,9 +4,12 @@ health goals, reminders to help them keep track of pills and other things to do,
 their emotions and any other miscellaneous thoughts. Users also conveniently have access to a calendar to help keep track of
 their time and emotions.
 
-Environment Setup: 
+Environment Setup:
+
 1. Clone the repository onto your machine using "git clone https://github.com/jojayama/CutecoreHealth.git"
-  - CI/CD and Azure testing will be automatically applied to all code
+
+- CI/CD and Azure testing will be automatically applied to all code
+
 2. Run "npm install" inside the express-backend and react-frontend folders
 3. Run "npx prettier --write ." in the root folder
 4. Begin developing!
