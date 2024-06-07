@@ -54,7 +54,7 @@ export default function DiaryEntries() {
                   to={`/viewEntry/${diaries._id}`}
                   className={styles.diaryLink}
                 >
-                  {diaries.title}
+                  [{diaries.title}]
                 </Link>
               </h2>
               <p className={styles.diaryEntry}>{diaries.entry}</p>

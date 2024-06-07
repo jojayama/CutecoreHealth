@@ -27,6 +27,7 @@
 
 .diaryLink {
   color: #8e5281;
+  text-decoration: none;
 }
 
 .diaryLink:hover {
