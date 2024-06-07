@@ -251,13 +251,19 @@ app.get("/diaryEntries/:id", async (req, res) => {
 
 // will want to change this to delete by email
 // input email, match id then use id to delete
-app.delete("/users/:id", (req, res) => {
-  const id = req.params["id"];
-  userServices
-    .deleteUserById(id)
-    .then((users) => res.status(204).send({ users: users }))
-    .catch((err) => {
-      console.error(err);
-      res.status(404).send("Account not found.");
-    });
+app.delete("/users/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const response = await userServices.deleteUserById(id);
+    if (response === undefined) {
+      res.status(404).send("Could not find user");
+    } else {
+      res.status(204).json({
+        message: `User deleted successfuly!`,
+      });
+    }
+  } catch (error) {
+    console.error("Could not delete user. Error: ", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
 });

@@ -82,6 +82,22 @@ export default function EditProfile(props) {
     }));
   }
 
+  const handleDelete = async (id) => {
+    const response = await fetch(`http://localhost:8000/users/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.ok) {
+      console.log("deleted user");
+      navigate("/");
+    } else {
+      console.error("Error deleting user: ", response.statusText);
+    }
+  };
+
   return (
     <div className={styles.background}>
       <Layout />
@@ -119,7 +135,10 @@ export default function EditProfile(props) {
           style={{ width: "130px" }}
         />
       </form>
-      <button className={styles.deleteUserContainer}>
+      <button
+        className={styles.deleteUserContainer}
+        onClick={() => handleDelete(userId)}
+      >
         <p className={styles.deleteUser}>Delete User</p>
       </button>
     </div>
