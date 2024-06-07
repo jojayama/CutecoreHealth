@@ -112,3 +112,10 @@ body {
   text-align: center;
   font-family: "Josefin Slab", sans-serif;
 }
+
+.guest {
+  text-align: center;
+  color: #751a61;
+  font-family: "Josefin Slab", sans-serif;
+  font-size: 40px;
+}

@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
-import connectDB from "./connectDB.js";
-import User from "./models/userSchema.js";
+import connectDB from "./db.js";
+import User from "./schemas/user.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -34,6 +34,8 @@ export function authenticateUser(req, res, next) {
     console.log("No token received");
     res.status(401).end();
   } else {
+    console.log("Received token:", token);
+    console.log("Authorized Header: ", authHeader);
     jwt.verify(token, process.env.TOKEN_SECRET, (error, decoded) => {
       if (decoded) {
         // allowed to continue to the route
@@ -50,31 +52,31 @@ export function authenticateUser(req, res, next) {
 const creds = [];
 
 export function registerUser(req, res) {
-  const { username, pwd } = req.body; // from form
+  const { email, pwd } = req.body; // from form
 
-  if (!username || !pwd) {
+  if (!email || !pwd) {
     res.status(400).send("Bad request: Invalid input data.");
-  } else if (creds.find((c) => c.username === username)) {
+  } else if (creds.find((c) => c.email === email)) {
     res.status(409).send("Username already taken");
   } else {
     bcrypt
       .genSalt(10)
       .then((salt) => bcrypt.hash(pwd, salt))
       .then((hashedPassword) => {
-        generateAccessToken(username).then((token) => {
+        generateAccessToken(email).then((token) => {
           console.log("Token:", token);
           res.status(201).send({ token: token });
-          creds.push({ username, hashedPassword });
+          creds.push({ email, hashedPassword });
         });
       });
   }
 }
 
 export async function loginUser(req, res) {
-  const username = req.body.username;
+  const email = req.body.email;
   const pwd = req.body.password;
   await connectDB();
-  const retrievedUser = await User.findOne({ username });
+  const retrievedUser = await User.findOne({ email });
 
   console.log(pwd);
   if (!retrievedUser) {
@@ -85,15 +87,13 @@ export async function loginUser(req, res) {
       .compare(pwd, retrievedUser.password)
       .then((matched) => {
         if (matched) {
-          generateAccessToken(username).then((token) => {
+          generateAccessToken(email).then((token) => {
             res.status(200).send({
               token: token,
-              username: username,
-              profilePic: retrievedUser.profilePic,
+              email: email,
             });
           });
         } else {
-          // invalid password
           res.status(401).send("Unauthorized");
         }
       })

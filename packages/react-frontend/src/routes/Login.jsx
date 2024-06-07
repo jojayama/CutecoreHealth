@@ -10,11 +10,29 @@ function Form(props) {
     email: "",
     password: "",
   });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
-  function submitForm() {
-    signInWithEmailAndPassword(auth, person.email, person.password)
+  const submitForm = async (e) => {
+    e.preventDefault();
+    console.log("email: ", email);
+    console.log("password: ", password);
+    const response = await fetch("http://localhost:8000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+    const result = await response.json();
+    if (result) {
+      console.log(result);
+      localStorage.setItem("token", result.token);
+      localStorage.setItem("email", result.email);
+    }
+    signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
@@ -37,7 +55,7 @@ function Form(props) {
       });
 
     setPerson({ email: "", password: "" });
-  }
+  };
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -58,6 +76,9 @@ function Form(props) {
         <FavoriteOutlinedIcon fontSize="large" />
         re Health
       </h1>
+      <Link to={`welcome`} className={styles.guest}>
+        Just want to check out the site?
+      </Link>
       {error && (
         <div className={styles.errorMessage}>
           Error: Wrong email or password!
@@ -68,8 +89,8 @@ function Form(props) {
           type="text"
           name="email"
           id="email"
-          value={person.email}
-          onChange={handleChange}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           className={`${styles.input} ${error ? styles["error-input"] : ""}`}
           placeholder="Email..."
         />
@@ -77,8 +98,8 @@ function Form(props) {
           type="password"
           name="password"
           id="password"
-          value={person.password}
-          onChange={handleChange}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           className={`${styles.input} ${error ? styles["error-input"] : ""}`}
           placeholder="Password"
         />

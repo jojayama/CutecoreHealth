@@ -6,7 +6,8 @@ import userServices from "./user-services.js";
 import Reminder from "./schemas/reminderSchema.js";
 import Goal from "./schemas/goalSchema.js";
 import Diary from "./schemas/diarySchema.js";
-import { authenticateUser } from "./auth.js";
+import User from "./schemas/user.js";
+import { authenticateUser, loginUser, registerUser } from "./auth.js";
 
 dotenv.config();
 const app = express();
@@ -44,6 +45,47 @@ app.get("/", (req, res) => {
   res.send("Hello Cutecore World! Go to your users page.");
 });
 
+// User Sign In
+app.post("/api/sign-in", async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({
+      success: false,
+      message: "Email and password are required",
+    });
+  }
+
+  try {
+    // Find the user by email
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid username or password",
+      });
+    }
+
+    // Compare the provided password with the stored hashed password
+    const isMatch = await user.comparePassword(password);
+    if (!isMatch) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid username or password",
+      });
+    }
+
+    res.json({
+      success: true,
+      message: "User logged in successfully",
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+app.post("/login", loginUser);
+
 app.get("/users", (req, res) => {
   const { name, email } = req.query;
   userServices
@@ -66,7 +108,7 @@ app.get("/users/:id", (req, res) => {
     });
 });
 
-app.use(authenticateUser);
+app.post("/createAccount", registerUser);
 
 app.post("/users", async (req, res) => {
   const { email, password } = req.body;
@@ -86,6 +128,8 @@ app.post("/users", async (req, res) => {
     }
   }
 });
+
+app.use(authenticateUser);
 
 //change User email
 app.post("users/:id", async (req, res) => {
