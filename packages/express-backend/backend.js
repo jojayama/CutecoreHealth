@@ -66,7 +66,9 @@ app.get("/users/:id", (req, res) => {
     });
 });
 
-app.post("/users", authenticateUser, async (req, res) => {
+app.use(authenticateUser);
+
+app.post("/users", async (req, res) => {
   const { email, password } = req.body;
   console.log(req.body);
   try {
