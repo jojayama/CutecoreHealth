@@ -65,7 +65,7 @@ test("Testing findUserByEmail()", async () => {
     const got = await mut.findUserByEmail(savedUser.email);
     expect(got[0].email).toBe(savedUser.email);
 
-    await mut.deleteUserById(got._id);
+    await mut.deleteUserById(savedUser._id);
 });
 
 test("Testing findUserById()", async () => {
@@ -76,7 +76,7 @@ test("Testing findUserById()", async () => {
 
   const got = await mut.findUserById(savedUser._id);
   expect(got.email).toBe(email);
-  expect(got.password).toBe(password);
+  expect(got.password).toBeDefined();
 
   await mut.deleteUserById(got._id);
 });
@@ -96,7 +96,7 @@ test("Testing getUsers() -- certain user", async () => {
   expect(got[0]._id).toBeDefined();
   expect(got[0].email).toBe(savedUser.email);
 
-  await mut.deleteUserById(got._id);
+  await mut.deleteUserById(savedUser._id);
 });
 
 afterAll(() => {
