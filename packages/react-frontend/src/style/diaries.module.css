@@ -7,8 +7,7 @@
 }
 .heading {
   margin-top: 50px;
-  margin-right: 1100px;
-  margin-left: 100px;
+  margin-right: 70%;
   margin-bottom: 10px;
   text-align: center;
   color: #8e5281;
@@ -21,7 +20,81 @@
   background-color: #fdefff;
   border: solid 2px #9e0097;
   width: 85%;
-  height: 500px;
+  height: 70vh;
+  overflow-y: auto;
+}
+
+.diaryLink {
+  color: #8e5281;
+  text-decoration: none;
+}
+
+.diaryLink:hover {
+  cursor: pointer;
+}
+
+.entryBox {
+  text-align: center;
+  margin: 0% auto;
+  background-color: #fdefff;
+  border: solid 2px #9e0097;
+  width: 85%;
+  height: 700px;
+  max-height: 70vh;
+  margin-top: 100px;
+  overflow-y: auto;
+}
+
+.boxInEntryBox {
+  background-color: white;
+  border: 2px solid #8e5281;
+  height: 95%;
+  width: 98%;
+  justify-content: center;
+  margin: 0% auto;
+  margin-top: 10px;
+}
+
+.entryTitle {
+  font-family: "Josefin Slab", sans-serif;
+  text-align: left;
+  margin-left: 3%;
+  font-size: 50px;
+  color: #8e5281;
+  margin-bottom: 0px;
+  font-weight: 1000px;
+}
+
+.entry {
+  font-family: "Josefin Slab", sans-serif;
+  text-align: left;
+  margin-top: 50px;
+  margin-left: 3%;
+  color: #8e5281;
+  font-size: 30px;
+  font-weight: bolder;
+}
+
+.link {
+  text-align: center;
+  justify-content: center;
+  margin-bottom: auto;
+  margin-left: 48%;
+  color: #8e5281;
+  font-family: "Josefin Slab", sans-serif;
+  font-size: 30px;
+}
+.link a {
+  text-align: center;
+  color: #8e5281;
+  margin: 0 auto;
+  font-family: "Josefin Slab", sans-serif;
+  text-decoration: underline;
+  font-size: 30px;
+  font-weight: bolder;
+}
+.link a:hover {
+  color: #be77af;
 }
 
 .createNewContainer {
@@ -33,6 +106,11 @@
   margin: 0% auto;
   border: none;
 }
+
+.linkCont {
+  margin-top: 30px;
+}
+
 .createNew {
   text-decoration: none;
   color: white;
@@ -62,6 +140,7 @@
   align-items: center;
   margin: 0% auto;
   margin-top: 10px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .diaryEntry {
@@ -71,4 +150,45 @@
   color: #8e5281;
   font-size: 25px;
   font-weight: bolder;
+}
+
+.deleteButton {
+  background-color: #fdefff;
+  font-family: "Josefin Slab", sans-serif;
+  font-weight: bolder;
+  font-size: 30px;
+  color: #8e5281;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  margin-left: 70%;
+  width: 150px;
+  height: 50px;
+  justify-content: center;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.deleteButton:hover {
+  background-color: #e3c2dc;
+}
+
+.entryDeleteButton {
+  background-color: #e7c7eb;
+  font-family: "Josefin Slab", sans-serif;
+  font-weight: bolder;
+  font-size: 40px;
+  color: #8e5281;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  width: 150px;
+  height: 60px;
+  justify-content: center;
+  margin-left: 47%;
+  margin-top: 25px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.entryDeleteButton:hover {
+  background-color: #dcb1d3;
 }

@@ -10,6 +10,9 @@ const diarySchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    date: {
+      type: String,
+    },
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
