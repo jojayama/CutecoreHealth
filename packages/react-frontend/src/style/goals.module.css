@@ -21,7 +21,8 @@
   background-color: #fdefff;
   border: solid 2px #9e0097;
   width: 85%;
-  height: 70vh;
+  min-height: 400px;
+  max-height: 1000px;
   overflow-y: auto;
 }
 
@@ -53,13 +54,15 @@
   align-items: center;
   margin: 0% auto;
   margin-top: 10px;
+  height: 130px;
 }
 
 .goalTitle {
   font-family: "Josefin Slab", sans-serif;
   text-align: left;
-  margin-left: 120px;
-  font-size: 50px;
+  margin-left: 100px;
+  margin-top: 5px;
+  font-size: 40px;
   color: #8e5281;
   margin-bottom: 0px;
   font-weight: 1000px;
@@ -68,34 +71,55 @@
 .goalNote {
   font-family: "Josefin Slab", sans-serif;
   text-align: left;
-  margin-left: 120px;
+  margin-left: 100px;
   color: #8e5281;
   font-size: 25px;
   font-weight: bolder;
+  margin-top: 5px;
+  margin-bottom: 0px;
 }
 
 .goalDate {
   font-family: "Josefin Slab", sans-serif;
   text-align: left;
-  margin-left: 120px;
+  margin-left: 100px;
   color: #8e5281;
-  font-size: 25px;
-  font-weight: bolder;
-  margin-bottom: -20px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 8px;
+  margin-bottom: 5px;
 }
-
 .checkbox {
-  display: none; /* Hide the default checkbox */
+  float: left;
+  margin-left: 35px;
+  margin-top: 50px;
+  cursor: pointer;
+  transform: scale(4);
+  color: #8e5281;
+  padding-left: 25px; /* space for the custom checkbox */
 }
-
-.checkbox + label {
+.checkbox-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+  color: #8e5281;
+}
+.checkbox-input:checked + .checkbox-label:before {
+  background: #8e5281; /* Background color when checked */
+  border-color: #8e5281; /* Border color when checked */
+}
+.checkbox-label {
   position: relative;
   cursor: pointer;
   padding-left: 25px; /* space for the custom checkbox */
   line-height: 20px;
+  color: #8e5281;
 }
 
-.checkbox + label:before {
+.checkbox-label:before {
+  color: #8e5281;
   content: "";
   position: absolute;
   left: -975px;
@@ -108,11 +132,16 @@
   transform: scale(1.5); /* Increase the size of the custom checkbox */
 }
 
-.checkbox:checked + label:before {
+.checkbox:checked + checkboxed-label:before {
+  color: #8e5281;
+  border: 2px solid #8e5281;
+  border-color: #8e5281;
   background: #8e5281;
 }
 
-.checkbox:checked + label:after {
+.checkbox:checked + checkboxed-label:after {
+  color: #8e5281;
+  background: #8e5281;
   content: "";
   position: absolute;
   left: -960px;
@@ -129,16 +158,17 @@
   background-color: #8e5281;
   font-family: "Josefin Slab", sans-serif;
   font-weight: bolder;
-  font-size: 30px;
+  font-size: 25px;
   color: white;
-  padding: 10px;
+  padding: 8px;
   cursor: pointer;
   border-radius: 5px;
-  margin-left: 900px;
-  width: 150px;
-  height: 50px;
+  margin-left: 93%;
+  width: 80px;
+  height: 40px;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 20%;
+  margin-top: -90%;
 }
 
 .deleteButton:hover {

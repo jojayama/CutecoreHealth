@@ -90,12 +90,11 @@
 
 .checkbox {
   float: left;
-  margin-left: 12px;
+  margin-left: 25px;
   margin-top: 50px;
   cursor: pointer;
   transform: scale(4);
   color: #8e5281;
-  padding-left: 25px; /* space for the custom checkbox */
 }
 .checkbox-input {
   position: absolute;
