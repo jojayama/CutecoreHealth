@@ -3,17 +3,20 @@ import { useParams } from "react-router-dom";
 import Layout from "./layout";
 import Navbar from "../navbar";
 import styles from "../style/diaries.module.css";
+import { Link } from "react-router-dom";
 
 export default function ViewEntry() {
   const [diary, setDiary] = useState(null); // Change to null to better handle loading state
   const { id } = useParams(); // Use useParams to get the diary ID from the URL
   const token = localStorage.getItem("token");
+  const userId = localStorage.getItem("userId");
+  console.log(id);
 
   useEffect(() => {
     const getDiary = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8000/diaryEntries/${id}`,
+          `http://localhost:8000/diaryEntries/${userId}/${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -45,14 +48,25 @@ export default function ViewEntry() {
       <Layout />
       <Navbar />
       <div className={styles.entryBox}>
-        {diary ? (
-          <div className={styles.diaryDetail}>
-            <h1 className={styles.diaryTitle}>{diary.title}</h1>
-            <p className={styles.diaryEntry}>{diary.entry}</p>
-          </div>
-        ) : (
-          <p>Loading...</p>
-        )}
+        <div className={styles.boxInEntryBox}>
+          {diary ? (
+            <div className={styles.diaryDetail}>
+              <h1 className={styles.entryTitle}>[{diary.title}]</h1>
+              <p className={styles.entry}>{diary.entry}</p>
+            </div>
+          ) : (
+            <p>Loading...</p>
+          )}
+        </div>
+      </div>
+
+      <button className={styles.createNewContainer}>
+        <p className={styles.createNew}>Edit</p>
+      </button>
+      <div className={styles.linkCont}>
+        <Link to={"/diaryEntries"} className={styles.link}>
+          <a>Return</a>
+        </Link>
       </div>
     </div>
   );

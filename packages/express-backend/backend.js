@@ -225,6 +225,7 @@ app.post("/diaryEntries/:id", async (req, res) => {
     const newEntry = new Diary({
       title: getEntry.title,
       entry: getEntry.entry,
+      date: getEntry.date,
       userId: user._id,
     });
     await newEntry.save();
@@ -237,11 +238,23 @@ app.post("/diaryEntries/:id", async (req, res) => {
   }
 });
 
-//get a diary entry
-app.get("/diaryEntries/:id", async (req, res) => {
+//get a diary entries by user
+app.get("/diaryEntries/:userId", async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const diary = await Diary.find({ userId: userId });
+    res.status(200).json(diary);
+  } catch (error) {
+    console.error("Could not get diary. Error: ", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+//get a diary entries by id
+app.get("/diaryEntries/:userId/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const diary = await Diary.find({ userId: id });
+    const diary = await userServices.findDiaryById(id);
     res.status(200).json(diary);
   } catch (error) {
     console.error("Could not get diary. Error: ", error);

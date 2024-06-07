@@ -39,9 +39,60 @@
   background-color: #fdefff;
   border: solid 2px #9e0097;
   width: 85%;
-  height: 70vh;
+  height: 700px;
+  max-height: 70vh;
   margin-top: 100px;
   overflow-y: auto;
+}
+
+.boxInEntryBox {
+  background-color: white;
+  border: 2px solid #8e5281;
+  height: 95%;
+  width: 98%;
+  justify-content: center;
+  margin: 0% auto;
+  margin-top: 10px;
+}
+
+.entryTitle {
+  font-family: "Josefin Slab", sans-serif;
+  text-align: left;
+  margin-left: 3%;
+  font-size: 50px;
+  color: #8e5281;
+  margin-bottom: 0px;
+  font-weight: 1000px;
+}
+
+.entry {
+  font-family: "Josefin Slab", sans-serif;
+  text-align: left;
+  margin-top: 50px;
+  margin-left: 3%;
+  color: #8e5281;
+  font-size: 25px;
+  font-weight: bolder;
+}
+
+.link {
+  text-align: center;
+  justify-content: center;
+  margin-bottom: auto;
+  margin-left: 47%;
+  color: #8e5281;
+  font-family: "Josefin Slab", sans-serif;
+  font-size: 30px;
+}
+.link a {
+  text-align: center;
+  color: #8e5281;
+  margin: 0 auto;
+  margin-top: 100px;
+  font-family: "Josefin Slab", sans-serif;
+  text-decoration: underline;
+  font-size: 30px;
+  font-weight: bolder;
 }
 
 .createNewContainer {
@@ -53,6 +104,11 @@
   margin: 0% auto;
   border: none;
 }
+
+.linkCont {
+  margin-top: 30px;
+}
+
 .createNew {
   text-decoration: none;
   color: white;

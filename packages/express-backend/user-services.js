@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import userModel from "./schemas/user.js";
+import diaryModel from "./schemas/diarySchema.js";
 import connectDB from "./db.js";
 import User from "./schemas/user.js";
 import bcrypt from "bcrypt"; // Import to encrypt passwords
@@ -46,6 +47,10 @@ function findUserByName(name) {
 }
 function findUserById(id) {
   return userModel.findById(id);
+}
+
+function findDiaryById(id) {
+  return diaryModel.findById(id);
 }
 
 async function addUser(email, password) {
@@ -112,4 +117,5 @@ export default {
   deleteUserById,
   deleteGoalbyId,
   deleteReminderbyId,
+  findDiaryById,
 };
