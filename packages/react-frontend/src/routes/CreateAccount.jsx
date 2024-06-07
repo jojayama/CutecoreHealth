@@ -25,13 +25,16 @@ function CreateAccount(props) {
     console.log("email: " + email + "\npassword: " + password);
     // const url = "https://cutecore-health.azurewebsites.net/users";
     // console.log("URL: ", url);
-    const response = await fetch("http://localhost:8000/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    const response = await fetch(
+      "https://cutecore-health-react-backend.vercel.app/users",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
       },
-      body: JSON.stringify({ email, password }),
-    });
+    );
 
     const user = await response.json();
 
