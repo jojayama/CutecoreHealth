@@ -75,7 +75,7 @@ function CreateNewReminder(props) {
           value={person.desc}
           onChange={handleChange}
           className={styles.input}
-          placeholder="Description (optional)"
+          placeholder="Description (upto 80 characters)"
         />
         <h1 className={styles.plaintext}>Set date and time</h1>
         <div className={styles.inputContainer}>
