@@ -73,7 +73,7 @@ export default function ViewEntry() {
               <p className={styles.entry}>{diary.entry}</p>
             </div>
           ) : (
-            <p>Loading...</p>
+            <h2 className={styles.notfound}>Loading...</h2>
           )}
         </div>
       </div>
