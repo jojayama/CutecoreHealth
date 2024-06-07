@@ -174,3 +174,12 @@
 .deleteButton:hover {
   background-color: #b78aad;
 }
+.notfound {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  text-align: center;
+  color: #8e5281;
+  font-family: "Josefin Slab", sans-serif;
+  font-size: 34px;
+}

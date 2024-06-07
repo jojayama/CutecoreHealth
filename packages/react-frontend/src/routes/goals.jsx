@@ -86,9 +86,7 @@ export default function Goals() {
             </div>
           ))
         ) : (
-          <p style={{ fontFamily: "josefin slab, sans-serif" }}>
-            No goals found.
-          </p>
+          <h2 className={styles.notfound}>No goals yet!</h2>
         )}
       </div>
       <button className={styles.createNewContainer}>

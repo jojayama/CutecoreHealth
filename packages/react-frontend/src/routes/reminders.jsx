@@ -92,7 +92,7 @@ export default function Reminders() {
             </div>
           ))
         ) : (
-          <p>No reminders found.</p>
+          <h2 className={styles.notfound}>No reminders yet!.</h2>
         )}
       </div>
       <button className={styles.createNewContainer}>
