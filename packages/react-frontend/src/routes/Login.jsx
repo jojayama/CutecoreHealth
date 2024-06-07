@@ -23,8 +23,7 @@ function Form(props) {
           // Optionally, navigate to another page or show a success message
           navigate("/welcome");
           setError(false); // Reset error state on successful login
-        }
-        else {
+        } else {
           console.log("User email not verified:", user);
           setError("Please verify your email before signing in.");
           auth.signOut();
