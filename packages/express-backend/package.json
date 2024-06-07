@@ -20,6 +20,8 @@
     "firebase-admin": "^12.1.1",
     "firebaseui": "^6.1.0",
     "lint": "^1.1.2",
-    "prettier": "^3.2.5"
+    "prettier": "^3.2.5",
+    "dotenv": "^10.0.0",
+    "mongoose": "8.4.1"
   }
 }

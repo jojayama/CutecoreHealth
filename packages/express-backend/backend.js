@@ -10,6 +10,7 @@ import User from "./schemas/user.js";
 import { authenticateUser, loginUser, registerUser } from "./auth.js";
 
 dotenv.config();
+
 const app = express();
 const port = 8000;
 
