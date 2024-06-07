@@ -1,11 +1,13 @@
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import userModel from "./schemas/user.js";
+import diaryModel from "./schemas/diarySchema.js";
 import connectDB from "./db.js";
 import User from "./schemas/user.js";
 import bcrypt from "bcrypt"; // Import to encrypt passwords
 import Goal from "./schemas/goalSchema.js";
 import Reminder from "./schemas/reminderSchema.js";
+import Diary from "./schemas/diarySchema.js";
 
 mongoose.set("debug", true);
 
@@ -46,6 +48,10 @@ function findUserByName(name) {
 }
 function findUserById(id) {
   return userModel.findById(id);
+}
+
+function findDiaryById(id) {
+  return diaryModel.findById(id);
 }
 
 async function addUser(email, password) {
@@ -102,6 +108,16 @@ async function deleteReminderbyId(reminderId) {
   }
 }
 
+async function deleteDiarybyId(diaryId) {
+  try {
+    const result = await Diary.findByIdAndDelete(diaryId);
+    return result;
+  } catch (error) {
+    console.error("Could not find diary: ", error);
+    throw error;
+  }
+}
+
 export default {
   addUser,
   getUsers,
@@ -112,4 +128,6 @@ export default {
   deleteUserById,
   deleteGoalbyId,
   deleteReminderbyId,
+  findDiaryById,
+  deleteDiarybyId,
 };

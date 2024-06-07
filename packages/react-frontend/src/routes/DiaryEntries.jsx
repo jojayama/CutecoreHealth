@@ -36,6 +36,22 @@ export default function DiaryEntries() {
     getDiaries();
   }, [userId, token]);
 
+  const handleDelete = async (id) => {
+    const response = await fetch(`http://localhost:8000/diaryEntries/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.ok) {
+      console.log("Success! Delete diary: ", response.status);
+      setDiaries(diaries.filter((diary) => diaries._id !== id));
+    } else {
+      console.error("Error deleting diary: ", response.statusText);
+    }
+  };
+
   return (
     <div>
       <link
@@ -49,7 +65,20 @@ export default function DiaryEntries() {
         {diaries.length > 0 ? (
           diaries.map((diaries) => (
             <div key={diaries._id} className={styles.diaryItem}>
-              <h2 className={styles.diaryTitle}>{diaries.title}</h2>
+              <h2 className={styles.diaryTitle}>
+                <Link
+                  to={`/viewEntry/${diaries._id}`}
+                  className={styles.diaryLink}
+                >
+                  [{diaries.title}]
+                </Link>
+                <button
+                  onClick={() => handleDelete(diaries._id)}
+                  className={styles.deleteButton}
+                >
+                  Delete
+                </button>
+              </h2>
               <p className={styles.diaryEntry}>{diaries.entry}</p>
               {/* <button
                 onClick={() => handleDelete(goal._id)}
@@ -60,7 +89,7 @@ export default function DiaryEntries() {
             </div>
           ))
         ) : (
-          <p>No goals found.</p>
+          <p>No diaries found.</p>
         )}
       </div>
       <button className={styles.createNewContainer}>
