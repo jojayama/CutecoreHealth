@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1717800368742" clover="3.2.0">
-  <project timestamp="1717800368742" name="All files">
-    <metrics statements="59" coveredstatements="40" conditionals="12" coveredconditionals="10" methods="12" coveredmethods="6" elements="83" coveredelements="56" complexity="0" loc="59" ncloc="59" packages="2" files="6" classes="6"/>
+<coverage generated="1717801983497" clover="3.2.0">
+  <project timestamp="1717801983497" name="All files">
+    <metrics statements="59" coveredstatements="44" conditionals="12" coveredconditionals="10" methods="12" coveredmethods="8" elements="83" coveredelements="62" complexity="0" loc="59" ncloc="59" packages="2" files="6" classes="6"/>
     <package name="express-backend">
-      <metrics statements="49" coveredstatements="31" conditionals="12" coveredconditionals="10" methods="11" coveredmethods="6"/>
+      <metrics statements="49" coveredstatements="35" conditionals="12" coveredconditionals="10" methods="11" coveredmethods="8"/>
       <file name="db.js" path="C:\Users\cgmap\Documents\cal poly\CutecoreHealth\packages\express-backend\db.js">
         <metrics statements="9" coveredstatements="8" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="3" count="1" type="stmt"/>
@@ -17,7 +17,7 @@
         <line num="24" count="1" type="stmt"/>
       </file>
       <file name="user-services.js" path="C:\Users\cgmap\Documents\cal poly\CutecoreHealth\packages\express-backend\user-services.js">
-        <metrics statements="40" coveredstatements="23" conditionals="10" coveredconditionals="9" methods="10" coveredmethods="5"/>
+        <metrics statements="40" coveredstatements="27" conditionals="10" coveredconditionals="9" methods="10" coveredmethods="7"/>
         <line num="12" count="1" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
         <line num="16" count="1" type="stmt"/>
@@ -30,7 +30,7 @@
         <line num="34" count="1" type="stmt"/>
         <line num="36" count="2" type="stmt"/>
         <line num="40" count="2" type="stmt"/>
-        <line num="44" count="0" type="stmt"/>
+        <line num="44" count="2" type="stmt"/>
         <line num="48" count="4" type="cond" truecount="4" falsecount="0"/>
         <line num="49" count="1" type="stmt"/>
         <line num="52" count="3" type="stmt"/>
@@ -42,7 +42,7 @@
         <line num="64" count="2" type="stmt"/>
         <line num="66" count="2" type="stmt"/>
         <line num="70" count="2" type="stmt"/>
-        <line num="74" count="6" type="stmt"/>
+        <line num="74" count="8" type="stmt"/>
         <line num="78" count="0" type="stmt"/>
         <line num="79" count="0" type="stmt"/>
         <line num="80" count="0" type="stmt"/>
@@ -53,9 +53,9 @@
         <line num="90" count="0" type="stmt"/>
         <line num="92" count="0" type="stmt"/>
         <line num="93" count="0" type="stmt"/>
-        <line num="98" count="0" type="stmt"/>
-        <line num="99" count="0" type="stmt"/>
-        <line num="100" count="0" type="stmt"/>
+        <line num="98" count="2" type="stmt"/>
+        <line num="99" count="2" type="stmt"/>
+        <line num="100" count="2" type="stmt"/>
         <line num="102" count="0" type="stmt"/>
         <line num="103" count="0" type="stmt"/>
       </file>

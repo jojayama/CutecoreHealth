@@ -2,6 +2,9 @@
 import mongoose from "mongoose";
 import mut from "./user-services";
 import userModel from "./schemas/user.js";
+import diaryModel from "./schemas/diarySchema.js";
+import goalModel from "./schemas/goalSchema.js";
+import reminderModel from "./schemas/reminderSchema.js";
 
 beforeAll(() => {
   const connectionString = process.env.MONGODB_URI;
@@ -16,6 +19,9 @@ beforeAll(() => {
   });
 });
 
+/*
+ * User Testing
+ */
 test("Testing deleteUserById()", async () => {
   const email = "eric01@gmail.com";
   const password = "eheh123"
@@ -98,6 +104,67 @@ test("Testing getUsers() -- certain user", async () => {
 
   await mut.deleteUserById(savedUser._id);
 });
+
+/*
+ * Diary Testing
+ */
+test("Testing deleteDiarybyId()", async () => {
+  const email = "jodi@gmail.com";
+  const password = "eheh123"
+  const mockUser = new userModel({ email, password });
+  const savedUser = await mockUser.save();
+
+  const title = "Testing!!";
+  const entry = "testing entry :)";
+  const date = "6/7/2024";
+  const userId = savedUser._id;
+  const mockDiary = new diaryModel({ title, entry, date, userId });
+  const savedDiary = await mockDiary.save();
+
+  const got = await mut.deleteDiarybyId(savedDiary._id);
+  expect(got._id).toBeDefined();
+  expect(got.title).toBe(savedDiary.title);
+
+  const deletedDiary = await mut.findDiaryById(savedUser._id);
+  expect(deletedDiary).toBeNull();
+
+  await mut.deleteUserById(savedUser._id);
+});
+
+test("Testing findDiaryById()", async () => {
+  const email = "sammywammy@gmail.com";
+  const password = "drinkicecofypanikatak";
+  const mockUser = new userModel({ email, password });
+  const savedUser = await mockUser.save();
+
+  const title = "I am panicking";
+  const entry = "Today I had iced coffee and now it is causing me to panic ;-;";
+  const date = "6/7/2024";
+  const userId = savedUser._id;
+  const mockDiary = new diaryModel({ title, entry, date, userId });
+  const savedDiary = await mockDiary.save();
+
+  const got = await mut.findDiaryById(savedDiary._id);
+  expect(got.title).toBe(title);
+  expect(got.entry).toBe(entry);
+  expect(got.date).toBe(date);
+  expect(got.userId).toBeDefined();
+  expect(got._id).toBeDefined();
+
+  await mut.deleteUserById(savedUser._id);
+  await mut.deleteDiarybyId(savedDiary._id);
+});
+
+
+/*
+ * Goal Testing
+ */
+
+
+
+/*
+ * Reminder Testing
+ */
 
 afterAll(() => {
   mongoose.connection.close();
