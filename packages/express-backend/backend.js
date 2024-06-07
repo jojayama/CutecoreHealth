@@ -6,6 +6,7 @@ import userServices from "./user-services.js";
 import Reminder from "./schemas/reminderSchema.js";
 import Goal from "./schemas/goalSchema.js";
 import Diary from "./schemas/diarySchema.js";
+import { authenticateUser } from "./auth.js";
 
 dotenv.config();
 const app = express();
@@ -65,7 +66,7 @@ app.get("/users/:id", (req, res) => {
     });
 });
 
-app.post("/users", async (req, res) => {
+app.post("/users", authenticateUser, async (req, res) => {
   const { email, password } = req.body;
   console.log(req.body);
   try {
