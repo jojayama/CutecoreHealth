@@ -66,11 +66,11 @@ export default function DiaryEntries() {
           diaries.map((diaries) => (
             <div key={diaries._id} className={styles.diaryItem}>
               <button
-                  onClick={() => handleDelete(diaries._id)}
-                  className={styles.deleteButton}
-                >
-                  Delete
-                </button>
+                onClick={() => handleDelete(diaries._id)}
+                className={styles.deleteButton}
+              >
+                Delete
+              </button>
               <h2 className={styles.diaryTitle}>
                 <Link
                   to={`/viewEntry/${diaries._id}`}
@@ -78,7 +78,6 @@ export default function DiaryEntries() {
                 >
                   [{diaries.title}]
                 </Link>
-                
               </h2>
               <p className={styles.diaryEntry}>{diaries.entry}</p>
               {/* <button
