@@ -24,13 +24,9 @@ mongoose
 
 function getUsers(name, email) {
   let promise;
-  if (name === undefined && email === undefined) {
+  if (email === undefined) {
     promise = userModel.find();
-  } else if (name && !email) {
-    promise = userModel.find();
-  } else if (email && !name) {
-    promise = findUserByEmail(email);
-  } else if (name && email) {
+  } else if (email) {
     promise = findUserByEmail(email);
   }
   return promise;

@@ -41,6 +41,21 @@ test("Testing addUser()", async () => {
   await mut.deleteUserById(got._id);
 });
 
+test("Testing addUser() -- required fields error", async () => {
+  await expect(mut.addUser(undefined, undefined)).rejects.toThrow("All fields are required");
+});
+
+test("Testing addUser() -- email taken error", async () => {
+  const email = "cypher@gmail.com";
+  const password1 = "samisahacker"
+  const password2 = "smarterbabysmarter"
+  const savedUser = await mut.addUser(email, password1);
+
+  await expect(mut.addUser(email, password2)).rejects.toThrow("Email already taken");
+  
+  await mut.deleteUserById(savedUser._id);
+});
+
 test("Testing findUserByEmail()", async () => {
     const email = "charlieisbored@gmail.com";
     const password = "calpoly123"
@@ -68,7 +83,20 @@ test("Testing findUserById()", async () => {
 
 test("Testing getUsers() -- all users", async () => {
   const got = await mut.getUsers();
-  expect(got.length).toBeGreaterThanOrEqual(0);
+  expect(got.length).toBeGreaterThan(1);
+});
+
+test("Testing getUsers() -- certain user", async () => {
+  const email = "jodilover@gmail.com";
+  const password = "jodiomgggg"
+  const mockUser = new userModel({ email, password });
+  const savedUser = await mockUser.save();
+
+  const got = await mut.getUsers(undefined, savedUser.email);
+  expect(got[0]._id).toBeDefined();
+  expect(got[0].email).toBe(savedUser.email);
+
+  await mut.deleteUserById(got._id);
 });
 
 afterAll(() => {
