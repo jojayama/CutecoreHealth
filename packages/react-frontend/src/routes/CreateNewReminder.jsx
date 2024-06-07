@@ -19,7 +19,7 @@ function CreateNewReminder(props) {
     const token = localStorage.getItem("token");
     const id = localStorage.getItem("userId");
     console.log("UserId: " + id);
-    const response = await fetch(`http://localhost:8000/reminders/${id}`, {
+    const response = await fetch(`https://cutecore-health.azurewebsites.net/reminders/${id}`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,

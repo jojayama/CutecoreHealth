@@ -14,7 +14,7 @@ export default function DiaryEntries() {
     const getDiaries = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8000/diaryEntries/${userId}`,
+          `https://cutecore-health.azurewebsites.net/diaryEntries/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,

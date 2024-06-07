@@ -12,7 +12,7 @@ const app = express();
 const port = 8000;
 
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: "https://lemon-wave-0f251421e.5.azurestaticapps.net",
   methods: "GET,POST,DELETE,PUT",
   allowedHeaders: "Content-Type,Authorization",
 };
