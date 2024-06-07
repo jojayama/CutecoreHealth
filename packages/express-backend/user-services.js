@@ -27,56 +27,43 @@ function getUsers(name, email) {
   if (name === undefined && email === undefined) {
     promise = userModel.find();
   } else if (name && !email) {
-    promise = findUserByName(name);
+    promise = userModel.find();
   } else if (email && !name) {
     promise = findUserByEmail(email);
   } else if (name && email) {
-    promise = findUserByNameAndEmail(name, email);
+    promise = findUserByEmail(email);
   }
   return promise;
 }
-
-function findUserByName(name) {
-  return userModel.find({ name: name });
-}
-function findUserById(id) {
-  return userModel.findById(id);
-}
-
-// async function addUser(user) {
-//   const userToAdd = new userModel(user);
-//   const promise = userToAdd.save();
-//   return promise;
-// }
 
 async function addUser(email, password) {
   if (!email || !password) {
     throw new Error("All fields are required");
   }
-
+  
   const existingUser = await User.findOne({ email });
   if (existingUser) {
     throw new Error("Email already taken");
   }
-
+  
   const hashedPassword = await bcrypt.hash(password, 10);
-
+  
   const newUser = new User({
     email,
     password: hashedPassword,
   });
   await newUser.save();
   console.log(newUser);
-
+  
   return newUser;
+}
+
+function findUserById(id) {
+  return userModel.findById(id);
 }
 
 function findUserByEmail(email) {
   return userModel.find({ email: email });
-}
-
-function findUserByNameAndEmail(name, email) {
-  return userModel.find({ name: name, email: email });
 }
 
 function deleteUserById(id) {
@@ -87,8 +74,6 @@ export default {
   addUser,
   getUsers,
   findUserById,
-  findUserByName,
   findUserByEmail,
-  findUserByNameAndEmail,
   deleteUserById,
 };

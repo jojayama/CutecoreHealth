@@ -1,6 +1,8 @@
 //backend.test.js
 import mongoose from "mongoose";
 import mut from "./user-services";
+import dotenv from "dotenv";
+import userModel from "./schemas/user.js";
 
 beforeAll(() => {
   const connectionString = process.env.MONGODB_URI;
@@ -15,51 +17,44 @@ beforeAll(() => {
   });
 });
 
-test("Testing findUserByName()", () => {
-  const expected = "";
-  const got = "";
-  expect(got).toBe(expected);
+test("Testing addUser()", async () => {
+  const email = "charlieisntbored@gmail.com";
+  const password = "calpoly123"
+
+  const got = await mut.addUser(email, password);
+  expect(got._id).toBeDefined();
+  expect(got.email).toBe(email);
+  expect(got.password).toBeDefined();
+
+  userModel.findByIdAndDelete(got._id);
 });
 
-test("Testing findUserByEmail()", () => {
-  // const expected = 'charlieisbored1@gmail.com';
-  const expected = mut.findUserByEmail('charlieisbored1@gmail.com');
-  const got = mut.findUserByEmail('charlieisbored1@gmail.com');
-  // console.log(got);
-  expect(got).toBe(expected);
+test("Testing findUserByEmail()", async () => {
+    const email = "charlieisbored@gmail.com";
+    const password = "calpoly123"
+    const mockUser = new userModel({ email, password });
+    await mockUser.save();
+
+    const got = await mut.findUserByEmail(email);
+    expect(got[0].email).toBe(email);
+
+    userModel.findByIdAndDelete(got._id);
 });
 
-test("Testing findUserById()", () => {
-  const expected = "";
-  const got = "";
-  expect(got).toBe(expected);
+test("Testing findUserById()", async () => {
+  const email = "sammywammy@gmail.com";
+  const password = "drinkicecofypanikatak"
+  const mockUser = new userModel({ email, password });
+  const savedUser = await mockUser.save();
+
+  const got = await mut.findUserById(savedUser._id);
+  expect(got.email).toBe(email);
+  expect(got.password).toBe(password);
 });
 
-test("Testing findUserByNameAndEmail()", () => {
-  const expected = "";
-  const got = "";
-  expect(got).toBe(expected);
-});
-
-test("Testing addUser()", () => {
-  // const userData = {
-  //   email: "testing!@gmail.com",
-  //   password: "testing!123",
-  // };
-  // const got = mut.addUser(userData);
-  // expect(got._id).toBeDefined();
-  // expect(got.email).toBe(userData.email);
-  // expect(got.password).toBe(userData.password);
-  const expected = "";
-  const got = "";
-  expect(got).toBe(expected);
-});
-
-test("Testing getUsers() -- all users", () => {
-  const expected = 10; // check > 10 users (array size > 10)
-  // const got = mut.getUsers().size();
-  const got = 10;
-  expect(got).toBeGreaterThanOrEqual(expected);
+test("Testing getUsers() -- all users", async () => {
+  const got = await mut.getUsers();
+  expect(got.length).toBeGreaterThanOrEqual(0);
 });
 
 test("Testing deleteUserById()", () => {
