@@ -35,10 +35,19 @@ app.use(cors(corsOptions));
 // app.use(setCorsHeaders);
 app.use(express.json());
 
+// Middleware to log incoming requests for debugging
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  console.log("Request Body:", req.body);
+  console.log("Request Params:", req.params);
+  console.log("Request Query:", req.query);
+  next();
+});
+
 // connect to app
 app.listen(process.env.PORT || port, () => {
   console.log(
-    "Rest API is listening at https://cuteCore-health.azurewebsites.net",
+    "Rest API is listening at https://cutecore-health-react-backend.vercel.app",
   );
 });
 
