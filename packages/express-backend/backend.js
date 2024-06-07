@@ -250,6 +250,24 @@ app.get("/diaryEntries/:userId", async (req, res) => {
   }
 });
 
+//delete diary
+app.delete("/diaryEntries/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const response = await userServices.deleteDiarybyId(id);
+    if (response === undefined) {
+      res.status(404).send("Could not find diary entry");
+    } else {
+      res.status(204).json({
+        message: `Diary entry deleted successfuly!`,
+      });
+    }
+  } catch (error) {
+    console.error("Could not delete diary entry. Error: ", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
 //get a diary entries by id
 app.get("/diaryEntries/:userId/:id", async (req, res) => {
   const { id } = req.params;

@@ -72,7 +72,7 @@
   margin-top: 50px;
   margin-left: 3%;
   color: #8e5281;
-  font-size: 25px;
+  font-size: 30px;
   font-weight: bolder;
 }
 
@@ -80,7 +80,7 @@
   text-align: center;
   justify-content: center;
   margin-bottom: auto;
-  margin-left: 47%;
+  margin-left: 48%;
   color: #8e5281;
   font-family: "Josefin Slab", sans-serif;
   font-size: 30px;
@@ -89,11 +89,13 @@
   text-align: center;
   color: #8e5281;
   margin: 0 auto;
-  margin-top: 100px;
   font-family: "Josefin Slab", sans-serif;
   text-decoration: underline;
   font-size: 30px;
   font-weight: bolder;
+}
+.link a:hover {
+  color: #be77af;
 }
 
 .createNewContainer {
@@ -130,6 +132,7 @@
   color: #8e5281;
   margin-bottom: 0px;
   font-weight: 1000px;
+  display: inline-flex;
 }
 
 .diaryItem {
@@ -148,4 +151,24 @@
   color: #8e5281;
   font-size: 25px;
   font-weight: bolder;
+}
+
+.deleteButton {
+  background-color: #fdefff;
+  font-family: "Josefin Slab", sans-serif;
+  font-weight: bolder;
+  font-size: 30px;
+  color: #8e5281;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  margin-left: 70%;
+  width: 150px;
+  height: 50px;
+  justify-content: center;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.deleteButton:hover {
+  background-color: #e3c2dc;
 }

@@ -7,6 +7,7 @@ import User from "./schemas/user.js";
 import bcrypt from "bcrypt"; // Import to encrypt passwords
 import Goal from "./schemas/goalSchema.js";
 import Reminder from "./schemas/reminderSchema.js";
+import Diary from "./schemas/diarySchema.js";
 
 mongoose.set("debug", true);
 
@@ -107,6 +108,16 @@ async function deleteReminderbyId(reminderId) {
   }
 }
 
+async function deleteDiarybyId(diaryId) {
+  try {
+    const result = await Diary.findByIdAndDelete(diaryId);
+    return result;
+  } catch (error) {
+    console.error("Could not find diary: ", error);
+    throw error;
+  }
+}
+
 export default {
   addUser,
   getUsers,
@@ -118,4 +129,5 @@ export default {
   deleteGoalbyId,
   deleteReminderbyId,
   findDiaryById,
+  deleteDiarybyId,
 };

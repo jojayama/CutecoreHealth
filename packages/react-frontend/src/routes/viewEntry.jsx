@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Layout from "./layout";
 import Navbar from "../navbar";
 import styles from "../style/diaries.module.css";
@@ -11,6 +11,7 @@ export default function ViewEntry() {
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
   console.log(id);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getDiary = async () => {
@@ -37,7 +38,23 @@ export default function ViewEntry() {
     };
 
     getDiary();
-  }, [id, token]);
+  }, [id, token, userId]);
+
+  const handleDelete = async (id) => {
+    const response = await fetch(`http://localhost:8000/diaryEntries/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.ok) {
+      console.log("Success! Delete diary: ", response.status);
+      navigate("/diaryEntries");
+    } else {
+      console.error("Error deleting diary: ", response.statusText);
+    }
+  };
 
   return (
     <div>
@@ -52,6 +69,12 @@ export default function ViewEntry() {
           {diary ? (
             <div className={styles.diaryDetail}>
               <h1 className={styles.entryTitle}>[{diary.title}]</h1>
+              <button
+                onClick={() => handleDelete(diary._id)}
+                className={styles.deleteButton}
+              >
+                Delete
+              </button>
               <p className={styles.entry}>{diary.entry}</p>
             </div>
           ) : (
@@ -60,9 +83,9 @@ export default function ViewEntry() {
         </div>
       </div>
 
-      <button className={styles.createNewContainer}>
+      {/* <button className={styles.createNewContainer}>
         <p className={styles.createNew}>Edit</p>
-      </button>
+      </button> */}
       <div className={styles.linkCont}>
         <Link to={"/diaryEntries"} className={styles.link}>
           <a>Return</a>
