@@ -65,6 +65,12 @@ export default function DiaryEntries() {
         {diaries.length > 0 ? (
           diaries.map((diaries) => (
             <div key={diaries._id} className={styles.diaryItem}>
+              <button
+                onClick={() => handleDelete(diaries._id)}
+                className={styles.deleteButton}
+              >
+                Delete
+              </button>
               <h2 className={styles.diaryTitle}>
                 <Link
                   to={`/viewEntry/${diaries._id}`}
@@ -72,12 +78,6 @@ export default function DiaryEntries() {
                 >
                   [{diaries.title}]
                 </Link>
-                <button
-                  onClick={() => handleDelete(diaries._id)}
-                  className={styles.deleteButton}
-                >
-                  Delete
-                </button>
               </h2>
               <p className={styles.diaryEntry}>{diaries.entry}</p>
               {/* <button
@@ -89,7 +89,7 @@ export default function DiaryEntries() {
             </div>
           ))
         ) : (
-          <p>No diaries found.</p>
+          <h2 className={styles.notfound}>No diary entries yet!</h2>
         )}
       </div>
       <button className={styles.createNewContainer}>
