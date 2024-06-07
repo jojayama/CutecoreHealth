@@ -15,7 +15,7 @@ export default function Reminders() {
     const getReminders = async () => {
       try {
         const response = await fetch(
-          `https://cutecore-health.azurewebsites.net/reminders/${userId}`,
+          `http://localhost:8000/reminders/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -37,7 +37,7 @@ export default function Reminders() {
   }, [userId, token]);
 
   const handleDelete = async (id) => {
-    const response = await fetch(`https://cutecore-health.azurewebsites.net/reminders/${id}`, {
+    const response = await fetch(`http://localhost:8000/reminders/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,

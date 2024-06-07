@@ -39,7 +39,7 @@ export default function EditProfile(props) {
 
           // Call API to update email in MongoDB
           const response = await fetch(
-            `https://cutecore-health.azurewebsites.net/users/${userId}`,
+            `http://localhost:8000/users/${userId}`,
             {
               method: "POST",
               headers: {

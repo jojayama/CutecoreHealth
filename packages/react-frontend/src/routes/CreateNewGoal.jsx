@@ -18,7 +18,7 @@ function CreateNewGoal(props) {
     const token = localStorage.getItem("token");
     const id = localStorage.getItem("userId");
     console.log("UserId: " + id);
-    const response = await fetch(`https://cutecore-health.azurewebsites.net/goals/${id}`, {
+    const response = await fetch(`http://localhost:8000/goals/${id}`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
