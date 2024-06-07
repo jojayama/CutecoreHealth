@@ -69,12 +69,7 @@ export default function ViewEntry() {
           {diary ? (
             <div className={styles.diaryDetail}>
               <h1 className={styles.entryTitle}>[{diary.title}]</h1>
-              <button
-                onClick={() => handleDelete(diary._id)}
-                className={styles.deleteButton}
-              >
-                Delete
-              </button>
+
               <p className={styles.entry}>{diary.entry}</p>
             </div>
           ) : (
@@ -86,6 +81,12 @@ export default function ViewEntry() {
       {/* <button className={styles.createNewContainer}>
         <p className={styles.createNew}>Edit</p>
       </button> */}
+      <button
+        onClick={() => handleDelete(diary._id)}
+        className={styles.entryDeleteButton}
+      >
+        Delete
+      </button>
       <div className={styles.linkCont}>
         <Link to={"/diaryEntries"} className={styles.link}>
           <a>Return</a>
