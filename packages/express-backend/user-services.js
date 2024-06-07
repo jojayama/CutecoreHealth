@@ -1,9 +1,13 @@
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import userModel from "./schemas/user.js";
+import diaryModel from "./schemas/diarySchema.js";
 import connectDB from "./db.js";
 import User from "./schemas/user.js";
 import bcrypt from "bcrypt"; // Import to encrypt passwords
+import Goal from "./schemas/goalSchema.js";
+import Reminder from "./schemas/reminderSchema.js";
+import Diary from "./schemas/diarySchema.js";
 
 mongoose.set("debug", true);
 
@@ -32,6 +36,14 @@ function getUsers(name, email) {
   return promise;
 }
 
+function findUserById(id) {
+  return userModel.findById(id);
+}
+
+function findDiaryById(id) {
+  return diaryModel.findById(id);
+}
+
 async function addUser(email, password) {
   if (!email || !password) {
     throw new Error("All fields are required");
@@ -54,10 +66,6 @@ async function addUser(email, password) {
   return newUser;
 }
 
-function findUserById(id) {
-  return userModel.findById(id);
-}
-
 function findUserByEmail(email) {
   return userModel.find({ email: email });
 }
@@ -66,10 +74,44 @@ function deleteUserById(id) {
   return userModel.findByIdAndDelete(id);
 }
 
+async function deleteGoalbyId(goalId) {
+  try {
+    const result = await Goal.findByIdAndDelete(goalId);
+    return result;
+  } catch (error) {
+    console.error("Could not find goal: ", error);
+    throw error;
+  }
+}
+
+async function deleteReminderbyId(reminderId) {
+  try {
+    const result = await Reminder.findByIdAndDelete(reminderId);
+    return result;
+  } catch (error) {
+    console.error("Could not find reminder: ", error);
+    throw error;
+  }
+}
+
+async function deleteDiarybyId(diaryId) {
+  try {
+    const result = await Diary.findByIdAndDelete(diaryId);
+    return result;
+  } catch (error) {
+    console.error("Could not find diary: ", error);
+    throw error;
+  }
+}
+
 export default {
   addUser,
   getUsers,
   findUserById,
   findUserByEmail,
   deleteUserById,
+  deleteGoalbyId,
+  deleteReminderbyId,
+  findDiaryById,
+  deleteDiarybyId,
 };

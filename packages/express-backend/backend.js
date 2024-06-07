@@ -4,33 +4,35 @@ import cors from "cors";
 import dotenv from "dotenv";
 import userServices from "./user-services.js";
 import Reminder from "./schemas/reminderSchema.js";
-
 import Goal from "./schemas/goalSchema.js";
 import Diary from "./schemas/diarySchema.js";
+import User from "./schemas/user.js";
+import { authenticateUser, loginUser, registerUser } from "./auth.js";
 
 dotenv.config();
+
 const app = express();
 const port = 8000;
 
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: "https://cutecore-health-react-frontend.vercel.app",
   methods: "GET,POST,DELETE,PUT",
   allowedHeaders: "Content-Type,Authorization",
 };
 
 app.use(cors(corsOptions));
 
-function setCorsHeaders(req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, PATCH, DELETE",
-  );
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  next();
-}
+// function setCorsHeaders(req, res, next) {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.setHeader(
+//     "Access-Control-Allow-Methods",
+//     "GET, POST, PUT, PATCH, DELETE",
+//   );
+//   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+//   next();
+// }
 
-app.use(setCorsHeaders);
+// app.use(setCorsHeaders);
 app.use(express.json());
 
 // connect to app
@@ -43,6 +45,47 @@ app.listen(process.env.PORT || port, () => {
 app.get("/", (req, res) => {
   res.send("Hello Cutecore World! Go to your users page.");
 });
+
+// User Sign In
+app.post("/api/sign-in", async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({
+      success: false,
+      message: "Email and password are required",
+    });
+  }
+
+  try {
+    // Find the user by email
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid username or password",
+      });
+    }
+
+    // Compare the provided password with the stored hashed password
+    const isMatch = await user.comparePassword(password);
+    if (!isMatch) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid username or password",
+      });
+    }
+
+    res.json({
+      success: true,
+      message: "User logged in successfully",
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+app.post("/login", loginUser);
 
 app.get("/users", (req, res) => {
   const { name, email } = req.query;
@@ -66,6 +109,8 @@ app.get("/users/:id", (req, res) => {
     });
 });
 
+app.post("/createAccount", registerUser);
+
 app.post("/users", async (req, res) => {
   const { email, password } = req.body;
   console.log(req.body);
@@ -84,6 +129,8 @@ app.post("/users", async (req, res) => {
     }
   }
 });
+
+app.use(authenticateUser);
 
 //change User email
 app.post("users/:id", async (req, res) => {
@@ -134,7 +181,6 @@ app.post("/reminders/:id", async (req, res) => {
 
 app.get("/reminders/:id", async (req, res) => {
   const { id } = req.params;
-
   try {
     const reminders = await Reminder.find({ userId: id });
     res.status(200).json(reminders);
@@ -148,9 +194,14 @@ app.get("/reminders/:id", async (req, res) => {
 app.delete("/reminders/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const reminder = await Reminder.find({ userId: id });
-    console.log("Successfully deleted reminder.");
-    res.status(200).json(reminder);
+    const response = await userServices.deleteReminderbyId(id);
+    if (response === undefined) {
+      res.status(404).send("Could not find reminder");
+    } else {
+      res.status(204).json({
+        message: `Reminder deleted successfuly!`,
+      });
+    }
   } catch (error) {
     console.error("Could not delete reminder. Error: ", error);
     res.status(500).json({ message: "Internal Server Error" });
@@ -197,8 +248,14 @@ app.get("/goals/:id", async (req, res) => {
 app.delete("/goals/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const goal = await Goal.find({ userId: id });
-    res.status(200).json(goal);
+    const response = await userServices.deleteGoalbyId(id);
+    if (response === undefined) {
+      res.status(404).send("Could not find goal");
+    } else {
+      res.status(204).json({
+        message: `Goal deleted successfuly!`,
+      });
+    }
   } catch (error) {
     console.error("Could not delete goal. Error: ", error);
     res.status(500).json({ message: "Internal Server Error" });
@@ -216,6 +273,7 @@ app.post("/diaryEntries/:id", async (req, res) => {
     const newEntry = new Diary({
       title: getEntry.title,
       entry: getEntry.entry,
+      date: getEntry.date,
       userId: user._id,
     });
     await newEntry.save();
@@ -228,15 +286,63 @@ app.post("/diaryEntries/:id", async (req, res) => {
   }
 });
 
+//get a diary entries by user
+app.get("/diaryEntries/:userId", async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const diary = await Diary.find({ userId: userId });
+    res.status(200).json(diary);
+  } catch (error) {
+    console.error("Could not get diary. Error: ", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+//delete diary
+app.delete("/diaryEntries/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const response = await userServices.deleteDiarybyId(id);
+    if (response === undefined) {
+      res.status(404).send("Could not find diary entry");
+    } else {
+      res.status(204).json({
+        message: `Diary entry deleted successfuly!`,
+      });
+    }
+  } catch (error) {
+    console.error("Could not delete diary entry. Error: ", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+//get a diary entries by id
+app.get("/diaryEntries/:userId/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const diary = await userServices.findDiaryById(id);
+    res.status(200).json(diary);
+  } catch (error) {
+    console.error("Could not get diary. Error: ", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
 // will want to change this to delete by email
 // input email, match id then use id to delete
-app.delete("/users/:id", (req, res) => {
-  const id = req.params["id"];
-  userServices
-    .deleteUserById(id)
-    .then((users) => res.status(204).send({ users: users }))
-    .catch((err) => {
-      console.error(err);
-      res.status(404).send("Account not found.");
-    });
+app.delete("/users/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const response = await userServices.deleteUserById(id);
+    if (response === undefined) {
+      res.status(404).send("Could not find user");
+    } else {
+      res.status(204).json({
+        message: `User deleted successfuly!`,
+      });
+    }
+  } catch (error) {
+    console.error("Could not delete user. Error: ", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
 });

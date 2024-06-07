@@ -19,6 +19,7 @@ import CreateNewReminder from "./routes/CreateNewReminder";
 import CreateNewGoal from "./routes/CreateNewGoal";
 import DiaryEntries from "./routes/DiaryEntries";
 import CreateNewDiary from "./routes/CreateNewDiary";
+import ViewEntry from "./routes/viewEntry";
 
 const router = createBrowserRouter([
   {
@@ -67,28 +68,16 @@ const router = createBrowserRouter([
     element: <CuteCalendar />,
   },
   {
-    path: "/goals",
-    element: <Goals />,
-  },
-  {
-    path: "/reminders",
-    element: <Reminders />,
-  },
-  {
-    path: "/createReminder/:id",
-    element: <CreateNewReminder />,
-  },
-  {
-    path: "/createGoal/:id",
-    element: <CreateNewGoal />,
-  },
-  {
     path: "/diaryEntries",
     element: <DiaryEntries />,
   },
   {
     path: "/newDiary",
     element: <CreateNewDiary />,
+  },
+  {
+    path: "/viewEntry/:id",
+    element: <ViewEntry />,
   },
 ]);
 

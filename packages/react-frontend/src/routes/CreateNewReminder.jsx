@@ -19,19 +19,22 @@ function CreateNewReminder(props) {
     const token = localStorage.getItem("token");
     const id = localStorage.getItem("userId");
     console.log("UserId: " + id);
-    const response = await fetch(`http://localhost:8000/reminders/${id}`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
+    const response = await fetch(
+      `https://cutecore-health-react-backend.vercel.app/reminders/${id}`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: person.title,
+          note: person.desc,
+          time: person.time,
+          date: person.date,
+        }),
       },
-      body: JSON.stringify({
-        title: person.title,
-        note: person.desc,
-        time: person.time,
-        date: person.date,
-      }),
-    });
+    );
     if (response.ok) {
       const data = await response.json();
       console.log("Reminder created:", data);
@@ -75,7 +78,7 @@ function CreateNewReminder(props) {
           value={person.desc}
           onChange={handleChange}
           className={styles.input}
-          placeholder="Description (optional)"
+          placeholder="Description (upto 80 characters)"
         />
         <h1 className={styles.plaintext}>Set date and time</h1>
         <div className={styles.inputContainer}>

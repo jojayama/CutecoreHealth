@@ -15,7 +15,7 @@ export default function Reminders() {
     const getReminders = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8000/reminders/${userId}`,
+          `https://cutecore-health-react-backend.vercel.app/reminders/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -37,13 +37,17 @@ export default function Reminders() {
   }, [userId, token]);
 
   const handleDelete = async (id) => {
-    const response = await fetch(`http://localhost:8000/reminders/${id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
+    const token = localStorage.getItem("token");
+    const response = await fetch(
+      `https://cutecore-health-react-backend.vercel.app/reminders/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
       },
-    });
+    );
     if (response.ok) {
       console.log("deleted reminder");
       setReminders(reminders.filter((reminder) => reminder._id !== id));
@@ -68,6 +72,7 @@ export default function Reminders() {
       <Navbar />
       <h1 className={styles.heading}>Reminders</h1>
       <div className={styles.reminderBox}>
+        <div className={styles.checkbox}></div>
         {reminders.length > 0 ? (
           reminders.map((reminder) => (
             <div key={reminder._id} className={styles.reminderItem}>
@@ -91,7 +96,7 @@ export default function Reminders() {
             </div>
           ))
         ) : (
-          <p>No reminders found.</p>
+          <h2 className={styles.notfound}>No reminders yet!</h2>
         )}
       </div>
       <button className={styles.createNewContainer}>
