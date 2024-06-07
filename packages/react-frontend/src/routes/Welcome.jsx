@@ -26,7 +26,7 @@ export default function Welcome() {
       if (!remReceived) {
         try {
           const response = await fetch(
-            `https://cutecore-health.azurewebsites.net/reminders/${userId}`,
+            `http://localhost:8000/reminders/${userId}`,
             {
               headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
