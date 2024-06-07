@@ -68,6 +68,7 @@ export default function Reminders() {
       <Navbar />
       <h1 className={styles.heading}>Reminders</h1>
       <div className={styles.reminderBox}>
+        <div className={styles.checkbox}></div>
         {reminders.length > 0 ? (
           reminders.map((reminder) => (
             <div key={reminder._id} className={styles.reminderItem}>
