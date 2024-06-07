@@ -4,11 +4,22 @@ import styles from "../style/layout.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
+import { useState, useEffect } from "react";
 
 export default function Layout() {
   const navigate = useNavigate();
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [username, setUsername] = useState(localStorage.getItem("username"));
+
+  useEffect(() => {
+    setToken(localStorage.getItem("token"));
+    setUsername(localStorage.getItem("username"));
+  }, []);
 
   function handleLogout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+
     signOut(auth)
       .then(() => {
         // Sign-out successful.
