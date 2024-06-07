@@ -44,6 +44,14 @@ function findDiaryById(id) {
   return diaryModel.findById(id);
 }
 
+function findGoalById(id) {
+  return Goal.findById(id);
+}
+
+function findReminderById(id) {
+  return Reminder.findById(id);
+}
+
 async function addUser(email, password) {
   if (!email || !password) {
     throw new Error("All fields are required");
@@ -110,7 +118,9 @@ export default {
   findUserById,
   findUserByEmail,
   deleteUserById,
+  findGoalById,
   deleteGoalbyId,
+  findReminderById,
   deleteReminderbyId,
   findDiaryById,
   deleteDiarybyId,

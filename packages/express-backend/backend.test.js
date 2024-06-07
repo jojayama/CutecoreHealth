@@ -125,7 +125,7 @@ test("Testing deleteDiarybyId()", async () => {
   expect(got._id).toBeDefined();
   expect(got.title).toBe(savedDiary.title);
 
-  const deletedDiary = await mut.findDiaryById(savedUser._id);
+  const deletedDiary = await mut.findDiaryById(savedDiary._id);
   expect(deletedDiary).toBeNull();
 
   await mut.deleteUserById(savedUser._id);
@@ -155,16 +155,105 @@ test("Testing findDiaryById()", async () => {
   await mut.deleteDiarybyId(savedDiary._id);
 });
 
-
 /*
  * Goal Testing
  */
+test("Testing deleteGoalbyId()", async () => {
+  const email = "jenna@gmail.com";
+  const password = "hehehe123"
+  const mockUser = new userModel({ email, password });
+  const savedUser = await mockUser.save();
 
+  const title = "Testing!!";
+  const description = "testing goal :)";
+  const deadline = new Date('June 7, 2024');
+  const userId = savedUser._id;
+  const mockGoal = new goalModel({ title, description, deadline, userId });
+  const savedGoal = await mockGoal.save();
 
+  const got = await mut.deleteGoalbyId(savedGoal._id);
+  expect(got._id).toBeDefined();
+  expect(got.title).toBe(savedGoal.title);
+
+  const deletedGoal = await mut.findGoalById(savedGoal._id);
+  expect(deletedGoal).toBeNull();
+
+  await mut.deleteUserById(savedUser._id);
+});
+
+test("Testing findGoalbyId()", async () => {
+  const email = "wammy@gmail.com";
+  const password = "drinkicecofypanikatak";
+  const mockUser = new userModel({ email, password });
+  const savedUser = await mockUser.save();
+
+  const title = "do NOT panicking";
+  const description = "don't panic o-o";
+  const deadline = new Date('June 7, 2024');
+  const userId = savedUser._id;
+  const mockGoal = new goalModel({ title, description, deadline, userId });
+  const savedGoal = await mockGoal.save();
+
+  const got = await mut.findGoalById(savedGoal._id);
+  expect(got.title).toBe(title);
+  expect(got.description).toBe(description);
+  expect(got.deadline).toBeDefined();
+  expect(got.userId).toBeDefined();
+  expect(got._id).toBeDefined();
+
+  await mut.deleteUserById(savedUser._id);
+  await mut.deleteGoalbyId(savedGoal._id);
+});
 
 /*
  * Reminder Testing
  */
+test("Testing deleteReminderbyId()", async () => {
+  const email = "jodi@gmail.com";
+  const password = "eheh123"
+  const mockUser = new userModel({ email, password });
+  const savedUser = await mockUser.save();
+
+  const title = "Testing!!";
+  const entry = "testing entry :)";
+  const date = "6/7/2024";
+  const userId = savedUser._id;
+  const mockDiary = new diaryModel({ title, entry, date, userId });
+  const savedDiary = await mockDiary.save();
+
+  const got = await mut.deleteDiarybyId(savedDiary._id);
+  expect(got._id).toBeDefined();
+  expect(got.title).toBe(savedDiary.title);
+
+  const deletedDiary = await mut.findDiaryById(savedUser._id);
+  expect(deletedDiary).toBeNull();
+
+  await mut.deleteUserById(savedUser._id);
+});
+
+test("Testing findReminderById()", async () => {
+  const email = "idkbestie@gmail.com";
+  const password = "drinkicecofypanikatak";
+  const mockUser = new userModel({ email, password });
+  const savedUser = await mockUser.save();
+
+  const title = "I am panicking";
+  const entry = "Today I had iced coffee and now it is causing me to panic ;-;";
+  const date = "6/7/2024";
+  const userId = savedUser._id;
+  const mockDiary = new diaryModel({ title, entry, date, userId });
+  const savedDiary = await mockDiary.save();
+
+  const got = await mut.findDiaryById(savedDiary._id);
+  expect(got.title).toBe(title);
+  expect(got.entry).toBe(entry);
+  expect(got.date).toBe(date);
+  expect(got.userId).toBeDefined();
+  expect(got._id).toBeDefined();
+
+  await mut.deleteUserById(savedUser._id);
+  await mut.deleteDiarybyId(savedDiary._id);
+});
 
 afterAll(() => {
   mongoose.connection.close();

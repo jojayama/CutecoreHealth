@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1717801983497" clover="3.2.0">
-  <project timestamp="1717801983497" name="All files">
-    <metrics statements="59" coveredstatements="44" conditionals="12" coveredconditionals="10" methods="12" coveredmethods="8" elements="83" coveredelements="62" complexity="0" loc="59" ncloc="59" packages="2" files="6" classes="6"/>
+<coverage generated="1717803187542" clover="3.2.0">
+  <project timestamp="1717803187543" name="All files">
+    <metrics statements="61" coveredstatements="48" conditionals="12" coveredconditionals="10" methods="14" coveredmethods="10" elements="87" coveredelements="68" complexity="0" loc="61" ncloc="61" packages="2" files="6" classes="6"/>
     <package name="express-backend">
-      <metrics statements="49" coveredstatements="35" conditionals="12" coveredconditionals="10" methods="11" coveredmethods="8"/>
+      <metrics statements="51" coveredstatements="39" conditionals="12" coveredconditionals="10" methods="13" coveredmethods="10"/>
       <file name="db.js" path="C:\Users\cgmap\Documents\cal poly\CutecoreHealth\packages\express-backend\db.js">
         <metrics statements="9" coveredstatements="8" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="3" count="1" type="stmt"/>
@@ -17,7 +17,7 @@
         <line num="24" count="1" type="stmt"/>
       </file>
       <file name="user-services.js" path="C:\Users\cgmap\Documents\cal poly\CutecoreHealth\packages\express-backend\user-services.js">
-        <metrics statements="40" coveredstatements="27" conditionals="10" coveredconditionals="9" methods="10" coveredmethods="7"/>
+        <metrics statements="42" coveredstatements="31" conditionals="10" coveredconditionals="9" methods="12" coveredmethods="9"/>
         <line num="12" count="1" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
         <line num="16" count="1" type="stmt"/>
@@ -30,34 +30,36 @@
         <line num="34" count="1" type="stmt"/>
         <line num="36" count="2" type="stmt"/>
         <line num="40" count="2" type="stmt"/>
-        <line num="44" count="2" type="stmt"/>
-        <line num="48" count="4" type="cond" truecount="4" falsecount="0"/>
-        <line num="49" count="1" type="stmt"/>
-        <line num="52" count="3" type="stmt"/>
-        <line num="53" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="54" count="1" type="stmt"/>
-        <line num="57" count="2" type="stmt"/>
-        <line num="59" count="2" type="stmt"/>
-        <line num="63" count="2" type="stmt"/>
-        <line num="64" count="2" type="stmt"/>
-        <line num="66" count="2" type="stmt"/>
-        <line num="70" count="2" type="stmt"/>
-        <line num="74" count="8" type="stmt"/>
-        <line num="78" count="0" type="stmt"/>
-        <line num="79" count="0" type="stmt"/>
-        <line num="80" count="0" type="stmt"/>
-        <line num="82" count="0" type="stmt"/>
-        <line num="83" count="0" type="stmt"/>
-        <line num="88" count="0" type="stmt"/>
-        <line num="89" count="0" type="stmt"/>
+        <line num="44" count="4" type="stmt"/>
+        <line num="48" count="2" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="56" count="4" type="cond" truecount="4" falsecount="0"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="60" count="3" type="stmt"/>
+        <line num="61" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="62" count="1" type="stmt"/>
+        <line num="65" count="2" type="stmt"/>
+        <line num="67" count="2" type="stmt"/>
+        <line num="71" count="2" type="stmt"/>
+        <line num="72" count="2" type="stmt"/>
+        <line num="74" count="2" type="stmt"/>
+        <line num="78" count="2" type="stmt"/>
+        <line num="82" count="12" type="stmt"/>
+        <line num="86" count="2" type="stmt"/>
+        <line num="87" count="2" type="stmt"/>
+        <line num="88" count="2" type="stmt"/>
         <line num="90" count="0" type="stmt"/>
-        <line num="92" count="0" type="stmt"/>
-        <line num="93" count="0" type="stmt"/>
-        <line num="98" count="2" type="stmt"/>
-        <line num="99" count="2" type="stmt"/>
-        <line num="100" count="2" type="stmt"/>
-        <line num="102" count="0" type="stmt"/>
-        <line num="103" count="0" type="stmt"/>
+        <line num="91" count="0" type="stmt"/>
+        <line num="96" count="0" type="stmt"/>
+        <line num="97" count="0" type="stmt"/>
+        <line num="98" count="0" type="stmt"/>
+        <line num="100" count="0" type="stmt"/>
+        <line num="101" count="0" type="stmt"/>
+        <line num="106" count="4" type="stmt"/>
+        <line num="107" count="4" type="stmt"/>
+        <line num="108" count="4" type="stmt"/>
+        <line num="110" count="0" type="stmt"/>
+        <line num="111" count="0" type="stmt"/>
       </file>
     </package>
     <package name="express-backend.schemas">
