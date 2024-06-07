@@ -37,6 +37,7 @@ export default function Reminders() {
   }, [userId, token]);
 
   const handleDelete = async (id) => {
+    const token = localStorage.getItem("token");
     const response = await fetch(`http://localhost:8000/reminders/${id}`, {
       method: "DELETE",
       headers: {

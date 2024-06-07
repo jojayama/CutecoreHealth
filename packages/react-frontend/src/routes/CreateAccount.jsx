@@ -13,6 +13,8 @@ import { auth } from "../../firebase";
 function CreateAccount(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -53,6 +55,8 @@ function CreateAccount(props) {
           })
           .catch((error) => {
             const errorCode = error.code;
+            setError(true);
+            setErrorMessage("Could not create an account: " + error.message);
             const errorMessage = error.message;
             console.error("Error sending email:", error, errorMessage);
           });
@@ -62,6 +66,8 @@ function CreateAccount(props) {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        setError(true);
+        setErrorMessage("Could not create user: " + error.message);
         console.error("Error creating user:", errorCode, errorMessage);
       });
   };
@@ -73,6 +79,7 @@ function CreateAccount(props) {
         href="https://fonts.googleapis.com/css2?family=Josefin+Slab&display=swap"
       ></link>
       <h1 className={styles.heading}>Create Account</h1>
+      {error && <p className={styles.errorMessage}>{errorMessage}</p>}
       <form className={styles.form}>
         <input
           type="email"
@@ -80,7 +87,7 @@ function CreateAccount(props) {
           id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className={styles.input}
+          className={`${styles.input} ${error ? styles.inputError : ""}`}
           placeholder="Enter your email*"
         />
         <input
@@ -89,7 +96,7 @@ function CreateAccount(props) {
           id="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className={styles.input}
+          className={`${styles.input} ${error ? styles.inputError : ""}`}
           placeholder="Enter your password*"
         />
         <input

@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import bcrypt from "bcrypt";
 const UserSchema = new mongoose.Schema(
   {
     email: {
@@ -18,6 +18,10 @@ const UserSchema = new mongoose.Schema(
   },
   { collection: "users" },
 );
+
+UserSchema.methods.comparePassword = function (candidatePassword) {
+  return bcrypt.compare(candidatePassword, this.password);
+};
 
 const User = mongoose.model("User", UserSchema);
 
