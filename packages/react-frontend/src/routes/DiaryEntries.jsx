@@ -14,7 +14,7 @@ export default function DiaryEntries() {
     const getDiaries = async () => {
       try {
         const response = await fetch(
-          `https://cutecore-health.azurewebsites.net/diaryEntries/${userId}`,
+          `http://localhost:8000/diaryEntries/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -46,7 +46,7 @@ export default function DiaryEntries() {
     });
     if (response.ok) {
       console.log("Success! Delete diary: ", response.status);
-      setDiaries(diaries.filter((diary) => diary._id !== id));
+      setDiaries(diaries.filter((diary) => diaries._id !== id));
     } else {
       console.error("Error deleting diary: ", response.statusText);
     }

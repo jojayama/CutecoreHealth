@@ -14,7 +14,7 @@ export default function Goals() {
   useEffect(() => {
     const getGoals = async () => {
       try {
-        const response = await fetch(`https://cutecore-health.azurewebsites.net/goals/${userId}`, {
+        const response = await fetch(`http://localhost:8000/goals/${userId}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
@@ -35,7 +35,7 @@ export default function Goals() {
   }, [userId, token]);
 
   const handleDelete = async (id) => {
-    const response = await fetch(`https://cutecore-health.azurewebsites.net/goals/${id}`, {
+    const response = await fetch(`http://localhost:8000/goals/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,

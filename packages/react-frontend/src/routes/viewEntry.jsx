@@ -17,7 +17,7 @@ export default function ViewEntry() {
     const getDiary = async () => {
       try {
         const response = await fetch(
-          `https://cutecore-health.azurewebsites.net/diaryEntries/${userId}/${id}`,
+          `http://localhost:8000/diaryEntries/${userId}/${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
