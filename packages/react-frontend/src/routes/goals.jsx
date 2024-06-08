@@ -15,7 +15,7 @@ export default function Goals() {
     const getGoals = async () => {
       try {
         const response = await fetch(
-          `https://cutecore-health-react-backend.vercel.app/goals/${userId}`,
+          `https://cutecore-health-react-frontend.vercel.app/goals/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -39,7 +39,7 @@ export default function Goals() {
 
   const handleDelete = async (id) => {
     const response = await fetch(
-      `https://cutecore-health-react-backend.vercel.app/goals/${id}`,
+      `https://cutecore-health-react-frontend.vercel.app/goals/${id}`,
       {
         method: "DELETE",
         headers: {
@@ -61,6 +61,12 @@ export default function Goals() {
     return date.toLocaleDateString(undefined, options);
   };
 
+  const handleCheckboxChange = (id) => {
+    const checkedGoals = JSON.parse(localStorage.getItem("checkedGoals")) || {};
+    checkedGoals[id] = !checkedGoals[id]; // Toggle the checked state
+    localStorage.setItem("checkedGoals", JSON.stringify(checkedGoals));
+  };
+
   return (
     <div>
       <link
@@ -78,6 +84,12 @@ export default function Goals() {
                 type="checkbox"
                 id={`checkbox-${goal._id}`}
                 className={styles.checkbox}
+                checked={
+                  JSON.parse(localStorage.getItem("checkedGoals"))?.[goal._id]
+                }
+                onChange={() => {
+                  handleCheckboxChange(goal._id);
+                }}
               />
               <label htmlFor={`checkbox-${goal._id}`}></label>
               <p className={styles.goalDate}>{formatDate(goal.deadline)}</p>

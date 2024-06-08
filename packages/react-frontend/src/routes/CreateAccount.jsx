@@ -23,10 +23,10 @@ function CreateAccount(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("email: " + email + "\npassword: " + password);
-    // const url = "https://cutecore-health.azurewebsites.net/users";
+    // const url = "https://cutecore-health-react-frontend.vercel.app/users";
     // console.log("URL: ", url);
     const response = await fetch(
-      "https://cutecore-health-react-backend.vercel.app/users",
+      "https://cutecore-health-react-frontend.vercel.app/users",
       {
         method: "POST",
         headers: {
