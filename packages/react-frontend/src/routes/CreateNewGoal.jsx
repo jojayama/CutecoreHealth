@@ -3,6 +3,7 @@ import styles from "../style/createnew.module.css";
 import Navbar from "../navbar";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import { Link, Navigate, useNavigate } from "react-router-dom";
+import Layout from "./layout";
 
 function CreateNewGoal(props) {
   const [person, setPerson] = useState({
@@ -53,6 +54,7 @@ function CreateNewGoal(props) {
   return (
     <div className={styles.background}>
       <Navbar />
+      <Layout />
       <h1 className={styles.heading}>
         New G<FavoriteOutlinedIcon fontSize="large" />
         al!
