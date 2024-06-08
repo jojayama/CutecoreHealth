@@ -56,21 +56,21 @@ async function addUser(email, password) {
   if (!email || !password) {
     throw new Error("All fields are required");
   }
-  
+
   const existingUser = await User.findOne({ email });
   if (existingUser) {
     throw new Error("Email already taken");
   }
-  
+
   const hashedPassword = await bcrypt.hash(password, 10);
-  
+
   const newUser = new User({
     email,
     password: hashedPassword,
   });
   await newUser.save();
   console.log(newUser);
-  
+
   return newUser;
 }
 
