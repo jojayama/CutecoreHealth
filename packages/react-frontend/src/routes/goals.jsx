@@ -14,14 +14,11 @@ export default function Goals() {
   useEffect(() => {
     const getGoals = async () => {
       try {
-        const response = await fetch(
-          `https://cutecore-health-react-backend.vercel.app/goals/${userId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
+        const response = await fetch(`http://localhost:8000/goals/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
-        );
+        });
         if (response.ok) {
           const data = await response.json();
           console.log(data);
@@ -38,16 +35,13 @@ export default function Goals() {
   }, [userId, token]);
 
   const handleDelete = async (id) => {
-    const response = await fetch(
-      `https://cutecore-health-react-backend.vercel.app/goals/${id}`,
-      {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
+    const response = await fetch(`http://localhost:8000/goals/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
       },
-    );
+    });
     if (response.ok) {
       setGoals(goals.filter((goal) => goal._id !== id));
     } else {

@@ -32,21 +32,18 @@ function CreateNewEntry(props) {
     const token = localStorage.getItem("token");
     const id = localStorage.getItem("userId");
     console.log("UserId: " + id);
-    const response = await fetch(
-      `https://cutecore-health-react-backend.vercel.app/diaryEntries/${id}`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title: diary.title,
-          entry: diary.entry,
-          date: diary.date,
-        }),
+    const response = await fetch(`http://localhost:8000/diaryEntries/${id}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
       },
-    );
+      body: JSON.stringify({
+        title: diary.title,
+        entry: diary.entry,
+        date: diary.date,
+      }),
+    });
     if (response.ok) {
       const data = await response.json();
       console.log("Entry created:", data);

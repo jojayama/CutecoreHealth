@@ -19,16 +19,13 @@ function Form(props) {
     e.preventDefault();
     console.log("email: ", email);
     console.log("password: ", password);
-    const response = await fetch(
-      "https://cutecore-health-react-backend.vercel.app/login",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
+    const response = await fetch("http://localhost:8000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-    );
+      body: JSON.stringify({ email, password }),
+    });
     const result = await response.json();
     if (result) {
       console.log(result);
