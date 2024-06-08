@@ -16,7 +16,7 @@ Environment Setup:
 
 UI prototype: https://www.figma.com/proto/4YGWdjxPBqR3T9e0Iiy9Ad/Cutecore-Health-Wireframe?type=design&node-id=2-2&t=dnL3vr5Nsu0dOmpW-0&scaling=scale-down&page-id=0%3A1&starting-point-node-id=2%3A2
 
-Wiki page: [insert link]
+Wiki page: https://github.com/jojayama/CutecoreHealth/wiki
 
 Here is the calendar documentation we will use: https://fullcalendar.io/docs
 
