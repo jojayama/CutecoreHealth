@@ -46,7 +46,9 @@ app.use((req, res, next) => {
 
 // connect to app
 app.listen(process.env.PORT || port, () => {
-  console.log("Rest API is listening at http://localhost:8000");
+  console.log(
+    "Rest API is listening at https://cutecore-health-react-backend.vercel.app",
+  );
 });
 
 app.get("/", (req, res) => {

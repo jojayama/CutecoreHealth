@@ -62,13 +62,13 @@ export default function Reminders() {
     return date.toLocaleDateString(undefined, options);
   };
 
-  const handleCheckboxChange = (id) => {
-    const checkedReminders =
-      JSON.parse(localStorage.getItem("checkedReminders")) || {};
-    checkedReminders[id] = !checkedReminders[id]; // Toggle the checked state
-    localStorage.setItem("checkedReminders", JSON.stringify(checkedReminders));
+  const handleCheckboxChange = (id, checked) => {
+    const updatedReminders = reminders.map((reminder) =>
+      reminder._id === id ? { ...reminder, checked } : reminder,
+    );
+    setReminders(updatedReminders);
+    localStorage.setItem("reminders", JSON.stringify(updatedReminders));
   };
-
   return (
     <div>
       <link
@@ -87,14 +87,10 @@ export default function Reminders() {
                 type="checkbox"
                 id={`checkbox-${reminder._id}`}
                 className={styles.checkbox}
-                checked={
-                  JSON.parse(localStorage.getItem("checkedReminders"))?.[
-                    reminder._id
-                  ]
+                checked={reminder.checked}
+                onChange={(e) =>
+                  handleCheckboxChange(reminder._id, e.target.checked)
                 }
-                onChange={() => {
-                  handleCheckboxChange(reminder._id);
-                }}
               />
               <label htmlFor={`checkbox-${reminder._id}`}></label>
               <p className={styles.reminderDateTime}>
