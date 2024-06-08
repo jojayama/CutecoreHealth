@@ -14,7 +14,7 @@ export default function DiaryEntries() {
     const getDiaries = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8000/diaryEntries/${userId}`,
+          `https://cutecore-health-react-backend.vercel.app/diaryEntries/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -37,13 +37,16 @@ export default function DiaryEntries() {
   }, [userId, token]);
 
   const handleDelete = async (id) => {
-    const response = await fetch(`http://localhost:8000/diaryEntries/${id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
+    const response = await fetch(
+      `https://cutecore-health-react-backend.vercel.app/diaryEntries/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
       },
-    });
+    );
     if (response.ok) {
       console.log("Success! Delete diary: ", response.status);
       setDiaries(diaries.filter((diaries) => diaries._id !== id));
