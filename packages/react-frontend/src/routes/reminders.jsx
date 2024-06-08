@@ -15,7 +15,7 @@ export default function Reminders() {
     const getReminders = async () => {
       try {
         const response = await fetch(
-          `https://cutecore-health-react-frontend.vercel.app/reminders/${userId}`,
+          `https://cutecore-health-react-backend.vercel.app/reminders/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -39,7 +39,7 @@ export default function Reminders() {
   const handleDelete = async (id) => {
     const token = localStorage.getItem("token");
     const response = await fetch(
-      `https://cutecore-health-react-frontend.vercel.app/reminders/${id}`,
+      `https://cutecore-health-react-backend.vercel.app/reminders/${id}`,
       {
         method: "DELETE",
         headers: {

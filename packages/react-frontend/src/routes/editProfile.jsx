@@ -39,7 +39,7 @@ export default function EditProfile(props) {
 
           // Call API to update email in MongoDB
           const response = await fetch(
-            `https://cutecore-health-react-frontend.vercel.app/users/${userId}`,
+            `https://cutecore-health-react-backend.vercel.app/users/${userId}`,
             {
               method: "POST",
               headers: {
@@ -84,7 +84,7 @@ export default function EditProfile(props) {
 
   const handleDelete = async (id) => {
     const response = await fetch(
-      `https://cutecore-health-react-frontend.vercel.app/users/${id}`,
+      `https://cutecore-health-react-backend.vercel.app/users/${id}`,
       {
         method: "DELETE",
         headers: {

@@ -26,7 +26,7 @@ function CreateAccount(props) {
     // const url = "https://cutecore-health-react-frontend.vercel.app/users";
     // console.log("URL: ", url);
     const response = await fetch(
-      "https://cutecore-health-react-frontend.vercel.app/users",
+      "https://cutecore-health-react-backend.vercel.app/users",
       {
         method: "POST",
         headers: {

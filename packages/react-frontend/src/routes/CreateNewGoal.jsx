@@ -19,7 +19,7 @@ function CreateNewGoal(props) {
     const id = localStorage.getItem("userId");
     console.log("UserId: " + id);
     const response = await fetch(
-      `https://cutecore-health-react-frontend.vercel.app/goals/${id}`,
+      `https://cutecore-health-react-backend.vercel.app/goals/${id}`,
       {
         method: "POST",
         headers: {
