@@ -7,12 +7,13 @@ their time and emotions.
 Environment Setup:
 
 1. Clone the repository onto your machine using "git clone https://github.com/jojayama/CutecoreHealth.git"
-
-- CI/CD and Azure testing will be automatically applied to all code
-
 2. Run "npm install" inside the express-backend and react-frontend folders
 3. Run "npx prettier --write ." in the root folder
-4. Begin developing!
+4. Run backend tests (see section below)
+5. Begin developing!
+
+How to run tests: 
+In "/packages/express-backend/" run "npm test"
 
 UI prototype: https://www.figma.com/proto/4YGWdjxPBqR3T9e0Iiy9Ad/Cutecore-Health-Wireframe?type=design&node-id=2-2&t=dnL3vr5Nsu0dOmpW-0&scaling=scale-down&page-id=0%3A1&starting-point-node-id=2%3A2
 
