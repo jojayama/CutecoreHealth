@@ -33,7 +33,7 @@ function CreateNewEntry(props) {
     const id = localStorage.getItem("userId");
     console.log("UserId: " + id);
     const response = await fetch(
-      `https://cutecore-health-react-frontend.vercel.app/diaryEntries/${id}`,
+      `https://cutecore-health-react-backend.vercel.app/diaryEntries/${id}`,
       {
         method: "POST",
         headers: {

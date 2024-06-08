@@ -15,7 +15,7 @@ export default function Goals() {
     const getGoals = async () => {
       try {
         const response = await fetch(
-          `https://cutecore-health-react-frontend.vercel.app/goals/${userId}`,
+          `https://cutecore-health-react-backend.vercel.app/goals/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -39,7 +39,7 @@ export default function Goals() {
 
   const handleDelete = async (id) => {
     const response = await fetch(
-      `https://cutecore-health-react-frontend.vercel.app/goals/${id}`,
+      `https://cutecore-health-react-backend.vercel.app/goals/${id}`,
       {
         method: "DELETE",
         headers: {

@@ -20,7 +20,7 @@ function CreateNewReminder(props) {
     const id = localStorage.getItem("userId");
     console.log("UserId: " + id);
     const response = await fetch(
-      `https://cutecore-health-react-frontend.vercel.app/reminders/${id}`,
+      `https://cutecore-health-react-backend.vercel.app/reminders/${id}`,
       {
         method: "POST",
         headers: {
