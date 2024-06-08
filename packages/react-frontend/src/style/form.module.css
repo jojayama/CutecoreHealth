@@ -50,6 +50,15 @@ body {
   flex-direction: column;
 }
 
+.emailAlert {
+  text-align: center;
+  margin: 0% auto;
+  color: #6b2a5d;
+  font-family: "Josefin Slab", sans-serif;
+  font-size: 35px;
+  font-weight: 300px;
+}
+
 .input::placeholder {
   color: #8e5281;
   font-family: "Josefin Slab", sans-serif;

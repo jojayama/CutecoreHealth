@@ -15,7 +15,7 @@ export default function Reminders() {
     const getReminders = async () => {
       try {
         const response = await fetch(
-          `https://cutecore-health-react-backend.vercel.app/reminders/${userId}`,
+          `https://cutecore-health-react-frontend.vercel.app/reminders/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -39,7 +39,7 @@ export default function Reminders() {
   const handleDelete = async (id) => {
     const token = localStorage.getItem("token");
     const response = await fetch(
-      `https://cutecore-health-react-backend.vercel.app/reminders/${id}`,
+      `https://cutecore-health-react-frontend.vercel.app/reminders/${id}`,
       {
         method: "DELETE",
         headers: {
@@ -62,6 +62,13 @@ export default function Reminders() {
     return date.toLocaleDateString(undefined, options);
   };
 
+  const handleCheckboxChange = (id, checked) => {
+    const updatedReminders = reminders.map((reminder) =>
+      reminder._id === id ? { ...reminder, checked } : reminder,
+    );
+    setReminders(updatedReminders);
+    localStorage.setItem("reminders", JSON.stringify(updatedReminders));
+  };
   return (
     <div>
       <link
@@ -80,6 +87,10 @@ export default function Reminders() {
                 type="checkbox"
                 id={`checkbox-${reminder._id}`}
                 className={styles.checkbox}
+                checked={reminder.checked}
+                onChange={(e) =>
+                  handleCheckboxChange(reminder._id, e.target.checked)
+                }
               />
               <label htmlFor={`checkbox-${reminder._id}`}></label>
               <p className={styles.reminderDateTime}>

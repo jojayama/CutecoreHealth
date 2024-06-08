@@ -17,7 +17,7 @@ export default function ViewEntry() {
     const getDiary = async () => {
       try {
         const response = await fetch(
-          `https://cutecore-health-react-backend.vercel.app/diaryEntries/${userId}/${id}`,
+          `https://cutecore-health-react-frontend.vercel.app/diaryEntries/${userId}/${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -42,7 +42,7 @@ export default function ViewEntry() {
 
   const handleDelete = async (id) => {
     const response = await fetch(
-      `https://cutecore-health-react-backend.vercel.app/diaryEntries/${id}`,
+      `https://cutecore-health-react-frontend.vercel.app/diaryEntries/${id}`,
       {
         method: "DELETE",
         headers: {

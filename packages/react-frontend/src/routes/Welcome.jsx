@@ -26,7 +26,7 @@ export default function Welcome() {
       if (!remReceived) {
         try {
           const response = await fetch(
-            `https://cutecore-health-react-backend.vercel.app/reminders/${userId}`,
+            `https://cutecore-health-react-frontend.vercel.app/reminders/${userId}`,
             {
               headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,

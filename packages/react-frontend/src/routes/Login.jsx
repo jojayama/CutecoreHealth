@@ -20,7 +20,7 @@ function Form(props) {
     console.log("email: ", email);
     console.log("password: ", password);
     const response = await fetch(
-      "https://cutecore-health-react-backend.vercel.app/login",
+      "https://cutecore-health-react-frontend.vercel.app/login",
       {
         method: "POST",
         headers: {
