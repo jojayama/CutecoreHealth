@@ -102,6 +102,31 @@ async function deleteReminderbyId(reminderId) {
   }
 }
 
+async function updateUserbyId(userId, updateData) {
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    // Update the user's email if provided
+    if (updateData.email) {
+      user.email = updateData.email;
+    }
+
+    // Update the user's password if provided
+    if (updateData.password) {
+      user.password = updateData.password; // Ensure you hash the password before saving
+    }
+
+    const updatedUser = await user.save();
+    return updatedUser;
+  } catch (error) {
+    console.error("Error updating user:", error);
+    throw new Error(error.message);
+  }
+}
+
 async function deleteDiarybyId(diaryId) {
   try {
     const result = await Diary.findByIdAndDelete(diaryId);
@@ -124,4 +149,5 @@ export default {
   deleteReminderbyId,
   findDiaryById,
   deleteDiarybyId,
+  updateUserbyId,
 };
