@@ -1,103 +1,155 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../style/editProfile.module.css";
 import Layout from "./layout";
 import Navbar from "../navbar";
 import { useNavigate } from "react-router-dom";
-import { getAuth, updateEmail, sendEmailVerification } from "firebase/auth";
-import { Link } from "react-router-dom";
+import {
+  getAuth,
+  updateEmail,
+  sendEmailVerification,
+  reauthenticateWithCredential,
+  EmailAuthProvider,
+  deleteUser,
+} from "firebase/auth";
 
-export default function EditProfile(props) {
-  const [person, setPerson] = useState({
-    email: "",
-    password: "",
-  });
+export default function EditProfile() {
+  const [email, setEmail] = useState("");
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [verificationSent, setVerificationSent] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const userId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
 
   const navigate = useNavigate();
   const auth = getAuth();
 
-  async function submitForm() {
-    const user = auth.currentUser;
-    if (user) {
-      try {
-        await sendEmailVerification(person.email);
-        console.log("Verification email sent.");
+  useEffect(() => {
+    const checkEmailVerified = async () => {
+      if (auth.currentUser) {
+        await auth.currentUser.reload();
+      }
+    };
 
-        // Optionally, show a message to the user asking them to verify their email
-        // or instruct them to check their email for the verification link
+    if (verificationSent) {
+      const intervalId = setInterval(() => {
+        checkEmailVerified();
+      }, 1000);
+
+      return () => clearInterval(intervalId);
+    }
+  }, [verificationSent, auth]);
+
+  async function sendVerificationEmail() {
+    const user = auth.currentUser;
+    if (user && email) {
+      try {
+        // Reauthenticate the user before updating the email
+        const credential = EmailAuthProvider.credential(
+          user.email,
+          currentPassword,
+        );
+        await reauthenticateWithCredential(user, credential);
+
+        // Temporarily update the email in Firebase Auth to send the verification email to the new address
+        await updateEmail(user, email);
+        console.log("Email temporarily updated to send verification email.");
+
+        // Send verification email to the new email address
+        await sendEmailVerification(user);
+        console.log("Verification email sent to the new email address.");
+
+        setVerificationSent(true);
       } catch (error) {
         console.error("Error sending verification email:", error);
-        // Optionally, show an error message to the user
-        return;
+        setErrorMessage(error.message);
       }
-      if (user.emailVerified) {
-        try {
-          // Update email in Firebase Auth
-          await updateEmail(user, person.email);
-          console.log("Email updated successfully in Firebase Auth.");
-
-          // Call API to update email in MongoDB
-          const response = await fetch(
-            `https://cutecore-health-react-backend.vercel.app/users/${userId}`,
-            {
-              method: "POST",
-              headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-              },
-              body: JSON.stringify({
-                userId: user.uid,
-                newEmail: person.email,
-              }),
-            },
-          );
-
-          if (response.ok) {
-            console.log("Email updated successfully in MongoDB.");
-          } else {
-            console.error(
-              "Error updating email in MongoDB:",
-              response.statusText,
-            );
-          }
-
-          navigate("/profile");
-        } catch (error) {
-          console.error("Error updating email in Firebase Auth:", error);
-        }
-      } else {
-        console.log("Email not verified. Cannot update email.");
-        // Optionally, show an error message or take appropriate action
-      }
+    } else {
+      console.log("User is not signed in or email is not provided.");
     }
-
-    setPerson({ email: "", password: "" });
   }
 
-  function handleChange(event) {
-    const { name, value } = event.target;
-    setPerson((prevPerson) => ({
-      ...prevPerson,
-      [name]: value,
-    }));
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const user = auth.currentUser;
+
+    if (user && user.emailVerified) {
+      const updateData = { email };
+
+      try {
+        const response = await fetch(
+          `https://cutecore-health-react-backend.vercel.app/users/${userId}`,
+          {
+            method: "PUT",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updateData),
+          },
+        );
+
+        const result = await response.json();
+
+        if (response.ok) {
+          console.log("Updated user successfully");
+          if (result.token) {
+            localStorage.setItem("token", result.token);
+          }
+          navigate("/profile");
+        } else {
+          alert("Could not update user: " + result.message);
+        }
+      } catch (error) {
+        console.error("Error updating user:", error);
+        setErrorMessage(error.message);
+      }
+    } else {
+      setErrorMessage("Please verify your email before saving changes.");
+    }
   }
 
   const handleDelete = async (id) => {
-    const response = await fetch(
-      `https://cutecore-health-react-backend.vercel.app/users/${id}`,
-      {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      },
-    );
-    if (response.ok) {
-      console.log("deleted user");
-      navigate("/");
+    const user = auth.currentUser;
+    if (user) {
+      try {
+        // Reauthenticate the user before deleting
+        const credential = EmailAuthProvider.credential(
+          user.email,
+          currentPassword,
+        );
+        await reauthenticateWithCredential(user, credential);
+
+        // Delete user from Firebase
+        await deleteUser(user);
+        console.log("Deleted user from Firebase");
+
+        // Delete user from backend
+        const response = await fetch(
+          `https://cutecore-health-react-backend.vercel.app/users/${id}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          },
+        );
+
+        if (response.ok) {
+          console.log("Deleted user from backend");
+          navigate("/");
+        } else {
+          console.error(
+            "Error deleting user from backend: ",
+            response.statusText,
+          );
+        }
+      } catch (error) {
+        console.error("Error deleting user: ", error);
+        setErrorMessage(error.message);
+      }
     } else {
-      console.error("Error deleting user: ", response.statusText);
+      console.log("User is not signed in.");
     }
   };
 
@@ -110,32 +162,46 @@ export default function EditProfile(props) {
         href="https://fonts.googleapis.com/css2?family=Josefin+Slab&display=swap"
       ></link>
       <h1 className={styles.heading}>Edit Profile</h1>
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <input
           type="email"
           name="email"
           id="email"
-          value={person.email}
-          onChange={handleChange}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           className={styles.input}
-          placeholder="Enter your email*"
+          placeholder="Enter your new email*"
         />
-        {}
         <input
           type="password"
-          name="password"
-          id="password"
-          value={person.password}
-          onChange={handleChange}
+          name="currentPassword"
+          id="currentPassword"
+          value={currentPassword}
+          onChange={(e) => setCurrentPassword(e.target.value)}
           className={styles.input}
-          placeholder="Enter your password*"
+          placeholder="Enter your current password*"
         />
+        {errorMessage && (
+          <div className={styles.errorMessage}>Error: {errorMessage}</div>
+        )}
         <input
           type="button"
-          value="Save"
-          onClick={submitForm}
+          value="Send Verification Email"
+          onClick={sendVerificationEmail}
           className={styles.buttonContainer}
-          style={{ width: "130px" }}
+          style={{ width: "350px" }}
+        />
+        {verificationSent && (
+          <p className={styles.emailAlert}>
+            Please check your email and verify before saving changes.
+          </p>
+        )}
+        <input
+          type="submit"
+          value="Save"
+          onClick={handleSubmit}
+          className={styles.buttonContainer}
+          style={{ width: "110px" }}
         />
       </form>
       <button

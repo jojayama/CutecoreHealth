@@ -62,7 +62,7 @@ body {
   background-color: #8e5281;
   color: white;
   margin: 0 auto;
-  margin-top: 60px;
+  margin-top: 40px;
   border: #8e5281;
   text-align: center;
   display: block;
@@ -115,4 +115,23 @@ body {
 }
 .deleteUserContainer:hover {
   background-color: #8e5281;
+}
+
+.errorMessage {
+  color: red;
+  margin-top: 20px;
+  font-size: 25px;
+  font-weight: bolder;
+  text-align: center;
+  font-family: "Josefin Slab", sans-serif;
+}
+
+.emailAlert {
+  color: red;
+  margin-top: 30px;
+  margin-bottom: 0px;
+  font-size: 25px;
+  font-weight: bolder;
+  text-align: center;
+  font-family: "Josefin Slab", sans-serif;
 }

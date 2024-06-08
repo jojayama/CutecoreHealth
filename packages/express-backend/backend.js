@@ -47,7 +47,7 @@ app.use((req, res, next) => {
 // connect to app
 app.listen(process.env.PORT || port, () => {
   console.log(
-    "Rest API is listening at https://cutecore-health-react-backend.vercel.app",
+    "Rest API is listening at https://cutecore-health-react-backend.vercel.app/",
   );
 });
 
@@ -140,6 +140,19 @@ app.post("/users", async (req, res) => {
 });
 
 app.use(authenticateUser);
+
+// update the user
+app.put("/users/:id", async (req, res) => {
+  const { id } = req.params;
+  const { email, password } = req.body;
+
+  try {
+    const user = await userServices.updateUserbyId(id, { email, password });
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 //change User email
 app.post("users/:id", async (req, res) => {
