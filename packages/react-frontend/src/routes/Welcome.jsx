@@ -47,7 +47,7 @@ export default function Welcome() {
     };
 
     getReminders();
-  }, [userId]);
+  }, [remReceived, userId]);
 
   return (
     <div className={styles.background}>
