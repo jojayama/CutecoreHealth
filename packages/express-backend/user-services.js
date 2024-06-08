@@ -22,30 +22,20 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => {
-    console.log("Connected to MongoDB");
-  })
   .catch((error) => {
     console.error("Error connecting to MongoDB:", error);
   });
 
 function getUsers(name, email) {
   let promise;
-  if (name === undefined && email === undefined) {
+  if (email === undefined) {
     promise = userModel.find();
-  } else if (name && !email) {
-    promise = findUserByName(name);
-  } else if (email && !name) {
+  } else if (email) {
     promise = findUserByEmail(email);
-  } else if (name && email) {
-    promise = findUserByNameAndEmail(name, email);
   }
   return promise;
 }
 
-function findUserByName(name) {
-  return userModel.find({ name: name });
-}
 function findUserById(id) {
   return userModel.findById(id);
 }
@@ -54,34 +44,38 @@ function findDiaryById(id) {
   return diaryModel.findById(id);
 }
 
+function findGoalById(id) {
+  return Goal.findById(id);
+}
+
+function findReminderById(id) {
+  return Reminder.findById(id);
+}
+
 async function addUser(email, password) {
   if (!email || !password) {
     throw new Error("All fields are required");
   }
-
+  
   const existingUser = await User.findOne({ email });
   if (existingUser) {
     throw new Error("Email already taken");
   }
-
+  
   const hashedPassword = await bcrypt.hash(password, 10);
-
+  
   const newUser = new User({
     email,
     password: hashedPassword,
   });
   await newUser.save();
   console.log(newUser);
-
+  
   return newUser;
 }
 
 function findUserByEmail(email) {
   return userModel.find({ email: email });
-}
-
-function findUserByNameAndEmail(name, email) {
-  return userModel.find({ name: name, email: email });
 }
 
 function deleteUserById(id) {
@@ -122,11 +116,11 @@ export default {
   addUser,
   getUsers,
   findUserById,
-  findUserByName,
   findUserByEmail,
-  findUserByNameAndEmail,
   deleteUserById,
+  findGoalById,
   deleteGoalbyId,
+  findReminderById,
   deleteReminderbyId,
   findDiaryById,
   deleteDiarybyId,
