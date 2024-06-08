@@ -15,7 +15,7 @@ const app = express();
 const port = 8000;
 
 const corsOptions = {
-  origin: "https://cutecore-health-react-backend.vercel.app",
+  origin: "https://cutecore-health-react-frontend.vercel.app",
   methods: "GET,POST,DELETE,PUT",
   allowedHeaders: "Content-Type,Authorization",
 };
