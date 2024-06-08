@@ -82,6 +82,9 @@ function CreateAccount(props) {
         href="https://fonts.googleapis.com/css2?family=Josefin+Slab&display=swap"
       ></link>
       <h1 className={styles.heading}>Create Account</h1>
+      <p className={styles.emailAlert}>
+        Look out for an email after signing up to verify your email!
+      </p>
       {error && <p className={styles.errorMessage}>{errorMessage}</p>}
       <form className={styles.form}>
         <input
