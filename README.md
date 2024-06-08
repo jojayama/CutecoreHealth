@@ -12,7 +12,7 @@ Environment Setup:
 4. Run backend tests (see section below)
 5. Begin developing!
 
-How to run tests: 
+How to run tests:
 In "/packages/express-backend/" run "npm test"
 
 UI prototype: https://www.figma.com/proto/4YGWdjxPBqR3T9e0Iiy9Ad/Cutecore-Health-Wireframe?type=design&node-id=2-2&t=dnL3vr5Nsu0dOmpW-0&scaling=scale-down&page-id=0%3A1&starting-point-node-id=2%3A2

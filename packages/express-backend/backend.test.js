@@ -21,11 +21,11 @@ describe("Service Testing", () => {
   // });
 
   /*
-  * User Testing
-  */
+   * User Testing
+   */
   test("Testing deleteUserById()", async () => {
     const email = "eric01@gmail.com";
-    const password = "eheh123"
+    const password = "eheh123";
     const mockUser = new userModel({ email, password });
     const savedUser = await mockUser.save();
     const got = await mut.deleteUserById(savedUser._id);
@@ -38,7 +38,7 @@ describe("Service Testing", () => {
 
   test("Testing addUser()", async () => {
     const email = "charlieisntbored@gmail.com";
-    const password = "calpoly123"
+    const password = "calpoly123";
 
     const got = await mut.addUser(email, password);
     expect(got._id).toBeDefined();
@@ -49,23 +49,27 @@ describe("Service Testing", () => {
   });
 
   test("Testing addUser() -- required fields error", async () => {
-    await expect(mut.addUser(undefined, undefined)).rejects.toThrow("All fields are required");
+    await expect(mut.addUser(undefined, undefined)).rejects.toThrow(
+      "All fields are required",
+    );
   });
 
   test("Testing addUser() -- email taken error", async () => {
     const email = "cypher@gmail.com";
-    const password1 = "samisahacker"
-    const password2 = "smarterbabysmarter"
+    const password1 = "samisahacker";
+    const password2 = "smarterbabysmarter";
     const savedUser = await mut.addUser(email, password1);
 
-    await expect(mut.addUser(email, password2)).rejects.toThrow("Email already taken");
-    
+    await expect(mut.addUser(email, password2)).rejects.toThrow(
+      "Email already taken",
+    );
+
     await mut.deleteUserById(savedUser._id);
   });
 
   test("Testing comparePassword()", async () => {
     const email = "smarterbabysmarter@gmail.com";
-    const password = "samisahacker"
+    const password = "samisahacker";
     const mockUser = new userModel({ email, password });
 
     await mockUser.comparePassword(password);
@@ -74,20 +78,20 @@ describe("Service Testing", () => {
   });
 
   test("Testing findUserByEmail()", async () => {
-      const email = "charlieisbored@gmail.com";
-      const password = "calpoly123"
-      const mockUser = new userModel({ email, password });
-      const savedUser = await mockUser.save();
+    const email = "charlieisbored@gmail.com";
+    const password = "calpoly123";
+    const mockUser = new userModel({ email, password });
+    const savedUser = await mockUser.save();
 
-      const got = await mut.findUserByEmail(savedUser.email);
-      expect(got[0].email).toBe(savedUser.email);
+    const got = await mut.findUserByEmail(savedUser.email);
+    expect(got[0].email).toBe(savedUser.email);
 
-      await mut.deleteUserById(savedUser._id);
+    await mut.deleteUserById(savedUser._id);
   });
 
   test("Testing findUserById()", async () => {
     const email = "sammywammy@gmail.com";
-    const password = "drinkicecofypanikatak"
+    const password = "drinkicecofypanikatak";
     const mockUser = new userModel({ email, password });
     const savedUser = await mockUser.save();
 
@@ -105,7 +109,7 @@ describe("Service Testing", () => {
 
   test("Testing getUsers() -- certain user", async () => {
     const email = "jodilover@gmail.com";
-    const password = "jodiomgggg"
+    const password = "jodiomgggg";
     const mockUser = new userModel({ email, password });
     const savedUser = await mockUser.save();
 
@@ -117,11 +121,11 @@ describe("Service Testing", () => {
   });
 
   /*
-  * Diary Testing
-  */
+   * Diary Testing
+   */
   test("Testing deleteDiarybyId()", async () => {
     const email = "jodi@gmail.com";
-    const password = "eheh123"
+    const password = "eheh123";
     const mockUser = new userModel({ email, password });
     const savedUser = await mockUser.save();
 
@@ -153,7 +157,8 @@ describe("Service Testing", () => {
     const savedUser = await mockUser.save();
 
     const title = "I am panicking";
-    const entry = "Today I had iced coffee and now it is causing me to panic ;-;";
+    const entry =
+      "Today I had iced coffee and now it is causing me to panic ;-;";
     const date = "6/7/2024";
     const userId = savedUser._id;
     const mockDiary = new diaryModel({ title, entry, date, userId });
@@ -171,17 +176,17 @@ describe("Service Testing", () => {
   });
 
   /*
-  * Goal Testing
-  */
+   * Goal Testing
+   */
   test("Testing deleteGoalbyId()", async () => {
     const email = "jenna@gmail.com";
-    const password = "hehehe123"
+    const password = "hehehe123";
     const mockUser = new userModel({ email, password });
     const savedUser = await mockUser.save();
 
     const title = "Testing!!";
     const description = "testing goal :)";
-    const deadline = new Date('June 7, 2024');
+    const deadline = new Date("June 7, 2024");
     const userId = savedUser._id;
     const mockGoal = new goalModel({ title, description, deadline, userId });
     const savedGoal = await mockGoal.save();
@@ -208,7 +213,7 @@ describe("Service Testing", () => {
 
     const title = "do NOT panicking";
     const description = "don't panic o-o";
-    const deadline = new Date('June 7, 2024');
+    const deadline = new Date("June 7, 2024");
     const userId = savedUser._id;
     const mockGoal = new goalModel({ title, description, deadline, userId });
     const savedGoal = await mockGoal.save();
@@ -225,17 +230,17 @@ describe("Service Testing", () => {
   });
 
   /*
-  * Reminder Testing
-  */
+   * Reminder Testing
+   */
   test("Testing deleteReminderbyId()", async () => {
     const email = "char@gmail.com";
-    const password = "eheh123"
+    const password = "eheh123";
     const mockUser = new userModel({ email, password });
     const savedUser = await mockUser.save();
 
     const title = "Testing!!";
     const note = "testing entry :)";
-    const date = new Date('June 7, 2024');
+    const date = new Date("June 7, 2024");
     const time = "6 PM";
     const userId = savedUser._id;
     const mockReminder = new reminderModel({ title, note, date, time, userId });
@@ -262,8 +267,9 @@ describe("Service Testing", () => {
     const savedUser = await mockUser.save();
 
     const title = "I am panicking";
-    const note = "Today I had iced coffee and now it is causing me to panic ;-;";
-    const date = new Date('June 7, 2024');
+    const note =
+      "Today I had iced coffee and now it is causing me to panic ;-;";
+    const date = new Date("June 7, 2024");
     const time = "6 PM";
     const userId = savedUser._id;
     const mockReminder = new reminderModel({ title, note, date, time, userId });
