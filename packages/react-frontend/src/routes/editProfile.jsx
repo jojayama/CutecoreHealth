@@ -76,17 +76,14 @@ export default function EditProfile() {
       const updateData = { email };
 
       try {
-        const response = await fetch(
-          `https://cutecore-health-react-backend.vercel.app/users/${userId}`,
-          {
-            method: "PUT",
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(updateData),
+        const response = await fetch(`http://localhost:8000/users/${userId}`, {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
           },
-        );
+          body: JSON.stringify(updateData),
+        });
 
         const result = await response.json();
 
@@ -124,16 +121,13 @@ export default function EditProfile() {
         console.log("Deleted user from Firebase");
 
         // Delete user from backend
-        const response = await fetch(
-          `https://cutecore-health-react-backend.vercel.app/users/${id}`,
-          {
-            method: "DELETE",
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json",
-            },
+        const response = await fetch(`http://localhost:8000/users/${id}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
           },
-        );
+        });
 
         if (response.ok) {
           console.log("Deleted user from backend");

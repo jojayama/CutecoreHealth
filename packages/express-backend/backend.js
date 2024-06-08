@@ -15,7 +15,7 @@ const app = express();
 const port = 8000;
 
 const corsOptions = {
-  origin: "https://cutecore-health-react-frontend.vercel.app",
+  origin: "http://localhost:5173",
   methods: "GET,POST,DELETE,PUT",
   allowedHeaders: "Content-Type,Authorization",
 };
@@ -46,9 +46,7 @@ app.use((req, res, next) => {
 
 // connect to app
 app.listen(process.env.PORT || port, () => {
-  console.log(
-    "Rest API is listening at https://cutecore-health-react-backend.vercel.app/",
-  );
+  console.log("Rest API is listening at http://localhost:8000/");
 });
 
 app.get("/", (req, res) => {

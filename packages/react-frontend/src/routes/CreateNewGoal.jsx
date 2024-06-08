@@ -18,21 +18,18 @@ function CreateNewGoal(props) {
     const token = localStorage.getItem("token");
     const id = localStorage.getItem("userId");
     console.log("UserId: " + id);
-    const response = await fetch(
-      `https://cutecore-health-react-backend.vercel.app/goals/${id}`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title: person.title,
-          description: person.desc,
-          deadline: person.deadline,
-        }),
+    const response = await fetch(`http://localhost:8000/goals/${id}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
       },
-    );
+      body: JSON.stringify({
+        title: person.title,
+        description: person.desc,
+        deadline: person.deadline,
+      }),
+    });
     if (response.ok) {
       const data = await response.json();
       console.log("Reminder created:", data);
