@@ -1,10 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AccountBoxRoundedIcon from "@mui/icons-material/AccountBoxRounded";
 import styles from "../style/layout.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import { signOut } from "firebase/auth";
-import { auth } from "../../firebase";
-import { useState, useEffect } from "react";
 
 export default function Layout() {
   const navigate = useNavigate();
@@ -17,19 +14,17 @@ export default function Layout() {
   }, []);
 
   function handleLogout() {
+    // Remove user information from localStorage
     localStorage.removeItem("token");
     localStorage.removeItem("username");
 
-    signOut(auth)
-      .then(() => {
-        // Sign-out successful.
-        console.log("User signed out.");
-        navigate("/"); // Navigate to the home page or any other page after logout
-      })
-      .catch((error) => {
-        // An error happened.
-        console.error("Error signing out:", error);
-      });
+    // Optionally, you can also make a request to your backend to invalidate the token
+    // if your backend supports token invalidation.
+
+    // Redirect the user to the home page or login page after logout
+    navigate("/");
+
+    console.log("User logged out.");
   }
 
   return (
