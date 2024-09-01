@@ -1,16 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "../style/editProfile.module.css";
 import Layout from "./layout";
 import Navbar from "../navbar";
 import { useNavigate } from "react-router-dom";
-import {
-  getAuth,
-  updateEmail,
-  sendEmailVerification,
-  reauthenticateWithCredential,
-  EmailAuthProvider,
-  deleteUser,
-} from "firebase/auth";
 
 export default function EditProfile() {
   const [email, setEmail] = useState("");
@@ -21,59 +13,45 @@ export default function EditProfile() {
   const token = localStorage.getItem("token");
 
   const navigate = useNavigate();
-  const auth = getAuth();
-
-  useEffect(() => {
-    const checkEmailVerified = async () => {
-      if (auth.currentUser) {
-        await auth.currentUser.reload();
-      }
-    };
-
-    if (verificationSent) {
-      const intervalId = setInterval(() => {
-        checkEmailVerified();
-      }, 1000);
-
-      return () => clearInterval(intervalId);
-    }
-  }, [verificationSent, auth]);
 
   async function sendVerificationEmail() {
-    const user = auth.currentUser;
-    if (user && email) {
+    if (email) {
       try {
-        // Reauthenticate the user before updating the email
-        const credential = EmailAuthProvider.credential(
-          user.email,
-          currentPassword,
+        // API call to send a verification email
+        const response = await fetch(
+          `https://cutecore-health-react-backend.vercel.app/users/${userId}/send-verification-email`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email }),
+          },
         );
-        await reauthenticateWithCredential(user, credential);
 
-        // Temporarily update the email in Firebase Auth to send the verification email to the new address
-        await updateEmail(user, email);
-        console.log("Email temporarily updated to send verification email.");
-
-        // Send verification email to the new email address
-        await sendEmailVerification(user);
-        console.log("Verification email sent to the new email address.");
-
-        setVerificationSent(true);
+        if (response.ok) {
+          console.log("Verification email sent to the new email address.");
+          setVerificationSent(true);
+        } else {
+          const result = await response.json();
+          console.error("Error sending verification email:", result.message);
+          setErrorMessage(result.message);
+        }
       } catch (error) {
         console.error("Error sending verification email:", error);
         setErrorMessage(error.message);
       }
     } else {
-      console.log("User is not signed in or email is not provided.");
+      console.log("Email is not provided.");
     }
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const user = auth.currentUser;
 
-    if (user && user.emailVerified) {
-      const updateData = { email };
+    if (verificationSent) {
+      const updateData = { email, currentPassword };
 
       try {
         const response = await fetch(
@@ -108,48 +86,32 @@ export default function EditProfile() {
     }
   }
 
-  const handleDelete = async (id) => {
-    const user = auth.currentUser;
-    if (user) {
-      try {
-        // Reauthenticate the user before deleting
-        const credential = EmailAuthProvider.credential(
-          user.email,
-          currentPassword,
-        );
-        await reauthenticateWithCredential(user, credential);
-
-        // Delete user from Firebase
-        await deleteUser(user);
-        console.log("Deleted user from Firebase");
-
-        // Delete user from backend
-        const response = await fetch(
-          `https://cutecore-health-react-backend.vercel.app/users/${id}`,
-          {
-            method: "DELETE",
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json",
-            },
+  const handleDelete = async () => {
+    try {
+      const response = await fetch(
+        `https://cutecore-health-react-backend.vercel.app/users/${userId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
           },
-        );
+        },
+      );
 
-        if (response.ok) {
-          console.log("Deleted user from backend");
-          navigate("/");
-        } else {
-          console.error(
-            "Error deleting user from backend: ",
-            response.statusText,
-          );
-        }
-      } catch (error) {
-        console.error("Error deleting user: ", error);
-        setErrorMessage(error.message);
+      if (response.ok) {
+        console.log("Deleted user from backend");
+        localStorage.removeItem("token");
+        localStorage.removeItem("userId");
+        navigate("/");
+      } else {
+        const result = await response.json();
+        console.error("Error deleting user from backend:", result.message);
+        setErrorMessage(result.message);
       }
-    } else {
-      console.log("User is not signed in.");
+    } catch (error) {
+      console.error("Error deleting user: ", error);
+      setErrorMessage(error.message);
     }
   };
 
@@ -199,15 +161,11 @@ export default function EditProfile() {
         <input
           type="submit"
           value="Save"
-          onClick={handleSubmit}
           className={styles.buttonContainer}
           style={{ width: "110px" }}
         />
       </form>
-      <button
-        className={styles.deleteUserContainer}
-        onClick={() => handleDelete(userId)}
-      >
+      <button className={styles.deleteUserContainer} onClick={handleDelete}>
         <p className={styles.deleteUser}>Delete User</p>
       </button>
     </div>
