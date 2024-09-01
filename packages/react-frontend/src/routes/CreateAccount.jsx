@@ -1,14 +1,7 @@
-// export default CreateAccount;
 import React, { useState } from "react";
 import styles from "../style/form.module.css";
-// import Navbar from "../navbar";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import {
-  createUserWithEmailAndPassword,
-  sendEmailVerification,
-} from "firebase/auth";
-import { auth } from "../../firebase";
 
 function CreateAccount(props) {
   const [email, setEmail] = useState("");
@@ -18,61 +11,40 @@ function CreateAccount(props) {
 
   const navigate = useNavigate();
 
-  //trying to commit
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("email: " + email + "\npassword: " + password);
-    // const url = "https://cutecore-health-react-frontend.vercel.app/users";
-    // console.log("URL: ", url);
-    const response = await fetch(
-      "https://cutecore-health-react-backend.vercel.app/users",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+
+    try {
+      const response = await fetch(
+        "https://cutecore-health-react-backend.vercel.app/users",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
         },
-        body: JSON.stringify({ email, password }),
-      },
-    );
+      );
 
-    const user = await response.json();
+      const user = await response.json();
 
-    if (user) {
-      console.log("Created user successfully");
-      localStorage.setItem("token", user.token);
-      localStorage.setItem("userId", user._id);
-    } else {
-      alert("Could not create user: " + user.message);
-    }
-
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log("User created:", user);
-
-        sendEmailVerification(user)
-          .then(() => {
-            console.log("Email verification sent! Check your email.");
-          })
-          .catch((error) => {
-            const errorCode = error.code;
-            setError(true);
-            setErrorMessage("Could not create an account: " + error.message);
-            const errorMessage = error.message;
-            console.error("Error sending email:", error, errorMessage);
-          });
-        // Optionally, navigate to another page or show a success message
+      if (response.ok) {
+        console.log("Created user successfully");
+        localStorage.setItem("token", user.token);
+        localStorage.setItem("userId", user._id);
+        // Navigate to the home page or show a success message
         navigate("/");
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+      } else {
         setError(true);
-        setErrorMessage("Could not create user: " + error.message);
-        console.error("Error creating user:", errorCode, errorMessage);
-      });
+        setErrorMessage("Could not create user: " + user.message);
+        console.error("Error creating user:", user.message);
+      }
+    } catch (error) {
+      setError(true);
+      setErrorMessage("An error occurred: " + error.message);
+      console.error("Error creating user:", error.message);
+    }
   };
 
   return (
