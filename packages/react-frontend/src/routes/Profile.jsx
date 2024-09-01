@@ -35,6 +35,7 @@ export default function Profile() {
         );
 
         const result = await response.json();
+        console.log(result)
 
         if (response.ok) {
           setUser({
