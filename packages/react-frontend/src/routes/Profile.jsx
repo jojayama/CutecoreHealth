@@ -3,32 +3,53 @@ import Layout from "./layout";
 import Navbar from "../navbar";
 import styles from "../style/profile.module.css";
 import { Link } from "react-router-dom";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export default function Profile() {
   const [user, setUser] = useState({
     email: "",
-    password: "",
+    password: "********", // Masked password
   });
 
   useEffect(() => {
-    const auth = getAuth();
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) {
-        setUser({
-          email: currentUser.email,
-          password: "********", // Mask the password
-        });
-      } else {
-        setUser({
-          email: "",
-          password: "",
-        });
-      }
-    });
+    const fetchUserProfile = async () => {
+      try {
+        // Get the token from localStorage
+        const token = localStorage.getItem("token");
 
-    // Cleanup subscription on unmount
-    return () => unsubscribe();
+        if (!token) {
+          console.error("No token found, redirecting to login.");
+          // Optionally redirect to login if no token is found
+          return;
+        }
+
+        // Make a request to the backend to get the user's profile information
+        const response = await fetch(
+          "https://cutecore-health-react-backend.vercel.app/profile",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`, // Pass the token in the Authorization header
+            },
+          }
+        );
+
+        const result = await response.json();
+
+        if (response.ok) {
+          setUser({
+            email: result.email,
+            password: "********", // Masked password
+          });
+        } else {
+          console.error("Failed to fetch user profile:", result.message);
+        }
+      } catch (error) {
+        console.error("Error fetching user profile:", error);
+      }
+    };
+
+    fetchUserProfile();
   }, []);
 
   return (
