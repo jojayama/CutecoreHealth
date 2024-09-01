@@ -7,82 +7,44 @@ import { useNavigate } from "react-router-dom";
 export default function EditProfile() {
   const [email, setEmail] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
-  const [verificationSent, setVerificationSent] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const userId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
 
   const navigate = useNavigate();
 
-  async function sendVerificationEmail() {
-    if (email) {
-      try {
-        // API call to send a verification email
-        const response = await fetch(
-          `https://cutecore-health-react-backend.vercel.app/users/${userId}/send-verification-email`,
-          {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ email }),
-          },
-        );
-
-        if (response.ok) {
-          console.log("Verification email sent to the new email address.");
-          setVerificationSent(true);
-        } else {
-          const result = await response.json();
-          console.error("Error sending verification email:", result.message);
-          setErrorMessage(result.message);
-        }
-      } catch (error) {
-        console.error("Error sending verification email:", error);
-        setErrorMessage(error.message);
-      }
-    } else {
-      console.log("Email is not provided.");
-    }
-  }
-
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (verificationSent) {
-      const updateData = { email, currentPassword };
+    const updateData = { email, currentPassword };
 
-      try {
-        const response = await fetch(
-          `https://cutecore-health-react-backend.vercel.app/users/${userId}`,
-          {
-            method: "PUT",
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(updateData),
+    try {
+      const response = await fetch(
+        `https://cutecore-health-react-backend.vercel.app/users/${userId}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
           },
-        );
-
-        const result = await response.json();
-
-        if (response.ok) {
-          console.log("Updated user successfully");
-          if (result.token) {
-            localStorage.setItem("token", result.token);
-          }
-          navigate("/profile");
-        } else {
-          alert("Could not update user: " + result.message);
+          body: JSON.stringify(updateData),
         }
-      } catch (error) {
-        console.error("Error updating user:", error);
-        setErrorMessage(error.message);
+      );
+
+      const result = await response.json();
+
+      if (response.ok) {
+        console.log("Updated user successfully");
+        if (result.token) {
+          localStorage.setItem("token", result.token);
+        }
+        navigate("/profile");
+      } else {
+        alert("Could not update user: " + result.message);
       }
-    } else {
-      setErrorMessage("Please verify your email before saving changes.");
+    } catch (error) {
+      console.error("Error updating user:", error);
+      setErrorMessage(error.message);
     }
   }
 
@@ -96,7 +58,7 @@ export default function EditProfile() {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
-        },
+        }
       );
 
       if (response.ok) {
@@ -145,18 +107,6 @@ export default function EditProfile() {
         />
         {errorMessage && (
           <div className={styles.errorMessage}>Error: {errorMessage}</div>
-        )}
-        <input
-          type="button"
-          value="Send Verification Email"
-          onClick={sendVerificationEmail}
-          className={styles.buttonContainer}
-          style={{ width: "350px" }}
-        />
-        {verificationSent && (
-          <p className={styles.emailAlert}>
-            Please check your email and verify before saving changes.
-          </p>
         )}
         <input
           type="submit"
